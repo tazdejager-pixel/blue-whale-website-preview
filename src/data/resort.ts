@@ -38,7 +38,7 @@ export const LOGO_CREAM = `${ASSETS}/brand/logo-cream.png`;
 export const LOGO_BLUE = `${ASSETS}/brand/logo-navy.png`;
 
 export const IMAGES = {
-  hero: `${ASSETS}/site/hero.jpg`,
+  hero: `${ASSETS}/site/hero.jpg?v=2`,
   chalet: `${ASSETS}/site/chalet.jpg`,
   whaleHouse: `${ASSETS}/site/whaleHouse.jpg`,
   venue: `${ASSETS}/site/venue.jpg`,

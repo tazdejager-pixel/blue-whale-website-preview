@@ -15,7 +15,14 @@ const Hero: React.FC = () => {
         alt="Indian Ocean coastline at Blue Whale Resort near George, Garden Route"
         className="absolute inset-0 w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#163842]/55 via-[#1E4E5C]/25 to-[#163842]/75" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0d2a32]/70 via-[#103039]/45 to-[#0d2a32]/85" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 65% 55% at 50% 46%, rgba(8,28,34,0.6) 0%, rgba(8,28,34,0.25) 45%, transparent 72%)',
+        }}
+      />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <img
@@ -26,13 +33,13 @@ const Hero: React.FC = () => {
         <p className="text-[#F2ECDD] tracking-[0.34em] uppercase text-[11px] sm:text-xs mb-5">
           Garden Route · South Africa
         </p>
-        <h1 className="font-serif text-[#F2ECDD] leading-[1.1] max-w-3xl mb-3 uppercase tracking-[0.04em] text-2xl sm:text-4xl md:text-5xl">
+        <h1 className="font-serif text-[#F2ECDD] leading-[1.1] max-w-3xl mb-3 uppercase tracking-[0.04em] text-2xl sm:text-4xl md:text-5xl [text-shadow:0_2px_20px_rgba(8,28,34,0.8)]">
           The View Is The Destination
         </h1>
-        <p className="font-script text-[#F2ECDD] text-4xl sm:text-5xl md:text-6xl mb-7 leading-none">
+        <p className="font-script text-[#F2ECDD] text-4xl sm:text-5xl md:text-6xl mb-7 leading-none [text-shadow:0_2px_20px_rgba(8,28,34,0.8)]">
           Stay. Celebrate. Connect.
         </p>
-        <p className="text-[#F2ECDD]/90 max-w-xl text-sm sm:text-base mb-9 font-light leading-relaxed">
+        <p className="text-[#F2ECDD] max-w-xl text-sm sm:text-base mb-9 font-light leading-relaxed [text-shadow:0_1px_12px_rgba(8,28,34,0.85)]">
           A private coastal nature reserve where uninterrupted ocean views,
           whales and serenity become your everyday.
         </p>
