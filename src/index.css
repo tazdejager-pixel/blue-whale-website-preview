@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Luxurious+Script&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 44 41% 91%;
+    --foreground: 60 6% 22%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 60 6% 22%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 60 6% 22%;
+
+    --primary: 192 35% 24%;
+    --primary-foreground: 44 41% 91%;
+
+    --secondary: 44 41% 91%;
+    --secondary-foreground: 192 35% 24%;
+
+    --muted: 44 30% 86%;
+    --muted-foreground: 60 6% 38%;
+
+    --accent: 199 25% 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 192 20% 80%;
+    --input: 192 20% 80%;
+    --ring: 192 35% 24%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 44 41% 91%;
+    --sidebar-foreground: 192 35% 24%;
+    --sidebar-primary: 192 35% 24%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 44 30% 86%;
+    --sidebar-accent-foreground: 192 35% 24%;
+    --sidebar-border: 192 20% 80%;
+    --sidebar-ring: 192 35% 24%;
+  }
+
+  .dark {
+    --background: 192 35% 12%;
+    --foreground: 44 41% 91%;
+    --card: 192 35% 12%;
+    --card-foreground: 44 41% 91%;
+    --popover: 192 35% 12%;
+    --popover-foreground: 44 41% 91%;
+    --primary: 199 25% 54%;
+    --primary-foreground: 192 35% 12%;
+    --secondary: 192 30% 18%;
+    --secondary-foreground: 44 41% 91%;
+    --muted: 192 30% 18%;
+    --muted-foreground: 44 20% 70%;
+    --accent: 192 30% 18%;
+    --accent-foreground: 44 41% 91%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 192 30% 18%;
+    --input: 192 30% 18%;
+    --ring: 199 25% 54%;
+    --sidebar-background: 192 35% 12%;
+    --sidebar-foreground: 44 41% 91%;
+    --sidebar-primary: 199 25% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 192 30% 18%;
+    --sidebar-accent-foreground: 44 41% 91%;
+    --sidebar-border: 192 30% 18%;
+    --sidebar-ring: 199 25% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans dark:bg-background dark:text-foreground;
+    font-family: 'Open Sans', system-ui, sans-serif;
+    font-weight: 300;
+  }
+
+  /* Georgia for headings, caps look applied per-element */
+  .font-serif,
+  .font-heading {
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: 0.01em;
+  }
+
+  /* Luxurious Script for signature moments */
+  .font-script {
+    font-family: 'Luxurious Script', cursive;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  pre, code {
+    @apply font-mono;
+  }
+}
+
+
+.markdown-editor {
+  @apply font-mono text-base leading-relaxed;
+}
+
+.markdown-preview {
+  @apply prose max-w-none prose-blue dark:prose-invert;
+}
+
+.markdown-preview pre {
+  @apply bg-secondary p-4 rounded-md overflow-x-auto;
+}
+
+.markdown-preview code {
+  @apply text-sm font-mono text-primary;
+}
+
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6 {
+  @apply font-sans font-semibold text-foreground;
+}
+
+.markdown-preview ul,
+.markdown-preview ol {
+  @apply my-4 ml-6;
+}
