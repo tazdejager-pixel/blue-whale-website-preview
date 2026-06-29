@@ -85,7 +85,7 @@ const VenueEnquiry: React.FC = () => {
 
   if (status === 'success') {
     return (
-      <div className="bg-[#F2ECDD]/10 backdrop-blur-sm border border-[#F2ECDD]/20 rounded-[2rem] p-10 text-center">
+      <div className="bg-[#0e2b33]/80 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[2rem] p-10 text-center shadow-xl">
         <CheckCircle2 className="text-[#F2ECDD] mx-auto mb-4" size={48} strokeWidth={1.5} />
         <h3 className="font-serif text-[#F2ECDD] text-2xl mb-3">Thank you</h3>
         <p className="text-[#F2ECDD]/80 mb-6">
@@ -101,7 +101,7 @@ const VenueEnquiry: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-[#F2ECDD]/10 backdrop-blur-sm border border-[#F2ECDD]/20 rounded-[2rem] p-7 sm:p-9 space-y-5 text-left"
+      className="bg-[#0e2b33]/80 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[2rem] p-7 sm:p-9 space-y-5 text-left shadow-xl"
     >
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
