@@ -16,7 +16,7 @@ const base =
 const variants = {
   // filled ocean pill
   solid: 'bg-[#1E4E5C] text-[#F2ECDD] border border-[#1E4E5C] hover:bg-[#163842] hover:border-[#163842]',
-  // understated outlined pill on light backgrounds — the template's signature look
+  // understated outlined pill on light backgrounds - the template's signature look
   outline: 'bg-transparent border border-[#1E4E5C] text-[#1E4E5C] hover:bg-[#1E4E5C] hover:text-[#F2ECDD]',
   // filled cream pill for dark/photo backgrounds
   light: 'bg-[#F2ECDD] text-[#1E4E5C] border border-[#F2ECDD] hover:bg-white',

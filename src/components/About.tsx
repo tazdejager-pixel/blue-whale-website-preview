@@ -17,13 +17,13 @@ const About: React.FC = () => (
         </h2>
         <p className="text-[#3A3A36]/85 leading-relaxed mb-5">
           Blue Whale Resort sits within a private coastal nature reserve near
-          George, on South Africa's celebrated Garden Route — offering
+          George, on South Africa's celebrated Garden Route - offering
           breathtaking ocean views, comfortable self-catering accommodation and
           unforgettable experiences for every kind of getaway.
         </p>
         <p className="text-[#3A3A36]/85 leading-relaxed mb-8">
           From relaxed family holidays and romantic escapes to weddings and
-          conferences, this is a place to breathe out — to slow down, reconnect
+          conferences, this is a place to breathe out - to slow down, reconnect
           with the people who matter, and create lasting memories. Far from the
           noise, close to the wild.
         </p>

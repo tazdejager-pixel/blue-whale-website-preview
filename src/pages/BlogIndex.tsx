@@ -8,7 +8,7 @@ const BlogIndex: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setSeo({ title: `Journal · ${RESORT.name}`, description: 'Stories, guides and news from Blue Whale Resort on the Garden Route — whale season, coastal walks and life at the edge of the ocean.', url: '/blog' });
+    setSeo({ title: `Journal · ${RESORT.name}`, description: 'Stories, guides and news from Blue Whale Resort on the Garden Route - whale season, coastal walks and life at the edge of the ocean.', url: '/blog' });
     fetchPublishedPosts().then(setPosts).catch(() => {}).finally(() => setLoading(false));
   }, []);
 
@@ -24,12 +24,12 @@ const BlogIndex: React.FC = () => {
       <section className="max-w-5xl mx-auto px-5 py-14">
         <span className="block text-[#6E93A6] tracking-[0.24em] uppercase text-[11px] mb-2">The Blue Whale</span>
         <h1 className="font-serif text-[#1E4E5C] text-3xl sm:text-4xl uppercase tracking-[0.04em] mb-3">Journal</h1>
-        <p className="text-[#3A3A36]/70 max-w-xl mb-10">Stories from the edge of the ocean — whale season, coastal walks, and life on the Garden Route.</p>
+        <p className="text-[#3A3A36]/70 max-w-xl mb-10">Stories from the edge of the ocean - whale season, coastal walks, and life on the Garden Route.</p>
 
         {loading ? (
           <div className="flex items-center gap-2 text-[#3A3A36]/60 py-10"><Loader2 className="animate-spin" size={18} /> Loading…</div>
         ) : posts.length === 0 ? (
-          <p className="text-[#3A3A36]/60 py-10">No journal entries yet — check back soon.</p>
+          <p className="text-[#3A3A36]/60 py-10">No journal entries yet - check back soon.</p>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
             {posts.map((p) => (

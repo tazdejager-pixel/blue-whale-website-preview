@@ -215,7 +215,7 @@ const Enquiry: React.FC = () => {
                 onChange={(e) => update('message', e.target.value)}
                 rows={4}
                 className={`${inputClass} resize-none`}
-                placeholder="Tell us about your stay — number of guests, the occasion, any questions..."
+                placeholder="Tell us about your stay - number of guests, the occasion, any questions..."
               />
               {errors.message && <p className="text-red-600 text-xs mt-1.5">{errors.message}</p>}
             </div>

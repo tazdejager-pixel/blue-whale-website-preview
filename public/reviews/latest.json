@@ -1,0 +1,104 @@
+{
+  "source": "tripadvisor",
+  "location_id": 7734785,
+  "listing_url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html",
+  "write_review_url": "https://www.tripadvisor.co.za/UserReview-g312662-d7734785-Blue_Whale_Resort-George_Western_Cape.html",
+  "rating": 4.5,
+  "review_count": 153,
+  "ranking": "#4 of 45 speciality lodging in George",
+  "rating_image_url": null,
+  "fetched_at": "2026-09-09T12:37:05+00:00",
+  "source_note": "SEED. Aggregate verified on the live Tripadvisor listing 09/09/2026. Review text carried over from the resort's own published widget. Replaced automatically on the first Terra API refresh.",
+  "reviews": [
+    {
+      "id": "seed-1",
+      "rating": 5,
+      "title": "Stay at Blue Whale Resort",
+      "text": "What a fabulous stay at Blue Whale Resort. We were a group of friends that booked all 8 sea facing chalets. Such stunning units with comfortable beds and amazing views. Would highly recommend and would definitely go back. Nothing was too much trouble for Gideon and Carla. Such a pleasure dealing with such accommodating people.",
+      "author": "judykalapac",
+      "date": "2022-10-11",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    },
+    {
+      "id": "seed-2",
+      "rating": 5,
+      "title": "Beautiful place to stay",
+      "text": "It was a great place to enjoy the holiday with family. Nice ocean view. Value for the money. Rooms were very neat and spacious. You can get up to a beautiful morning with mountain view as well as ocean view. Loved it",
+      "author": "sadanandvama",
+      "date": "2022-10-14",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    },
+    {
+      "id": "seed-3",
+      "rating": 4,
+      "title": "Fantastic option with sublime views",
+      "text": "Really has everything going for it, place is off the beaten track, quiet, views are fantastic, chalets are clean, chap comes around every third day to clean out the fireplace, great spot to get away. Only detractions that can be mentioned is the lack of inconsistent wifi signal, what exasperates the situation is MTN reception is not all that fantastic either, they offer you access to their reception wifi, but if you can get it to work there, then you should be able to get it to work at the chalets, but having said that, not everyone wants to be in range so to say. All in all a great stay, thank you.",
+      "author": "Brian",
+      "date": "2022-04-11",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    },
+    {
+      "id": "seed-4",
+      "rating": 5,
+      "title": "A must to stay when in George",
+      "text": "Fantastic private neat place to stay with the most beautiful scenery of the ocean. Very friendly and helpful hosts that make you feel at home. A place where you can find your soul again. Will definitely visit again.",
+      "author": "rabiesandra",
+      "date": "2022-02-16",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    },
+    {
+      "id": "seed-5",
+      "rating": 5,
+      "title": "Amazing",
+      "text": "Beautiful place, very quiet and peaceful!! Views are stunning! Situated right on the rocks the sound of the sea makes you sleep like a baby! Excellent fishing spots. Overall a very nice spot to relax and take in the beautiful views! Thanx you",
+      "author": "dustingower07",
+      "date": "2022-03-01",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    },
+    {
+      "id": "seed-6",
+      "rating": 5,
+      "title": "Excellent stay at Blue Whale Resort",
+      "text": "Beautiful clean & neat accommodation with a awesome view of the ocean. Everything was there that was needed to ensure a comfortable stay. Enjoyed the relaxing atmosphere and walk down to the ocean. Well done!!",
+      "author": "rwmetelerkamp",
+      "date": "2022-05-10",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    },
+    {
+      "id": "seed-7",
+      "rating": 5,
+      "title": "A little piece of heaven",
+      "text": "This unit exceeded our expectations by far. It is all you need to forget the year past and recharge your batteries for the last part of 2021. The view is breathtaking and to have the privilege of see a big school of dophins going past 3 times in 1morning was awesome. The unit is well equipped and staff friendly. Dont drive past go in and experience this jewel.",
+      "author": "annariedavies",
+      "date": "2021-12-06",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    },
+    {
+      "id": "seed-8",
+      "rating": 5,
+      "title": "Best Resort!",
+      "text": "My and my husband went to this resort for our honeymoon in November - If you are looking for a place that is private, never runs out of fire wood, ocean view and friendly staff, this is the place for you. We stayed a week and we will definitely return in the near future. Thank you so much Blue Whale resort for making our stay perfect!!",
+      "author": "C3099VGmartin",
+      "date": "2021-12-02",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    },
+    {
+      "id": "seed-9",
+      "rating": 4,
+      "title": "The view",
+      "text": "Great views. Clean and roomy. Well equipped, but it may be time to attend to furnishings shortly. A huge rain spider kept us company but left us in peace. After all, it is and was his home., so we let it be. Wish we could have booked in houses 1, 2 or3. They seem to have the best views of the ocean below.",
+      "author": "johanc321",
+      "date": "2022-10-02",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    },
+    {
+      "id": "seed-10",
+      "rating": 4,
+      "title": "Pleasant stay",
+      "text": "Cellphone network and data/ WiFi connection was close to non existent , but overall the place was 100, could definitely go back and hope for better cellphone network and WiFi, although southern cape seems safe, safety assurance for visitors is key provided we come from crime ridden places,",
+      "author": "l0tt17",
+      "date": "2022-06-27",
+      "url": "https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html"
+    }
+  ]
+}

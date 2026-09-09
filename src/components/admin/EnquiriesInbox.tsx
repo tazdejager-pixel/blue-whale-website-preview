@@ -47,7 +47,7 @@ const EnquiriesInbox: React.FC = () => {
   };
 
   const fmt = (d: string | null) =>
-    d ? new Date(d).toLocaleString('en-ZA', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
+    d ? new Date(d).toLocaleString('en-ZA', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : ' - ';
 
   return (
     <div>
@@ -118,11 +118,11 @@ const EnquiriesInbox: React.FC = () => {
                     )}
                   </td>
                   <td className="px-4 py-3 text-[#3A3A36]/80 whitespace-nowrap">
-                    {r.preferred_dates || '—'}<br />
+                    {r.preferred_dates || ' - '}<br />
                     <span className="text-[#3A3A36]/55">{r.guests || ''}</span>
                   </td>
-                  <td className="px-4 py-3 text-[#3A3A36]/80 capitalize">{r.interest?.replace(/-/g, ' ') || '—'}</td>
-                  <td className="px-4 py-3 text-[#3A3A36]/75 max-w-[280px]">{r.message || '—'}</td>
+                  <td className="px-4 py-3 text-[#3A3A36]/80 capitalize">{r.interest?.replace(/-/g, ' ') || ' - '}</td>
+                  <td className="px-4 py-3 text-[#3A3A36]/75 max-w-[280px]">{r.message || ' - '}</td>
                 </tr>
               ))}
             </tbody>

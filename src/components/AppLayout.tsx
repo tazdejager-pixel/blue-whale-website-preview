@@ -5,6 +5,7 @@ import About from './About';
 import Accommodation from './Accommodation';
 import Venue from './Venue';
 import WhyChooseUs from './WhyChooseUs';
+import Reviews from './Reviews';
 import BookCta from './BookCta';
 import AvailabilityGrid from './AvailabilityGrid';
 import Enquiry from './Enquiry';
@@ -23,6 +24,7 @@ const AppLayout: React.FC = () => {
         <Accommodation />
         <Venue />
         <WhyChooseUs />
+        <Reviews />
         <BookCta />
         <AvailabilityGrid />
         <Enquiry />

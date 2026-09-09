@@ -18,7 +18,7 @@ const StayCard: React.FC<Props> = ({ stay, reverse = false }) => {
         <div className="relative rounded-[2rem] overflow-hidden shadow-xl">
           <img
             src={stay.images[active]}
-            alt={`${stay.name} at Blue Whale Resort — photo ${active + 1}`}
+            alt={`${stay.name} at Blue Whale Resort - photo ${active + 1}`}
             loading="lazy"
             className="w-full h-72 sm:h-96 object-cover transition-all duration-500"
           />

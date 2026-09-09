@@ -1,6 +1,6 @@
 // Single source of truth for all Blue Whale Resort content & config
 
-// NightsBridge booking engine — the one place these are edited
+// NightsBridge booking engine - the one place these are edited
 export const NIGHTSBRIDGE_BBID = '17193';
 export const BOOKING_URL = `https://book.nightsbridge.com/${NIGHTSBRIDGE_BBID}`;
 // Live availability grid widget (embedded in a responsive iframe)
@@ -21,6 +21,18 @@ export const RESORT = {
   instagram: 'https://www.instagram.com/',
   facebook: 'https://www.facebook.com/',
 };
+
+
+// Tripadvisor guest reviews.
+// The feed is rewritten by scripts/blue_whale_reviews.py and fetched at runtime,
+// never bundled into the page source, which is what Tripadvisor's review
+// implementation policy requires. robots.txt disallows /reviews/.
+export const TRIPADVISOR = {
+  locationId: 7734785,
+  listingUrl:
+    'https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html',
+};
+export const REVIEWS_FEED_URL = `${import.meta.env.BASE_URL}reviews/latest.json`;
 
 
 // Google Maps embed of the George / Garden Route location (no API key needed)
@@ -82,9 +94,9 @@ export const STAYS: Stay[] = [
     signature: true,
     view: 'Panoramic Indian Ocean views',
     suits: 'Couples, families & those who came for the view',
-    sleeps: 'Sleeps 2–4',
+    sleeps: 'Sleeps 2-4',
     blurb:
-      'Eight fully equipped self-catering chalets, each positioned to capture panoramic views of the Indian Ocean. Greet spectacular sunrises with coffee on your private patio, watch for whales in season and dolphins all year round, then follow the wooden boardwalk through indigenous fynbos to the ocean’s edge. This is our signature stay — here, the view is the whole point.',
+      'Eight fully equipped self-catering chalets, each positioned to capture panoramic views of the Indian Ocean. Greet spectacular sunrises with coffee on your private patio, watch for whales in season and dolphins all year round, then follow the wooden boardwalk through indigenous fynbos to the ocean’s edge. This is our signature stay - here, the view is the whole point.',
     images: [IMAGES.chalet, IMAGES.chaletPatio, IMAGES.boardwalk],
     features: [
       'Panoramic Indian Ocean views',
@@ -104,7 +116,7 @@ export const STAYS: Stay[] = [
     suits: 'Families & groups wanting extra space and privacy',
     sleeps: 'Sleeps up to 8',
     blurb:
-      'A spacious private retreat nestled amongst indigenous fynbos with tranquil valley views. With generous living spaces and room to spread out, The Whale House is ideal for families and groups who want that little bit of extra space, privacy and togetherness — your own quiet corner of the reserve.',
+      'A spacious private retreat nestled amongst indigenous fynbos with tranquil valley views. With generous living spaces and room to spread out, The Whale House is ideal for families and groups who want that little bit of extra space, privacy and togetherness - your own quiet corner of the reserve.',
     images: [IMAGES.whaleHouseExt, IMAGES.whaleHouse, IMAGES.whaleHouseValley],
     features: [
       'Spacious private family retreat',
@@ -136,7 +148,7 @@ export const SHARED_FEATURES: SharedFeature[] = [
 export const WHY_CHOOSE = [
   {
     title: 'Uninterrupted Ocean Views',
-    desc: 'Panoramic Indian Ocean views from a unique coastal location — the horizon goes on forever.',
+    desc: 'Panoramic Indian Ocean views from a unique coastal location - the horizon goes on forever.',
   },
   {
     title: 'Space, Privacy & Serenity',
@@ -164,7 +176,7 @@ export const EXPERIENCES = [
 // Venue ("Celebrate by the Ocean")
 export const VENUE = {
   intro:
-    'A distinctive ocean-view venue overlooking the Indian Ocean and surrounded by natural beauty — the perfect setting for weddings, conferences, year-end functions, family gatherings and private celebrations. With accommodation and spectacular scenery all in one place, your event becomes a seamless destination experience from start to finish.',
+    'A distinctive ocean-view venue overlooking the Indian Ocean and surrounded by natural beauty - the perfect setting for weddings, conferences, year-end functions, family gatherings and private celebrations. With accommodation and spectacular scenery all in one place, your event becomes a seamless destination experience from start to finish.',
   perfectFor: [
     'Weddings',
     'Corporate conferences',

@@ -56,7 +56,7 @@ const NightsBridgePanel: React.FC = () => {
     <div className="max-w-2xl">
       <h2 className="font-serif text-[#1E4E5C] text-xl mb-1">NightsBridge Booking Engine</h2>
       <p className="text-[#3A3A36]/60 text-sm mb-6">
-        Update the property's NightsBridge ID without a developer. This is the single config point — every
+        Update the property's NightsBridge ID without a developer. This is the single config point - every
         “Book Now” button and the availability grid use these values.
       </p>
 
