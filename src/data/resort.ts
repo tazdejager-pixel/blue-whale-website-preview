@@ -63,10 +63,12 @@ export const IMAGES = {
   whaleHouseValley: `${ASSETS}/site/whaleHouseValley.jpg`,
 };
 
+// `href` starting with # scrolls within the home page; anything else is a route.
 export const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Accommodation', href: '#accommodation' },
-  { label: 'Venue', href: '#venue' },
+  { label: 'Venue', href: '/venue' },
+  { label: 'Reviews', href: '#reviews' },
   { label: 'Availability', href: '#availability' },
   { label: 'Enquire', href: '#enquiry' },
   { label: 'Book Now', href: '#book' },

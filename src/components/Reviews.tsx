@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { REVIEWS_FEED_URL, TRIPADVISOR } from '@/data/resort';
 
 /**
@@ -29,9 +30,12 @@ type Feed = {
   reviews: Review[];
 };
 
-// Nine keeps the grid square on desktop (3 x 3). The feed is ordered most recent
-// first, so this is the nine latest, not a curated pick.
-const HOW_MANY = 9;
+// Three on screen at a time, the rest behind the arrows. A wall of reviews takes more
+// of the page than it earns. The feed is ordered most recent first, so this is the
+// latest twelve rather than a curated pick, trimmed to whole pages of three so the
+// last slide is never a single card on its own.
+const PER_VIEW = 3;
+const HOW_MANY = 12;
 
 /** Tripadvisor bubbles. Uses their supplied rating image when the feed carries one. */
 const Bubbles: React.FC<{ rating: number; size?: number; imageUrl?: string | null }> = ({
@@ -106,6 +110,7 @@ const prettyDate = (iso: string) => {
 
 const Reviews: React.FC = () => {
   const [feed, setFeed] = useState<Feed | null>(null);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     let live = true;
@@ -124,7 +129,13 @@ const Reviews: React.FC = () => {
 
   if (!feed || !feed.reviews?.length) return null;
 
-  const shown = feed.reviews.slice(0, HOW_MANY);
+  const available = feed.reviews.slice(0, HOW_MANY);
+  const whole = Math.floor(available.length / PER_VIEW) * PER_VIEW;
+  const all = whole >= PER_VIEW ? available.slice(0, whole) : available;
+  const pages = Math.ceil(all.length / PER_VIEW);
+  const current = Math.min(page, pages - 1);
+  const shown = all.slice(current * PER_VIEW, current * PER_VIEW + PER_VIEW);
+  const step = (by: number) => setPage((p) => (p + by + pages) % pages);
 
   return (
     <section id="reviews" className="py-20 md:py-28 bg-[#F2ECDD]">
@@ -177,7 +188,19 @@ const Reviews: React.FC = () => {
         </div>
 
         {/* Reviews */}
-        <div className="grid gap-6 md:grid-cols-3 items-stretch">
+        <div className="relative">
+          {pages > 1 && (
+            <button
+              type="button"
+              onClick={() => step(-1)}
+              aria-label="Previous reviews"
+              className="hidden lg:flex absolute -left-4 xl:-left-14 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white text-[#1E4E5C] shadow-md hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+            >
+              <ChevronLeft size={20} />
+            </button>
+          )}
+
+          <div className="grid gap-6 md:grid-cols-3 items-stretch">
           {shown.map((r) => {
             const { body, trimmed } = trim(r.text);
             return (
@@ -221,7 +244,56 @@ const Reviews: React.FC = () => {
             </figure>
             );
           })}
+          </div>
+
+          {pages > 1 && (
+            <button
+              type="button"
+              onClick={() => step(1)}
+              aria-label="More reviews"
+              className="hidden lg:flex absolute -right-4 xl:-right-14 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white text-[#1E4E5C] shadow-md hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+            >
+              <ChevronRight size={20} />
+            </button>
+          )}
         </div>
+
+        {pages > 1 && (
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <button
+              type="button"
+              onClick={() => step(-1)}
+              aria-label="Previous reviews"
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-[#1E4E5C]/25 text-[#1E4E5C] hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+            >
+              <ChevronLeft size={18} />
+            </button>
+
+            <div className="flex items-center gap-2">
+              {Array.from({ length: pages }).map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setPage(i)}
+                  aria-label={`Reviews ${i * PER_VIEW + 1} to ${Math.min((i + 1) * PER_VIEW, all.length)}`}
+                  aria-current={i === current}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === current ? 'w-6 bg-[#1E4E5C]' : 'w-2 bg-[#1E4E5C]/25 hover:bg-[#1E4E5C]/50'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => step(1)}
+              aria-label="More reviews"
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-[#1E4E5C]/25 text-[#1E4E5C] hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        )}
 
         <p className="text-center text-[11px] tracking-[0.16em] uppercase text-[#3A3A36]/40 mt-8">
           Reviews published on Tripadvisor by guests who stayed with us

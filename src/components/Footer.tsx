@@ -1,11 +1,35 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { RESORT, LOGO_CREAM, NAV_LINKS } from '@/data/resort';
 import { Phone, Mail, MapPin, Globe, Facebook, Instagram } from 'lucide-react';
 
+// Everything the footer links to, split into two columns so Explore reads as a short
+// list twice rather than one long one. Journal and the Tripadvisor listing sit in here
+// with the rest rather than hanging off the bottom.
+const EXPLORE: { label: string; href: string; external?: boolean }[] = [
+  ...NAV_LINKS,
+  { label: 'Journal', href: '/blog' },
+];
+
 const Footer: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleNav = (href: string) => {
+    if (!href.startsWith('#')) {
+      navigate(href);
+      window.scrollTo({ top: 0 });
+      return;
+    }
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: href } });
+      return;
+    }
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const half = Math.ceil(EXPLORE.length / 2);
+  const columns = [EXPLORE.slice(0, half), EXPLORE.slice(half)];
 
   return (
     <footer className="bg-[#163842] text-[#F2ECDD] pt-16 pb-28 md:pb-10">
@@ -19,21 +43,22 @@ const Footer: React.FC = () => {
 
         <div>
           <h4 className="tracking-[0.24em] uppercase text-[11px] text-[#F2ECDD]/60 mb-5">Explore</h4>
-          <ul className="space-y-3">
-            {NAV_LINKS.map((l) => (
-              <li key={l.href}>
-                <button
-                  onClick={() => handleNav(l.href)}
-                  className="text-[#F2ECDD]/85 hover:text-white transition-colors text-sm"
-                >
-                  {l.label}
-                </button>
-              </li>
+          <div className="grid grid-cols-2 gap-x-6">
+            {columns.map((col, i) => (
+              <ul key={i} className="space-y-3">
+                {col.map((l) => (
+                  <li key={l.href}>
+                    <button
+                      onClick={() => handleNav(l.href)}
+                      className="text-[#F2ECDD]/85 hover:text-white transition-colors text-sm text-left"
+                    >
+                      {l.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             ))}
-          </ul>
-          <a href="/blog" className="inline-block mt-4 text-[#F2ECDD]/85 hover:text-white transition-colors text-sm underline">
-            Journal
-          </a>
+          </div>
         </div>
 
 

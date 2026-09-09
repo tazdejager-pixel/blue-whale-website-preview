@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { NAV_LINKS, LOGO_CREAM, LOGO_BLUE, RESORT } from '@/data/resort';
 import BookButton from './BookButton';
@@ -6,6 +7,8 @@ import BookButton from './BookButton';
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -13,10 +16,20 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // A NAV_LINKS href is either an in-page anchor or a route. From another page an
+  // anchor has to land on the home page first, which is why this is not just a scroll.
   const handleNav = (href: string) => {
     setOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (!href.startsWith('#')) {
+      navigate(href);
+      window.scrollTo({ top: 0 });
+      return;
+    }
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: href } });
+      return;
+    }
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -35,7 +48,7 @@ const Navbar: React.FC = () => {
         </button>
 
         <div className="hidden md:flex items-center gap-9">
-          {NAV_LINKS.slice(0, 5).map((l) => (
+          {NAV_LINKS.slice(0, 6).map((l) => (
             <button
               key={l.href}
               onClick={() => handleNav(l.href)}

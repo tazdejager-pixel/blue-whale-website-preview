@@ -1,11 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IMAGES, VENUE } from '@/data/resort';
-import BookButton from './BookButton';
-import VenueEnquiry from './VenueEnquiry';
-import { Check } from 'lucide-react';
+import { Check, ArrowRight } from 'lucide-react';
 
-const Venue: React.FC = () => (
-  <section id="venue" className="relative py-20 md:py-28">
+// The home page introduces the venue and hands off. The detail and the enquiry form
+// live on /venue, because booking a wedding is a different decision from booking a
+// chalet and it deserves its own page.
+const Venue: React.FC = () => {
+  const navigate = useNavigate();
+
+  return (
+  <section id="venue" className="relative py-20 md:py-28 bg-[#163842]">
     <img
       src={IMAGES.venue}
       alt="Ocean-view wedding and conference venue at Blue Whale Resort on the Garden Route"
@@ -49,23 +54,24 @@ const Venue: React.FC = () => (
         </div>
       </div>
 
-      <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-7">
-          <h3 className="font-serif text-[#F2ECDD] uppercase tracking-[0.04em] text-xl sm:text-2xl mb-2">
-            Enquire About Your Event
-          </h3>
-          <p className="text-[#F2ECDD]/80 text-sm">
-            Tell us what you're planning and we'll help you organise it, end to end.
-          </p>
-        </div>
-        <VenueEnquiry />
-        <div className="text-center mt-8">
-          <p className="text-[#F2ECDD]/70 text-sm mb-4">Already know your dates?</p>
-          <BookButton variant="lightOutline">Book Now</BookButton>
-        </div>
+      <div className="text-center">
+        <button
+          onClick={() => {
+            navigate('/venue');
+            window.scrollTo({ top: 0 });
+          }}
+          className="inline-flex items-center gap-2 rounded-full border border-[#F2ECDD]/60 px-8 py-4 text-[#F2ECDD] text-[13px] tracking-[0.16em] uppercase hover:bg-[#F2ECDD] hover:text-[#1E4E5C] transition-colors duration-300"
+        >
+          See the venue
+          <ArrowRight size={16} />
+        </button>
+        <p className="text-[#F2ECDD]/70 text-sm mt-4">
+          Dates, numbers and what comes with it
+        </p>
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Venue;
