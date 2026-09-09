@@ -86,6 +86,16 @@ const TripadvisorMark: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
+/** Long reviews are trimmed at a sentence break, with a link to the full one. */
+const MAX_CHARS = 320;
+const trim = (text: string) => {
+  if (text.length <= MAX_CHARS) return { body: text, trimmed: false };
+  const cut = text.slice(0, MAX_CHARS);
+  const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+  const body = end > MAX_CHARS * 0.5 ? cut.slice(0, end + 1) : `${cut.trimEnd()}...`;
+  return { body, trimmed: true };
+};
+
 const prettyDate = (iso: string) => {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
@@ -165,8 +175,10 @@ const Reviews: React.FC = () => {
         </div>
 
         {/* Reviews */}
-        <div className="grid gap-6 md:grid-cols-3">
-          {shown.map((r) => (
+        <div className="grid gap-6 md:grid-cols-3 items-stretch">
+          {shown.map((r) => {
+            const { body, trimmed } = trim(r.text);
+            return (
             <figure
               key={r.id}
               className="bg-white rounded-[1.75rem] p-8 shadow-sm hover:shadow-xl transition-shadow duration-500 flex flex-col"
@@ -183,7 +195,20 @@ const Reviews: React.FC = () => {
               )}
 
               <blockquote className="text-[#3A3A36]/75 text-sm leading-relaxed grow">
-                {r.text}
+                {body}
+                {trimmed && (
+                  <>
+                    {' '}
+                    <a
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      className="text-[#6E93A6] hover:text-[#1E4E5C] underline underline-offset-2 whitespace-nowrap"
+                    >
+                      read the full review
+                    </a>
+                  </>
+                )}
               </blockquote>
 
               <figcaption className="mt-6 pt-5 border-t border-[#1E4E5C]/10 text-[13px] text-[#3A3A36]/60">
@@ -192,7 +217,8 @@ const Reviews: React.FC = () => {
                 {prettyDate(r.date)}
               </figcaption>
             </figure>
-          ))}
+            );
+          })}
         </div>
 
         <p className="text-center text-[11px] tracking-[0.16em] uppercase text-[#3A3A36]/40 mt-8">
