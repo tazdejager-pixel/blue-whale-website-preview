@@ -29,7 +29,8 @@ type Feed = {
   reviews: Review[];
 };
 
-const HOW_MANY = 3;
+// Show everything the feed carries. The refresh job decides how many that is.
+const HOW_MANY = 24;
 
 /** Tripadvisor bubbles. Uses their supplied rating image when the feed carries one. */
 const Bubbles: React.FC<{ rating: number; size?: number; imageUrl?: string | null }> = ({
