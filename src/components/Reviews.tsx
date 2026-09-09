@@ -29,8 +29,9 @@ type Feed = {
   reviews: Review[];
 };
 
-// Show everything the feed carries. The refresh job decides how many that is.
-const HOW_MANY = 24;
+// Nine keeps the grid square on desktop (3 x 3). The feed is ordered most recent
+// first, so this is the nine latest, not a curated pick.
+const HOW_MANY = 9;
 
 /** Tripadvisor bubbles. Uses their supplied rating image when the feed carries one. */
 const Bubbles: React.FC<{ rating: number; size?: number; imageUrl?: string | null }> = ({
