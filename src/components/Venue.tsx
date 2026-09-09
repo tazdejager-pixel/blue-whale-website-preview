@@ -60,14 +60,11 @@ const Venue: React.FC = () => {
             navigate('/venue');
             window.scrollTo({ top: 0 });
           }}
-          className="inline-flex items-center gap-2 rounded-full border border-[#F2ECDD]/60 px-8 py-4 text-[#F2ECDD] text-[13px] tracking-[0.16em] uppercase hover:bg-[#F2ECDD] hover:text-[#1E4E5C] transition-colors duration-300"
+          className="inline-flex items-center gap-2 rounded-full bg-[#F2ECDD] px-8 py-4 text-[#1E4E5C] text-[13px] font-medium tracking-[0.16em] uppercase shadow-lg hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors duration-300"
         >
           See the venue
           <ArrowRight size={16} />
         </button>
-        <p className="text-[#F2ECDD]/70 text-sm mt-4">
-          Dates, numbers and what comes with it
-        </p>
       </div>
     </div>
   </section>
