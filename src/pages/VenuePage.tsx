@@ -3,7 +3,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MobileBookBar from '@/components/MobileBookBar';
 import VenueEnquiry from '@/components/VenueEnquiry';
-import BookButton from '@/components/BookButton';
 import { IMAGES, VENUE, RESORT } from '@/data/resort';
 import { setSeo } from '@/lib/blog';
 import { Check } from 'lucide-react';
@@ -139,12 +138,6 @@ const VenuePage: React.FC = () => {
 
             <VenueEnquiry />
 
-            <div className="text-center mt-10">
-              <p className="text-[#F2ECDD]/70 text-sm mb-4">
-                Looking for a chalet rather than the venue?
-              </p>
-              <BookButton variant="lightOutline">Book Now</BookButton>
-            </div>
           </div>
         </section>
       </main>

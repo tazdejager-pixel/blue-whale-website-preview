@@ -74,7 +74,9 @@ const StayCard: React.FC<Props> = ({ stay, reverse = false }) => {
         </ul>
 
         <div className="flex flex-wrap items-center gap-5 pt-5 border-t border-[#1E4E5C]/10">
-          <span className="text-[#1E4E5C] font-medium">{stay.fromPrice}</span>
+          {stay.fromPrice && (
+            <span className="text-[#1E4E5C] font-medium">{stay.fromPrice}</span>
+          )}
           <a
             href={stay.bookUrl || BOOKING_URL}
             target="_blank"

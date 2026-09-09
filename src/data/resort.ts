@@ -3,8 +3,9 @@
 // NightsBridge booking engine - the one place these are edited
 export const NIGHTSBRIDGE_BBID = '17193';
 export const BOOKING_URL = `https://book.nightsbridge.com/${NIGHTSBRIDGE_BBID}`;
-// Live availability grid widget (embedded in a responsive iframe)
-export const AVAILABILITY_EMBED_URL = `https://www.nightsbridge.co.za/bridge/view?gridwidget=2&bbid=${NIGHTSBRIDGE_BBID}`;
+// The on-page availability grid came out on 09/09/2026 at the resort's request -
+// "we have the Book Now button linking through to NightsBridge, which is adequate."
+// The admin panel still links the widget for their own use.
 // Future room-specific booking link: bookingUrlFor('ROOM_TYPE_ID')
 export const bookingUrlFor = (rtid?: string) =>
   rtid ? `${BOOKING_URL}?rtid=${rtid}` : BOOKING_URL;
@@ -69,7 +70,6 @@ export const NAV_LINKS = [
   { label: 'Accommodation', href: '#accommodation' },
   { label: 'Venue', href: '/venue' },
   { label: 'Reviews', href: '#reviews' },
-  { label: 'Availability', href: '#availability' },
   { label: 'Enquire', href: '#enquiry' },
   { label: 'Book Now', href: '#book' },
 ];
@@ -98,7 +98,7 @@ export const STAYS: Stay[] = [
     suits: 'Couples, families & those who came for the view',
     sleeps: 'Sleeps 2-4',
     blurb:
-      'Eight fully equipped self-catering chalets, each positioned to capture panoramic views of the Indian Ocean. Greet spectacular sunrises with coffee on your private patio, watch for whales in season and dolphins all year round, then follow the wooden boardwalk through indigenous fynbos to the ocean’s edge. This is our signature stay - here, the view is the whole point.',
+      'Eight fully equipped self-catering chalets, each positioned to capture panoramic views of the Indian Ocean. Greet spectacular sunrises on your private patio, watch for whales in season and dolphins all year round, then follow the wooden boardwalk through indigenous fynbos to the ocean’s edge. This is our signature stay - here, the view is the whole point.',
     images: [IMAGES.chalet, IMAGES.chaletPatio, IMAGES.boardwalk],
     features: [
       'Panoramic Indian Ocean views',
@@ -108,27 +108,25 @@ export const STAYS: Stay[] = [
       'Fully equipped self-catering kitchen',
       'Private patio with built-in braai',
     ],
-    fromPrice: 'From R1 950 per night',
+    fromPrice: '',
     bookUrl: BOOKING_URL,
   },
   {
     id: 'whale-house',
     name: 'The Whale House',
     view: 'Tranquil valley & fynbos views',
-    suits: 'Families & groups wanting extra space and privacy',
-    sleeps: 'Sleeps up to 8',
+    suits: 'Families wanting extra space and privacy',
+    sleeps: 'Sleeps 5-6',
     blurb:
-      'A spacious private retreat nestled amongst indigenous fynbos with tranquil valley views. With generous living spaces and room to spread out, The Whale House is ideal for families and groups who want that little bit of extra space, privacy and togetherness - your own quiet corner of the reserve.',
+      'A spacious private retreat set back in the fynbos, with tranquil valley views. Room to spread out, and quiet enough to hear it. The Whale House is for families who want that little bit of extra space and privacy - your own corner of the reserve.',
     images: [IMAGES.whaleHouseExt, IMAGES.whaleHouse, IMAGES.whaleHouseValley],
     features: [
       'Spacious private family retreat',
       'Tranquil valley & fynbos views',
-      'Generous open-plan living',
-      'Nestled amongst indigenous fynbos',
       'Fully equipped self-catering kitchen',
       'Private patio with built-in braai',
     ],
-    fromPrice: 'From R4 200 per night',
+    fromPrice: '',
     bookUrl: BOOKING_URL,
   },
 ];
@@ -168,11 +166,9 @@ export const WHY_CHOOSE = [
 
 export const EXPERIENCES = [
   'Whale & dolphin watching',
-  'Guided nature trails',
-  'Beachcombing & rock pools',
+  'Walkway to the rocky shore',
   'Birdwatching in the fynbos',
   'Stargazing from your deck',
-  'Sundowners over the ocean',
 ];
 
 // Venue ("Celebrate by the Ocean")

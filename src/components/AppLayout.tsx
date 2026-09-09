@@ -8,7 +8,6 @@ import Venue from './Venue';
 import WhyChooseUs from './WhyChooseUs';
 import Reviews from './Reviews';
 import BookCta from './BookCta';
-import AvailabilityGrid from './AvailabilityGrid';
 import Enquiry from './Enquiry';
 import LocationMap from './LocationMap';
 import Footer from './Footer';
@@ -37,7 +36,6 @@ const AppLayout: React.FC = () => {
         <WhyChooseUs />
         <Reviews />
         <BookCta />
-        <AvailabilityGrid />
         <Enquiry />
         <LocationMap />
       </main>

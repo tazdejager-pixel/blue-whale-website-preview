@@ -7,7 +7,6 @@ interface FormState {
   name: string;
   email: string;
   phone: string;
-  smsOptIn: boolean;
   eventType: string;
   date: string;
   guests: string;
@@ -18,7 +17,6 @@ const empty: FormState = {
   name: '',
   email: '',
   phone: '',
-  smsOptIn: true,
   eventType: '',
   date: '',
   guests: '',
@@ -64,7 +62,6 @@ const VenueEnquiry: React.FC = () => {
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim() || null,
-        sms_opt_in: form.smsOptIn,
         preferred_dates: form.date.trim() || null,
         guests: form.guests.trim() || null,
         interest: 'venue',
@@ -153,13 +150,6 @@ const VenueEnquiry: React.FC = () => {
         <label className="block text-[#F2ECDD] text-sm mb-2">Message (optional)</label>
         <textarea value={form.message} onChange={(e) => update('message', e.target.value)} rows={3} className={`${inputClass} resize-none`} placeholder="Tell us a little about your celebration..." />
       </div>
-
-      <label className="flex items-start gap-3 cursor-pointer select-none">
-        <input type="checkbox" checked={form.smsOptIn} onChange={(e) => update('smsOptIn', e.target.checked)} className="mt-1 w-5 h-5 rounded accent-[#8A9A5B] shrink-0" />
-        <span className="text-[#F2ECDD]/75 text-xs leading-relaxed">
-          Text me updates about my event enquiry. Msg &amp; data rates may apply. Reply STOP to unsubscribe.
-        </span>
-      </label>
 
       {status === 'error' && serverError && (
         <div className="flex items-center gap-2 text-red-300 text-sm">

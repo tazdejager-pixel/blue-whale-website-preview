@@ -4,7 +4,7 @@
 // --------------------------------------------------------------------
 // The Famous database has been unlinked. The site runs fully standalone:
 //  - Hero, About, Accommodation, Venue, Why Choose Us, Footer  -> static, no backend
-//  - "Book Now" + live Availability grid                       -> NightsBridge (external), works
+//  - "Book Now"                                                -> NightsBridge (external), works
 //  - Enquiry forms                                             -> submit succeeds (not stored anywhere)
 //  - Blog (/blog)                                              -> shows empty state
 //  - Admin (/admin)                                            -> sign-in disabled
