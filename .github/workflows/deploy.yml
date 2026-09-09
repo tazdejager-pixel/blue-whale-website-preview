@@ -27,8 +27,15 @@ jobs:
       - run: npm run build
         env:
           VITE_BASE: /blue-whale-website-preview/
-      # SPA fallback so deep links (/blog, /admin) resolve on a static host.
+      # SPA fallback so deep links resolve on a static host.
+      # 404.html catches anything; a real index.html per route is what makes the
+      # route answer 200 instead of 404, which is what Google needs to index it.
       - run: cp dist/index.html dist/404.html
+      - run: |
+          for route in venue blog admin; do
+            mkdir -p "dist/$route"
+            cp dist/index.html "dist/$route/index.html"
+          done
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
