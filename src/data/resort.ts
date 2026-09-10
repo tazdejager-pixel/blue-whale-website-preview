@@ -62,6 +62,11 @@ export const IMAGES = {
   boardwalk: `${ASSETS}/site/boardwalk.jpg`,
   whaleHouseExt: `${ASSETS}/site/whaleHouseExt.jpg`,
   whaleHouseValley: `${ASSETS}/site/whaleHouseValley.jpg`,
+  // Venue, dressed. The room and the lawn are theirs; the styling is a visualisation
+  // of what the space becomes, not a photograph of an event that took place here.
+  // Never caption either as a real wedding or a real conference.
+  venueHallDressed: `${ASSETS}/site/venueHallDressed.jpg`,
+  venueCeremony: `${ASSETS}/site/venueCeremony.jpg`,
 };
 
 // `href` starting with # scrolls within the home page; anything else is a route.
@@ -173,24 +178,65 @@ export const EXPERIENCES = [
 
 // Venue ("Celebrate by the Ocean")
 export const VENUE = {
+  // The differentiator, and the reason to lead with it: fifty people celebrate and then
+  // sleep on the same property. Nobody drives home. Every other venue fact is secondary.
+  lead:
+    'One property, one weekend. Your fifty guests celebrate on the deck above the ocean, then walk to their chalet. No shuttle, no drive home, no ending the night early because someone has to get back to town.',
   intro:
-    'A distinctive ocean-view venue overlooking the Indian Ocean and surrounded by natural beauty - the perfect setting for weddings, conferences, year-end functions, family gatherings and private celebrations. With accommodation and spectacular scenery all in one place, your event becomes a seamless destination experience from start to finish.',
-  perfectFor: [
-    'Weddings',
-    'Corporate conferences',
-    'Team-building retreats',
-    'Year-end functions',
-    'Family reunions',
-    'Birthday celebrations',
-    'Private events & special occasions',
+    'An ocean-view venue on a private coastal nature reserve near George, with the accommodation on the same ten hectares. Whales and dolphins pass below the deck in season, the bar is licensed, and the whole property can be yours for the weekend.',
+
+  // Two buyers, two decisions. The old page ran seven event types in one list, which read
+  // as a hall for hire. These are the two routes worth building for.
+  routes: [
+    {
+      key: 'weddings',
+      eyebrow: 'Weddings',
+      title: 'The Whole Weekend, Not Just The Day',
+      body:
+        'Say it on the lawn with the ocean behind you, move inside as the light goes, and let the evening run as long as it wants. Your guests are already home. The reserve is private, so the only people here are yours.',
+      points: [
+        'Ceremony on the lawn, reception inside, drinks on the deck',
+        'Up to 50 guests, seated or standing',
+        'Ten chalets and the Whale House on the property',
+        'Licensed bar',
+      ],
+      image: 'venueCeremony',
+    },
+    {
+      key: 'corporate',
+      eyebrow: 'Conferences, retreats and year-end functions',
+      title: 'Far Enough Away To Actually Switch Off',
+      body:
+        'A team that sleeps on site is a team that is still talking at nine in the evening. Meet with the ocean in the windows, walk the boardwalk down to the rocky shore between sessions, and eat together without anyone watching the clock for the drive back.',
+      points: [
+        'Ocean-view function and conference space',
+        'Up to 50 delegates',
+        'Accommodation for the group on the same property',
+        'Ten hectares of private nature reserve to walk',
+      ],
+      image: 'venue',
+    },
   ],
+
+  // Facts we can stand behind. Anything not confirmed by the owners stays off the page.
+  capacity: [
+    { k: 'Seated', v: 'Up to 50' },
+    { k: 'Standing', v: 'Up to 50' },
+    { k: 'Sleeping on site', v: '10 chalets plus the Whale House' },
+    { k: 'The reserve', v: '10 private hectares' },
+  ],
+
   features: [
-    'Dedicated function & conference venue',
+    'Dedicated function and conference venue',
     'Licensed bar',
-    'Ocean-view event space',
-    'On-site accommodation for guests & delegates',
-    'Flexibility to host intimate & larger gatherings',
+    'Ocean-view event space and deck',
+    'On-site accommodation for guests and delegates',
+    'Exclusive use of the property by arrangement',
   ],
+
+  // Said plainly, because a buyer who arrives expecting a dressed room is a buyer we lose.
+  stylingNote:
+    'Styling, florals and furniture are arranged separately. We can introduce you to suppliers who work here often.',
 };
 
 // Enquiry form interest options
