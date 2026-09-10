@@ -4,12 +4,9 @@ import { RESORT, LOGO_CREAM, NAV_LINKS } from '@/data/resort';
 import { Phone, Mail, MapPin, Globe, Facebook, Instagram } from 'lucide-react';
 
 // Everything the footer links to, split into two columns so Explore reads as a short
-// list twice rather than one long one. Journal and the Tripadvisor listing sit in here
-// with the rest rather than hanging off the bottom.
-const EXPLORE: { label: string; href: string; external?: boolean }[] = [
-  ...NAV_LINKS,
-  { label: 'Journal', href: '/blog' },
-];
+// list twice rather than one long one. This is the nav and nothing else - Journal came
+// out on 10/09/2026 along with the page it pointed at, which had never held a post.
+const EXPLORE: { label: string; href: string; external?: boolean }[] = [...NAV_LINKS];
 
 const Footer: React.FC = () => {
   const navigate = useNavigate();

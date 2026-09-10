@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import MobileBookBar from '@/components/MobileBookBar';
 import VenueEnquiry from '@/components/VenueEnquiry';
 import { IMAGES, VENUE, RESORT } from '@/data/resort';
-import { setSeo } from '@/lib/blog';
+import { setSeo } from '@/lib/seo';
 import { Check, ArrowDown } from 'lucide-react';
 
 /**
