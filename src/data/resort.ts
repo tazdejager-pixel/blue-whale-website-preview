@@ -70,13 +70,15 @@ export const IMAGES = {
 };
 
 // `href` starting with # scrolls within the home page; anything else is a route.
+// Book Now is NOT in here - the header carries its own button and having both put
+// the same call to action in the nav twice (client, 10/09/2026).
 export const NAV_LINKS = [
+  { label: 'Home', href: '#top' },
   { label: 'About', href: '#about' },
   { label: 'Accommodation', href: '#accommodation' },
   { label: 'Venue', href: '/venue' },
   { label: 'Reviews', href: '#reviews' },
   { label: 'Enquire', href: '#enquiry' },
-  { label: 'Book Now', href: '#book' },
 ];
 
 

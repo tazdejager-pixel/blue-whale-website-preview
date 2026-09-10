@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
         </button>
 
         <div className="hidden md:flex items-center gap-9">
-          {NAV_LINKS.slice(0, 6).map((l) => (
+          {NAV_LINKS.map((l) => (
             <button
               key={l.href}
               onClick={() => handleNav(l.href)}
