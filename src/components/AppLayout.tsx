@@ -32,8 +32,11 @@ const AppLayout: React.FC = () => {
         <Hero />
         <About />
         <Accommodation />
-        <Venue />
+        {/* Why Choose Us sits ABOVE the venue (client, 10/09/2026) - the reasons to
+            trust the place are read before the biggest ask on the page, and Reviews
+            stay directly under the venue so the proof lands right after it. */}
         <WhyChooseUs />
+        <Venue />
         <Reviews />
         <BookCta />
         <Enquiry />
