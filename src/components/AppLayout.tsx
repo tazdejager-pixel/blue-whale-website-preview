@@ -26,7 +26,7 @@ const AppLayout: React.FC = () => {
   }, [location.state]);
 
   return (
-    <div className="min-h-screen bg-[#F2ECDD] text-[#3A3A36] antialiased scroll-smooth">
+    <div className="min-h-screen bg-[#F2ECDD] text-[#2E2A25] antialiased scroll-smooth">
       <Navbar />
       <main>
         <Hero />

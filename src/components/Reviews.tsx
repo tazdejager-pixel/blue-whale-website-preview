@@ -32,16 +32,16 @@ const Reviews: React.FC = () => {
     <section id="reviews" className="py-20 md:py-28 bg-[#F2ECDD]">
       <div className="max-w-7xl mx-auto px-5">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="block text-[#6E93A6] tracking-[0.24em] uppercase text-[11px] mb-2">
+          <span className="block text-[#456C80] tracking-[0.24em] uppercase text-[11px] mb-2">
             Guest Reviews
           </span>
-          <p className="font-script text-[#8A9A5B] text-4xl sm:text-5xl leading-none mb-2">
+          <p className="font-script text-[#5F6E39] text-4xl sm:text-5xl leading-none mb-2">
             In Their
           </p>
-          <h2 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-5">
+          <h2 className="font-serif text-[#17414D] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-5">
             Own Words
           </h2>
-          <p className="text-[#3A3A36]/70 leading-relaxed">
+          <p className="text-[#2E2A25]/85 leading-relaxed">
             Guests have been coming back to this stretch of coast for years. Here is what
             some of them said after they left.
           </p>
@@ -53,7 +53,7 @@ const Reviews: React.FC = () => {
               type="button"
               onClick={() => step(-1)}
               aria-label="Previous reviews"
-              className="hidden lg:flex absolute -left-4 xl:-left-14 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white text-[#1E4E5C] shadow-md hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+              className="hidden lg:flex absolute -left-4 xl:-left-14 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white text-[#17414D] shadow-md hover:bg-[#17414D] hover:text-[#F2ECDD] transition-colors"
             >
               <ChevronLeft size={20} />
             </button>
@@ -71,20 +71,20 @@ const Reviews: React.FC = () => {
                   size={30}
                   strokeWidth={1.25}
                   aria-hidden="true"
-                  className="text-[#8A9A5B]/35 mb-4 shrink-0"
+                  className="text-[#5F6E39]/35 mb-4 shrink-0"
                 />
 
-                <blockquote className="text-[#3A3A36]/80 leading-relaxed grow">
+                <blockquote className="text-[#2E2A25]/90 leading-relaxed grow">
                   {r.quote}
                 </blockquote>
 
-                <figcaption className="mt-7 pt-5 border-t border-[#1E4E5C]/10">
-                  <span className="block font-serif text-[#1E4E5C] text-lg leading-snug">
+                <figcaption className="mt-7 pt-5 border-t border-[#17414D]/10">
+                  <span className="block font-serif text-[#17414D] text-lg leading-snug">
                     {r.author}
                   </span>
-                  <span className="block text-[13px] text-[#3A3A36]/55 mt-0.5">
+                  <span className="block text-[13px] text-[#2E2A25]/70 mt-0.5">
                     {r.stay}
-                    <span className="mx-2 text-[#8A9A5B]">-</span>
+                    <span className="mx-2 text-[#5F6E39]">-</span>
                     {r.when}
                   </span>
                 </figcaption>
@@ -97,7 +97,7 @@ const Reviews: React.FC = () => {
               type="button"
               onClick={() => step(1)}
               aria-label="More reviews"
-              className="hidden lg:flex absolute -right-4 xl:-right-14 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white text-[#1E4E5C] shadow-md hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+              className="hidden lg:flex absolute -right-4 xl:-right-14 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white text-[#17414D] shadow-md hover:bg-[#17414D] hover:text-[#F2ECDD] transition-colors"
             >
               <ChevronRight size={20} />
             </button>
@@ -110,7 +110,7 @@ const Reviews: React.FC = () => {
               type="button"
               onClick={() => step(-1)}
               aria-label="Previous reviews"
-              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-[#1E4E5C]/25 text-[#1E4E5C] hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-[#17414D]/25 text-[#17414D] hover:bg-[#17414D] hover:text-[#F2ECDD] transition-colors"
             >
               <ChevronLeft size={18} />
             </button>
@@ -124,7 +124,7 @@ const Reviews: React.FC = () => {
                   aria-label={`Reviews ${i * PER_VIEW + 1} to ${Math.min((i + 1) * PER_VIEW, all.length)}`}
                   aria-current={i === current}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    i === current ? 'w-6 bg-[#1E4E5C]' : 'w-2 bg-[#1E4E5C]/25 hover:bg-[#1E4E5C]/50'
+                    i === current ? 'w-6 bg-[#17414D]' : 'w-2 bg-[#17414D]/25 hover:bg-[#17414D]/50'
                   }`}
                 />
               ))}
@@ -134,14 +134,14 @@ const Reviews: React.FC = () => {
               type="button"
               onClick={() => step(1)}
               aria-label="More reviews"
-              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-[#1E4E5C]/25 text-[#1E4E5C] hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-[#17414D]/25 text-[#17414D] hover:bg-[#17414D] hover:text-[#F2ECDD] transition-colors"
             >
               <ChevronRight size={18} />
             </button>
           </div>
         )}
 
-        <p className="text-center text-[11px] tracking-[0.16em] uppercase text-[#3A3A36]/40 mt-8">
+        <p className="text-center text-[11px] tracking-[0.16em] uppercase text-[#2E2A25]/75 mt-8">
           Reviews left by guests who stayed with us
         </p>
       </div>

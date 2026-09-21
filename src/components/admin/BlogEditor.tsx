@@ -110,16 +110,16 @@ const BlogEditor: React.FC<Props> = ({ initial, onClose, onSaved, onDeleted }) =
     onDeleted();
   };
 
-  const input = 'w-full rounded-xl border border-[#1E4E5C]/20 bg-white px-4 py-3 text-[#3A3A36] focus:outline-none focus:ring-2 focus:ring-[#6E93A6]/50';
-  const label = 'block text-[#1E4E5C] text-sm mb-2';
+  const input = 'w-full rounded-xl border border-[#17414D]/20 bg-white px-4 py-3 text-[#2E2A25] focus:outline-none focus:ring-2 focus:ring-[#456C80]/50';
+  const label = 'block text-[#17414D] text-sm mb-2';
 
   return (
     <div className="max-w-3xl">
-      <button onClick={onClose} className="inline-flex items-center gap-2 text-[#1E4E5C] text-sm mb-5 hover:underline">
+      <button onClick={onClose} className="inline-flex items-center gap-2 text-[#17414D] text-sm mb-5 hover:underline">
         <ArrowLeft size={16} /> Back to posts
       </button>
 
-      <h2 className="font-serif text-[#1E4E5C] text-xl mb-6">{initial ? 'Edit Post' : 'New Post'}</h2>
+      <h2 className="font-serif text-[#17414D] text-xl mb-6">{initial ? 'Edit Post' : 'New Post'}</h2>
 
       <div className="space-y-5">
         <div>
@@ -130,7 +130,7 @@ const BlogEditor: React.FC<Props> = ({ initial, onClose, onSaved, onDeleted }) =
         <div>
           <label className={label}>URL slug</label>
           <div className="flex items-center gap-2">
-            <span className="text-[#3A3A36]/50 text-sm">/blog/</span>
+            <span className="text-[#2E2A25]/70 text-sm">/blog/</span>
             <input className={input} value={post.slug || ''} onChange={(e) => { setSlugTouched(true); set('slug', e.target.value); }} />
           </div>
         </div>
@@ -139,13 +139,13 @@ const BlogEditor: React.FC<Props> = ({ initial, onClose, onSaved, onDeleted }) =
           <label className={label}>Hero image</label>
           {post.hero_image ? (
             <div className="relative inline-block">
-              <img src={post.hero_image} alt="Hero preview" className="rounded-xl max-h-48 border border-[#1E4E5C]/15" />
-              <button onClick={() => set('hero_image', '')} className="absolute -top-2 -right-2 bg-[#1E4E5C] text-white rounded-full p-1">
+              <img src={post.hero_image} alt="Hero preview" className="rounded-xl max-h-48 border border-[#17414D]/15" />
+              <button onClick={() => set('hero_image', '')} className="absolute -top-2 -right-2 bg-[#17414D] text-white rounded-full p-1">
                 <X size={14} />
               </button>
             </div>
           ) : (
-            <label className="inline-flex items-center gap-2 rounded-xl border border-dashed border-[#1E4E5C]/30 px-5 py-3 cursor-pointer text-[#1E4E5C] text-sm hover:bg-[#1E4E5C]/5">
+            <label className="inline-flex items-center gap-2 rounded-xl border border-dashed border-[#17414D]/30 px-5 py-3 cursor-pointer text-[#17414D] text-sm hover:bg-[#17414D]/5">
               {uploadingHero ? <Loader2 size={16} className="animate-spin" /> : <ImagePlus size={16} />}
               Upload hero image
               <input type="file" accept="image/*" className="hidden" onChange={onHero} />
@@ -155,8 +155,8 @@ const BlogEditor: React.FC<Props> = ({ initial, onClose, onSaved, onDeleted }) =
 
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-[#1E4E5C] text-sm">Body (HTML supported)</label>
-            <label className="inline-flex items-center gap-1.5 text-[#1E4E5C] text-xs cursor-pointer hover:underline">
+            <label className="text-[#17414D] text-sm">Body (HTML supported)</label>
+            <label className="inline-flex items-center gap-1.5 text-[#17414D] text-xs cursor-pointer hover:underline">
               {uploadingBody ? <Loader2 size={13} className="animate-spin" /> : <ImagePlus size={13} />}
               Insert image
               <input type="file" accept="image/*" className="hidden" onChange={onBodyImage} />
@@ -189,7 +189,7 @@ const BlogEditor: React.FC<Props> = ({ initial, onClose, onSaved, onDeleted }) =
         </div>
 
         <div className="rounded-2xl bg-[#F2ECDD] p-5 space-y-4">
-          <p className="text-[#1E4E5C] text-sm font-medium uppercase tracking-[0.16em] text-[11px]">SEO</p>
+          <p className="text-[#17414D] text-sm font-medium uppercase tracking-[0.16em] text-[11px]">SEO</p>
           <div>
             <label className={label}>SEO meta title</label>
             <input className={input} value={post.meta_title || ''} onChange={(e) => set('meta_title', e.target.value)} placeholder="Defaults to the post title" />
@@ -205,18 +205,18 @@ const BlogEditor: React.FC<Props> = ({ initial, onClose, onSaved, onDeleted }) =
         </div>
 
         <label className="flex items-center gap-3 cursor-pointer">
-          <input type="checkbox" checked={!!post.published} onChange={(e) => set('published', e.target.checked)} className="w-5 h-5 accent-[#1E4E5C]" />
-          <span className="text-[#3A3A36]/80 text-sm">Published (visible on the public blog)</span>
+          <input type="checkbox" checked={!!post.published} onChange={(e) => set('published', e.target.checked)} className="w-5 h-5 accent-[#17414D]" />
+          <span className="text-[#2E2A25]/90 text-sm">Published (visible on the public blog)</span>
         </label>
 
         {err && <p className="text-red-600 text-sm">{err}</p>}
 
         <div className="flex flex-wrap items-center gap-3 pt-2">
-          <button onClick={() => save()} disabled={saving} className="inline-flex items-center gap-2 rounded-full bg-[#1E4E5C] text-[#F2ECDD] px-6 py-3 text-sm hover:bg-[#163842] disabled:opacity-70">
+          <button onClick={() => save()} disabled={saving} className="inline-flex items-center gap-2 rounded-full bg-[#17414D] text-[#F2ECDD] px-6 py-3 text-sm hover:bg-[#112E36] disabled:opacity-70">
             {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />} Save
           </button>
           {!post.published && (
-            <button onClick={() => save(true)} disabled={saving} className="inline-flex items-center gap-2 rounded-full bg-[#8A9A5B] text-white px-6 py-3 text-sm hover:bg-[#76854c] disabled:opacity-70">
+            <button onClick={() => save(true)} disabled={saving} className="inline-flex items-center gap-2 rounded-full bg-[#5F6E39] text-white px-6 py-3 text-sm hover:bg-[#626f3e] disabled:opacity-70">
               Save &amp; Publish
             </button>
           )}

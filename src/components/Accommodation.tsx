@@ -17,14 +17,14 @@ const Accommodation: React.FC = () => (
   <section id="accommodation" className="py-20 md:py-28 bg-white">
     <div className="max-w-7xl mx-auto px-5">
       <div className="text-center max-w-2xl mx-auto mb-16">
-        <span className="block text-[#6E93A6] tracking-[0.24em] uppercase text-[11px] mb-2">
+        <span className="block text-[#456C80] tracking-[0.24em] uppercase text-[11px] mb-2">
           Accommodation
         </span>
-        <p className="font-script text-[#8A9A5B] text-4xl sm:text-5xl leading-none mb-2">Stay</p>
-        <h2 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-4">
+        <p className="font-script text-[#5F6E39] text-4xl sm:text-5xl leading-none mb-2">Stay</p>
+        <h2 className="font-serif text-[#17414D] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-4">
           With Us
         </h2>
-        <p className="text-[#3A3A36]/75 leading-relaxed">
+        <p className="text-[#2E2A25]/85 leading-relaxed">
           Two distinct ways to stay - our signature Sea-View Chalets and the
           spacious Whale House retreat - each positioned to make the most of this
           private corner of the Garden Route.
@@ -38,9 +38,9 @@ const Accommodation: React.FC = () => (
       </div>
 
       {/* Shared features */}
-      <div className="bg-[#1E4E5C] rounded-[2rem] p-8 sm:p-12">
+      <div className="bg-[#17414D] rounded-[2rem] p-8 sm:p-12">
         <div className="text-center mb-10">
-          <span className="block text-[#F2ECDD]/60 tracking-[0.24em] uppercase text-[11px] mb-1">
+          <span className="block text-[#F2ECDD]/80 tracking-[0.24em] uppercase text-[11px] mb-1">
             Across Every Stay
           </span>
           <h3 className="font-serif text-[#F2ECDD] uppercase tracking-[0.04em] text-xl sm:text-2xl">
@@ -55,7 +55,7 @@ const Accommodation: React.FC = () => (
                 <span className="shrink-0 w-11 h-11 rounded-full bg-[#F2ECDD]/10 flex items-center justify-center">
                   <Icon size={20} className="text-[#F2ECDD]" />
                 </span>
-                <span className="text-[#F2ECDD]/90 text-sm leading-relaxed pt-2.5">
+                <span className="text-[#F2ECDD]/95 text-sm leading-relaxed pt-2.5">
                   {f.label}
                 </span>
               </div>

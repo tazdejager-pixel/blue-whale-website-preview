@@ -53,18 +53,18 @@ const EnquiriesInbox: React.FC = () => {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
         <div>
-          <h2 className="font-serif text-[#1E4E5C] text-xl">Enquiries &amp; Bookings Inbox</h2>
-          <p className="text-[#3A3A36]/60 text-sm">{rows.length} total · newest first</p>
+          <h2 className="font-serif text-[#17414D] text-xl">Enquiries &amp; Bookings Inbox</h2>
+          <p className="text-[#2E2A25]/75 text-sm">{rows.length} total · newest first</p>
         </div>
         <div className="flex gap-2">
-          <button onClick={load} className="inline-flex items-center gap-2 rounded-full border border-[#1E4E5C]/25 px-4 py-2 text-sm text-[#1E4E5C] hover:bg-[#1E4E5C]/5">
+          <button onClick={load} className="inline-flex items-center gap-2 rounded-full border border-[#17414D]/25 px-4 py-2 text-sm text-[#17414D] hover:bg-[#17414D]/5">
             <RefreshCw size={15} /> Refresh
           </button>
           <a
             href={`https://www.nightsbridge.com/cgi-bin/bridge.cgi`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[#1E4E5C] text-[#F2ECDD] px-4 py-2 text-sm hover:bg-[#163842]"
+            className="inline-flex items-center gap-2 rounded-full bg-[#17414D] text-[#F2ECDD] px-4 py-2 text-sm hover:bg-[#112E36]"
           >
             <ExternalLink size={15} /> NightsBridge Dashboard
           </a>
@@ -72,18 +72,18 @@ const EnquiriesInbox: React.FC = () => {
       </div>
 
       {loading ? (
-        <div className="flex items-center gap-2 text-[#3A3A36]/60 py-10 justify-center">
+        <div className="flex items-center gap-2 text-[#2E2A25]/75 py-10 justify-center">
           <Loader2 className="animate-spin" size={18} /> Loading enquiries…
         </div>
       ) : error ? (
         <p className="text-red-600">{error}</p>
       ) : rows.length === 0 ? (
-        <p className="text-[#3A3A36]/60 py-10 text-center">No enquiries yet.</p>
+        <p className="text-[#2E2A25]/75 py-10 text-center">No enquiries yet.</p>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-[#1E4E5C]/15 bg-white">
+        <div className="overflow-x-auto rounded-2xl border border-[#17414D]/15 bg-white">
           <table className="w-full text-sm min-w-[860px]">
             <thead>
-              <tr className="text-left text-[#1E4E5C] bg-[#F2ECDD]/60 border-b border-[#1E4E5C]/10">
+              <tr className="text-left text-[#17414D] bg-[#F2ECDD]/60 border-b border-[#17414D]/10">
                 <th className="px-4 py-3 font-medium">Status</th>
                 <th className="px-4 py-3 font-medium">Received</th>
                 <th className="px-4 py-3 font-medium">Guest</th>
@@ -95,34 +95,34 @@ const EnquiriesInbox: React.FC = () => {
             </thead>
             <tbody>
               {rows.map((r) => (
-                <tr key={r.id} className={`border-b border-[#1E4E5C]/8 align-top ${r.handled ? 'opacity-60' : ''}`}>
+                <tr key={r.id} className={`border-b border-[#17414D]/8 align-top ${r.handled ? 'opacity-60' : ''}`}>
                   <td className="px-4 py-3">
                     <button
                       onClick={() => toggleHandled(r)}
-                      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs ${r.handled ? 'bg-[#8A9A5B]/15 text-[#5e6b3d]' : 'bg-[#1E4E5C]/10 text-[#1E4E5C]'}`}
+                      className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs ${r.handled ? 'bg-[#5F6E39]/15 text-[#4c5730]' : 'bg-[#17414D]/10 text-[#17414D]'}`}
                     >
                       {r.handled ? <CheckCircle2 size={14} /> : <Circle size={14} />}
                       {r.handled ? 'Handled' : 'Mark done'}
                     </button>
                   </td>
-                  <td className="px-4 py-3 whitespace-nowrap text-[#3A3A36]/70">{fmt(r.created_at)}</td>
-                  <td className="px-4 py-3 font-medium text-[#1E4E5C] whitespace-nowrap">{r.name}</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-[#2E2A25]/85">{fmt(r.created_at)}</td>
+                  <td className="px-4 py-3 font-medium text-[#17414D] whitespace-nowrap">{r.name}</td>
                   <td className="px-4 py-3 whitespace-nowrap">
-                    <a href={`mailto:${r.email}`} className="flex items-center gap-1.5 text-[#1E4E5C] hover:underline">
+                    <a href={`mailto:${r.email}`} className="flex items-center gap-1.5 text-[#17414D] hover:underline">
                       <Mail size={13} /> {r.email}
                     </a>
                     {r.phone && (
-                      <a href={`tel:${r.phone}`} className="flex items-center gap-1.5 text-[#3A3A36]/70 hover:underline mt-1">
+                      <a href={`tel:${r.phone}`} className="flex items-center gap-1.5 text-[#2E2A25]/85 hover:underline mt-1">
                         <Phone size={13} /> {r.phone}
                       </a>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-[#3A3A36]/80 whitespace-nowrap">
+                  <td className="px-4 py-3 text-[#2E2A25]/90 whitespace-nowrap">
                     {r.preferred_dates || ' - '}<br />
-                    <span className="text-[#3A3A36]/55">{r.guests || ''}</span>
+                    <span className="text-[#2E2A25]/70">{r.guests || ''}</span>
                   </td>
-                  <td className="px-4 py-3 text-[#3A3A36]/80 capitalize">{r.interest?.replace(/-/g, ' ') || ' - '}</td>
-                  <td className="px-4 py-3 text-[#3A3A36]/75 max-w-[280px]">{r.message || ' - '}</td>
+                  <td className="px-4 py-3 text-[#2E2A25]/90 capitalize">{r.interest?.replace(/-/g, ' ') || ' - '}</td>
+                  <td className="px-4 py-3 text-[#2E2A25]/85 max-w-[280px]">{r.message || ' - '}</td>
                 </tr>
               ))}
             </tbody>

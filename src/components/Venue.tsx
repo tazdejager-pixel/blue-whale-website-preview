@@ -13,7 +13,7 @@ const Venue: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-  <section id="venue" className="relative py-20 md:py-28 bg-[#163842]">
+  <section id="venue" className="relative py-20 md:py-28 bg-[#112E36]">
     {/* The walkway down to the rocky shore, chosen by Tarryn 21/09/2026 as the
         backdrop for this band. Decorative here - the card sits on top of it and
         carries the meaning - so it is given an empty alt. */}
@@ -25,11 +25,11 @@ const Venue: React.FC = () => {
       loading="lazy"
       className="absolute inset-0 w-full h-full object-cover"
     />
-    <div className="absolute inset-0 bg-[#163842]/78" />
+    <div className="absolute inset-0 bg-[#112E36]/78" />
 
     <div className="relative z-10 max-w-6xl mx-auto px-5">
-      <div className="text-center max-w-3xl mx-auto mb-12 bg-[#0e2b33]/75 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[2rem] p-8 sm:p-12 shadow-xl">
-        <span className="block text-[#F2ECDD]/80 tracking-[0.24em] uppercase text-[11px] mb-2">
+      <div className="text-center max-w-3xl mx-auto mb-12 bg-[#0a2128]/75 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[2rem] p-8 sm:p-12 shadow-xl">
+        <span className="block text-[#F2ECDD]/90 tracking-[0.24em] uppercase text-[11px] mb-2">
           Events Venue
         </span>
         <p className="font-script text-[#F2ECDD] text-4xl sm:text-5xl leading-none mb-2">Celebrate</p>
@@ -45,9 +45,9 @@ const Venue: React.FC = () => {
         {VENUE.routes.map((r) => (
           <div
             key={r.key}
-            className="bg-[#0e2b33]/80 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[1.5rem] p-8 shadow-xl"
+            className="bg-[#0a2128]/80 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[1.5rem] p-8 shadow-xl"
           >
-            <span className="block text-[#F2ECDD]/70 tracking-[0.2em] uppercase text-[10px] mb-2">
+            <span className="block text-[#F2ECDD]/85 tracking-[0.2em] uppercase text-[10px] mb-2">
               {r.eyebrow}
             </span>
             <h3 className="font-serif text-[#F2ECDD] uppercase tracking-[0.04em] text-xl mb-5">
@@ -56,7 +56,10 @@ const Venue: React.FC = () => {
             <ul className="space-y-3">
               {r.points.map((p) => (
                 <li key={p} className="flex items-start gap-3 text-[#F2ECDD] text-sm">
-                  <Check size={18} className="shrink-0 mt-0.5 text-[#8A9A5B]" /> {p}
+                  {/* The LIGHT sage here. This band is the one place the tick sits on a
+                      dark card, and the darkened sage that reads well on cream is
+                      2.99:1 on this navy. */}
+                  <Check size={18} className="shrink-0 mt-0.5 text-[#9DAE68]" /> {p}
                 </li>
               ))}
             </ul>
@@ -70,7 +73,7 @@ const Venue: React.FC = () => {
             navigate('/venue');
             window.scrollTo({ top: 0 });
           }}
-          className="inline-flex items-center gap-2 rounded-full bg-[#F2ECDD] px-8 py-4 text-[#1E4E5C] text-[13px] font-medium tracking-[0.16em] uppercase shadow-lg hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors duration-300"
+          className="inline-flex items-center gap-2 rounded-full bg-[#F2ECDD] px-8 py-4 text-[#17414D] text-[13px] font-medium tracking-[0.16em] uppercase shadow-lg hover:bg-[#17414D] hover:text-[#F2ECDD] transition-colors duration-300"
         >
           See the venue
           <ArrowRight size={16} />

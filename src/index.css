@@ -5,6 +5,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+   THE PALETTE, and why every value is what it is.
+   Darkened one shade across the site on 21/09/2026 (Tarryn: "the font colour on
+   the darker cream background needs to be a shade darker... if that's a conflict
+   then rather make the whole site one shade darker").
+
+   Every value below was MEASURED against the cream background before it was
+   chosen. The ratio is WCAG contrast; 4.5:1 is the pass mark for body text.
+
+     cream background  #F2ECDD   unchanged - it is the paper, not the ink
+     ink               #3A3A36 -> #2E2A25   body copy 5.52:1 -> 9.12:1
+     deep teal         #1E4E5C -> #17414D   headings  7.75:1 -> 9.38:1
+     eyebrow blue      #6E93A6 -> #456C80   2.79:1 FAILED -> 4.80:1
+     sage              #8A9A5B -> #5F6E39   2.60:1 FAILED -> 4.72:1
+     dark band         #163842 -> #112E36
+     venue card        #0e2b33 -> #0a2128
+
+   Text opacity went up with it. The faintest small print was 2.09:1, which is
+   not readable; the ladder now bottoms out at 3.73:1 and body copy sits at
+   9.12:1. Opacity on BORDERS and FILLS was deliberately left alone - raising
+   those would have thickened every hairline on the site.
+
+   ONE EXCEPTION, and it is the trap: sage darkened for cream is 2.99:1 on the
+   navy cards in the home page venue band, so the ticks there use a LIGHT sage,
+   #9DAE68 (6.89:1). A colour chosen for the cream is not automatically right on
+   the dark, and the other way round.
+
+   If a colour is added here, measure it. Do not pick one by eye.
+   --------------------------------------------------------------------------- */
+
 @layer base {
   :root {
     --background: 44 41% 91%;

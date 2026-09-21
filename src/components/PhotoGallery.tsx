@@ -68,7 +68,7 @@ const PhotoGallery: React.FC<Props> = ({
                   aria-current={active === index}
                   className={`relative rounded-2xl overflow-hidden h-20 sm:h-24 transition-all ${
                     active === index
-                      ? 'ring-2 ring-[#1E4E5C] ring-offset-2 ring-offset-white'
+                      ? 'ring-2 ring-[#17414D] ring-offset-2 ring-offset-white'
                       : 'opacity-70 hover:opacity-100'
                   }`}
                 >
@@ -91,7 +91,7 @@ const PhotoGallery: React.FC<Props> = ({
               type="button"
               onClick={() => slide(-1)}
               aria-label="Show earlier photos"
-              className="absolute -left-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white text-[#1E4E5C] shadow-md ring-1 ring-[#1E4E5C]/10 hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+              className="absolute -left-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white text-[#17414D] shadow-md ring-1 ring-[#17414D]/10 hover:bg-[#17414D] hover:text-[#F2ECDD] transition-colors"
             >
               <ChevronLeft size={16} />
             </button>
@@ -101,7 +101,7 @@ const PhotoGallery: React.FC<Props> = ({
               type="button"
               onClick={() => slide(1)}
               aria-label="Show more photos"
-              className="absolute -right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white text-[#1E4E5C] shadow-md ring-1 ring-[#1E4E5C]/10 hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+              className="absolute -right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white text-[#17414D] shadow-md ring-1 ring-[#17414D]/10 hover:bg-[#17414D] hover:text-[#F2ECDD] transition-colors"
             >
               <ChevronRight size={16} />
             </button>

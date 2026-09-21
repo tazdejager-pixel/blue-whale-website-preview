@@ -21,14 +21,14 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F2ECDD]">
-      <header className="bg-[#163842] text-[#F2ECDD]">
+      <header className="bg-[#112E36] text-[#F2ECDD]">
         <div className="max-w-6xl mx-auto px-5 py-4 flex items-center justify-between gap-4">
           <a href="/" className="flex items-center gap-3">
             <img src={LOGO_CREAM} alt="Blue Whale Resort" className="w-28" />
-            <span className="hidden sm:inline text-[#F2ECDD]/60 text-sm">Admin Portal</span>
+            <span className="hidden sm:inline text-[#F2ECDD]/80 text-sm">Admin Portal</span>
           </a>
           <div className="flex items-center gap-4">
-            <span className="hidden sm:inline text-[#F2ECDD]/70 text-sm">{userEmail}</span>
+            <span className="hidden sm:inline text-[#F2ECDD]/85 text-sm">{userEmail}</span>
             <button onClick={signOut} className="inline-flex items-center gap-2 rounded-full bg-[#F2ECDD]/10 hover:bg-[#F2ECDD]/20 px-4 py-2 text-sm">
               <LogOut size={15} /> Sign out
             </button>
@@ -37,13 +37,13 @@ const Dashboard: React.FC = () => {
       </header>
 
       <div className="max-w-6xl mx-auto px-5 pt-6">
-        <div className="flex gap-2 border-b border-[#1E4E5C]/15">
+        <div className="flex gap-2 border-b border-[#17414D]/15">
           {tabs.map((t) => (
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
               className={`inline-flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 -mb-px transition-colors ${
-                tab === t.id ? 'border-[#1E4E5C] text-[#1E4E5C]' : 'border-transparent text-[#3A3A36]/55 hover:text-[#1E4E5C]'
+                tab === t.id ? 'border-[#17414D] text-[#17414D]' : 'border-transparent text-[#2E2A25]/70 hover:text-[#17414D]'
               }`}
             >
               {t.icon} {t.label}
@@ -65,7 +65,7 @@ const Gate: React.FC = () => {
   const { userEmail, loading } = useAuth();
   if (loading)
     return (
-      <div className="min-h-screen bg-[#163842] flex items-center justify-center text-[#F2ECDD]">
+      <div className="min-h-screen bg-[#112E36] flex items-center justify-center text-[#F2ECDD]">
         <Loader2 className="animate-spin" size={24} />
       </div>
     );

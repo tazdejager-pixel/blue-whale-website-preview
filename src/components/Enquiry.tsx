@@ -26,7 +26,7 @@ const empty: FormState = {
 };
 
 const inputClass =
-  'w-full rounded-xl border border-[#1E4E5C]/20 bg-white px-4 py-3 text-[#3A3A36] placeholder-[#3A3A36]/40 focus:outline-none focus:ring-2 focus:ring-[#6E93A6]/50 transition min-h-[48px]';
+  'w-full rounded-xl border border-[#17414D]/20 bg-white px-4 py-3 text-[#2E2A25] placeholder-[#2E2A25]/40 focus:outline-none focus:ring-2 focus:ring-[#456C80]/50 transition min-h-[48px]';
 
 const Enquiry: React.FC = () => {
   const [form, setForm] = useState<FormState>(empty);
@@ -87,17 +87,17 @@ const Enquiry: React.FC = () => {
     <section id="enquiry" className="py-20 md:py-28 bg-white">
       <div className="max-w-3xl mx-auto px-5">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="block text-[#6E93A6] tracking-[0.24em] uppercase text-[11px] mb-2">
+          <span className="block text-[#456C80] tracking-[0.24em] uppercase text-[11px] mb-2">
             Get In Touch
           </span>
-          <p className="font-script text-[#8A9A5B] text-4xl sm:text-5xl leading-none mb-2">Reach Out</p>
-          <h2 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-4">
+          <p className="font-script text-[#5F6E39] text-4xl sm:text-5xl leading-none mb-2">Reach Out</p>
+          <h2 className="font-serif text-[#17414D] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-4">
             Make An Enquiry
           </h2>
-          <p className="text-[#3A3A36]/70 leading-relaxed">
+          <p className="text-[#2E2A25]/85 leading-relaxed">
             Not quite ready to book? Tell us about your dream coastal escape and we'll be in touch.
             Prefer to chat? Call us on{' '}
-            <a href={`tel:${RESORT.phone.replace(/\s/g, '')}`} className="underline text-[#1E4E5C] hover:text-[#8A9A5B]">
+            <a href={`tel:${RESORT.phone.replace(/\s/g, '')}`} className="underline text-[#17414D] hover:text-[#5F6E39]">
               {RESORT.phone}
             </a>
             .
@@ -106,14 +106,14 @@ const Enquiry: React.FC = () => {
 
         {status === 'success' ? (
           <div className="bg-[#F2ECDD] rounded-[2rem] p-10 text-center">
-            <CheckCircle2 className="text-[#8A9A5B] mx-auto mb-4" size={48} strokeWidth={1.5} />
-            <h3 className="font-serif text-[#1E4E5C] text-2xl mb-3">Thank you</h3>
-            <p className="text-[#3A3A36]/75 mb-6">
+            <CheckCircle2 className="text-[#5F6E39] mx-auto mb-4" size={48} strokeWidth={1.5} />
+            <h3 className="font-serif text-[#17414D] text-2xl mb-3">Thank you</h3>
+            <p className="text-[#2E2A25]/85 mb-6">
               Your enquiry has been received. Our team will be in touch shortly to help plan your stay.
             </p>
             <button
               onClick={() => setStatus('idle')}
-              className="text-[#1E4E5C] underline text-sm tracking-wide"
+              className="text-[#17414D] underline text-sm tracking-wide"
             >
               Send another enquiry
             </button>
@@ -122,7 +122,7 @@ const Enquiry: React.FC = () => {
           <form onSubmit={handleSubmit} className="bg-[#F2ECDD] rounded-[2rem] p-7 sm:p-10 space-y-5">
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-[#1E4E5C] text-sm mb-2">Name</label>
+                <label className="block text-[#17414D] text-sm mb-2">Name</label>
                 <input
                   type="text"
                   value={form.name}
@@ -133,7 +133,7 @@ const Enquiry: React.FC = () => {
                 {errors.name && <p className="text-red-600 text-xs mt-1.5">{errors.name}</p>}
               </div>
               <div>
-                <label className="block text-[#1E4E5C] text-sm mb-2">Email</label>
+                <label className="block text-[#17414D] text-sm mb-2">Email</label>
                 <input
                   type="email"
                   value={form.email}
@@ -147,7 +147,7 @@ const Enquiry: React.FC = () => {
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-[#1E4E5C] text-sm mb-2">Phone number (optional)</label>
+                <label className="block text-[#17414D] text-sm mb-2">Phone number (optional)</label>
                 <input
                   type="tel"
                   value={form.phone}
@@ -157,7 +157,7 @@ const Enquiry: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="block text-[#1E4E5C] text-sm mb-2">Preferred dates (optional)</label>
+                <label className="block text-[#17414D] text-sm mb-2">Preferred dates (optional)</label>
                 <input
                   type="text"
                   value={form.dates}
@@ -171,7 +171,7 @@ const Enquiry: React.FC = () => {
 
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className="block text-[#1E4E5C] text-sm mb-2">Number of guests (optional)</label>
+                <label className="block text-[#17414D] text-sm mb-2">Number of guests (optional)</label>
                 <input
                   type="text"
                   value={form.guests}
@@ -181,7 +181,7 @@ const Enquiry: React.FC = () => {
                 />
               </div>
               <div>
-                <label className="block text-[#1E4E5C] text-sm mb-2">I'm interested in (optional)</label>
+                <label className="block text-[#17414D] text-sm mb-2">I'm interested in (optional)</label>
                 <select
                   value={form.interest}
                   onChange={(e) => update('interest', e.target.value)}
@@ -206,9 +206,9 @@ const Enquiry: React.FC = () => {
                 type="checkbox"
                 checked={form.marketingOptIn}
                 onChange={(e) => update('marketingOptIn', e.target.checked)}
-                className="mt-1 w-5 h-5 rounded border-[#1E4E5C]/30 accent-[#1E4E5C] shrink-0"
+                className="mt-1 w-5 h-5 rounded border-[#17414D]/30 accent-[#17414D] shrink-0"
               />
-              <span className="text-[#3A3A36]/75 text-xs leading-relaxed">
+              <span className="text-[#2E2A25]/85 text-xs leading-relaxed">
                 Keep me posted. Send me the occasional email about specials, events and news
                 from Blue Whale Resort. You can unsubscribe at any time, and we never pass
                 your details to anyone else.
@@ -216,7 +216,7 @@ const Enquiry: React.FC = () => {
             </label>
 
             <div>
-              <label className="block text-[#1E4E5C] text-sm mb-2">Message</label>
+              <label className="block text-[#17414D] text-sm mb-2">Message</label>
               <textarea
                 value={form.message}
                 onChange={(e) => update('message', e.target.value)}
@@ -236,7 +236,7 @@ const Enquiry: React.FC = () => {
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-xs font-medium tracking-[0.22em] uppercase bg-[#1E4E5C] text-[#F2ECDD] hover:bg-[#163842] transition-all min-h-[48px] disabled:opacity-70"
+              className="w-full inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-xs font-medium tracking-[0.22em] uppercase bg-[#17414D] text-[#F2ECDD] hover:bg-[#112E36] transition-all min-h-[48px] disabled:opacity-70"
             >
               {status === 'loading' ? (
                 <>

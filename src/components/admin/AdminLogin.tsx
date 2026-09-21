@@ -33,38 +33,38 @@ const AdminLogin: React.FC = () => {
   };
 
   const input =
-    'w-full rounded-xl border border-[#1E4E5C]/20 bg-white px-4 py-3 text-[#3A3A36] focus:outline-none focus:ring-2 focus:ring-[#6E93A6]/50 min-h-[48px]';
+    'w-full rounded-xl border border-[#17414D]/20 bg-white px-4 py-3 text-[#2E2A25] focus:outline-none focus:ring-2 focus:ring-[#456C80]/50 min-h-[48px]';
 
   return (
-    <div className="min-h-screen bg-[#163842] flex items-center justify-center px-5">
+    <div className="min-h-screen bg-[#112E36] flex items-center justify-center px-5">
       <div className="w-full max-w-md bg-[#F2ECDD] rounded-[2rem] p-8 sm:p-10">
         <div className="text-center mb-7">
           <img src={LOGO_BLUE} alt="Blue Whale Resort" className="w-32 mx-auto mb-4" />
-          <h1 className="font-serif text-[#1E4E5C] text-2xl uppercase tracking-[0.04em]">
+          <h1 className="font-serif text-[#17414D] text-2xl uppercase tracking-[0.04em]">
             Resort Admin
           </h1>
-          <p className="text-[#3A3A36]/60 text-sm mt-1">
+          <p className="text-[#2E2A25]/75 text-sm mt-1">
             {mode === 'in' ? 'Sign in to manage the site' : 'Create an admin account'}
           </p>
         </div>
 
         <form onSubmit={submit} className="space-y-4">
           <div>
-            <label className="block text-[#1E4E5C] text-sm mb-2">Email</label>
+            <label className="block text-[#17414D] text-sm mb-2">Email</label>
             <input className={input} type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@bluewhale.co.za" />
           </div>
           <div>
-            <label className="block text-[#1E4E5C] text-sm mb-2">Password</label>
+            <label className="block text-[#17414D] text-sm mb-2">Password</label>
             <input className={input} type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" />
           </div>
 
           {err && <p className="text-red-600 text-sm">{err}</p>}
-          {info && <p className="text-[#8A9A5B] text-sm">{info}</p>}
+          {info && <p className="text-[#5F6E39] text-sm">{info}</p>}
 
           <button
             type="submit"
             disabled={busy}
-            className="w-full inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-xs font-medium tracking-[0.22em] uppercase bg-[#1E4E5C] text-[#F2ECDD] hover:bg-[#163842] transition-all min-h-[48px] disabled:opacity-70"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-xs font-medium tracking-[0.22em] uppercase bg-[#17414D] text-[#F2ECDD] hover:bg-[#112E36] transition-all min-h-[48px] disabled:opacity-70"
           >
             {busy ? <Loader2 size={18} className="animate-spin" /> : <LogIn size={18} />}
             {mode === 'in' ? 'Sign In' : 'Create Account'}
@@ -73,12 +73,12 @@ const AdminLogin: React.FC = () => {
 
         <button
           onClick={() => { setMode(mode === 'in' ? 'up' : 'in'); setErr(''); setInfo(''); }}
-          className="w-full text-center text-[#1E4E5C] underline text-sm mt-5"
+          className="w-full text-center text-[#17414D] underline text-sm mt-5"
         >
           {mode === 'in' ? 'Need an account? Create one' : 'Already have an account? Sign in'}
         </button>
 
-        <a href="/" className="block text-center text-[#3A3A36]/50 text-xs mt-6 hover:text-[#1E4E5C]">
+        <a href="/" className="block text-center text-[#2E2A25]/70 text-xs mt-6 hover:text-[#17414D]">
           ← Back to website
         </a>
       </div>

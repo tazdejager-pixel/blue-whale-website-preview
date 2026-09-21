@@ -82,10 +82,10 @@ const VenueEnquiry: React.FC = () => {
 
   if (status === 'success') {
     return (
-      <div className="bg-[#0e2b33]/80 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[2rem] p-10 text-center shadow-xl">
+      <div className="bg-[#0a2128]/80 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[2rem] p-10 text-center shadow-xl">
         <CheckCircle2 className="text-[#F2ECDD] mx-auto mb-4" size={48} strokeWidth={1.5} />
         <h3 className="font-serif text-[#F2ECDD] text-2xl mb-3">Thank you</h3>
-        <p className="text-[#F2ECDD]/80 mb-6">
+        <p className="text-[#F2ECDD]/90 mb-6">
           We've received your event enquiry and will be in touch soon to help you celebrate by the ocean.
         </p>
         <button onClick={() => setStatus('idle')} className="text-[#F2ECDD] underline text-sm tracking-wide">
@@ -98,7 +98,7 @@ const VenueEnquiry: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-[#0e2b33]/80 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[2rem] p-7 sm:p-9 space-y-5 text-left shadow-xl"
+      className="bg-[#0a2128]/80 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[2rem] p-7 sm:p-9 space-y-5 text-left shadow-xl"
     >
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
@@ -125,9 +125,9 @@ const VenueEnquiry: React.FC = () => {
             onChange={(e) => update('eventType', e.target.value)}
             className={`${inputClass} appearance-none`}
           >
-            <option value="" className="text-[#1E4E5C]">Select an event type</option>
+            <option value="" className="text-[#17414D]">Select an event type</option>
             {EVENT_TYPES.map((t) => (
-              <option key={t} value={t} className="text-[#1E4E5C]">{t}</option>
+              <option key={t} value={t} className="text-[#17414D]">{t}</option>
             ))}
           </select>
           {errors.eventType && <p className="text-red-300 text-xs mt-1.5">{errors.eventType}</p>}
@@ -160,7 +160,7 @@ const VenueEnquiry: React.FC = () => {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-xs font-medium tracking-[0.22em] uppercase bg-[#F2ECDD] text-[#1E4E5C] hover:bg-white transition-all min-h-[48px] disabled:opacity-70"
+        className="w-full inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-xs font-medium tracking-[0.22em] uppercase bg-[#F2ECDD] text-[#17414D] hover:bg-white transition-all min-h-[48px] disabled:opacity-70"
       >
         {status === 'loading' ? (
           <><Loader2 size={18} className="animate-spin" /> Sending...</>

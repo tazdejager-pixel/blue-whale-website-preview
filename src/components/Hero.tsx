@@ -46,7 +46,10 @@ const Hero: React.FC = () => {
         <p className="font-script text-[#F2ECDD] text-4xl sm:text-5xl md:text-6xl mb-7 leading-none [text-shadow:0_2px_20px_rgba(8,28,34,0.8)]">
           Stay. Celebrate. Connect.
         </p>
-        <p className="text-[#F2ECDD] max-w-xl text-sm sm:text-base mb-9 font-light leading-relaxed [text-shadow:0_1px_12px_rgba(8,28,34,0.85)]">
+        {/* font-light came off on 21/09/2026: a light weight at this size over a
+            photograph was hard to read (Tarryn). The text shadow stays, because the
+            aerial behind it has bright water in it. */}
+        <p className="text-[#F2ECDD] max-w-xl text-sm sm:text-base mb-9 leading-relaxed [text-shadow:0_1px_12px_rgba(8,28,34,0.9)]">
           A private coastal nature reserve where uninterrupted sea views,
           whales and serenity become your everyday.
         </p>

@@ -44,7 +44,7 @@ const VenuePage: React.FC = () => {
   const imageFor = (key: string) => (PHOTOS as Record<string, typeof PHOTOS.venueDeck>)[key];
 
   return (
-    <div className="min-h-screen bg-[#F2ECDD] text-[#3A3A36] antialiased">
+    <div className="min-h-screen bg-[#F2ECDD] text-[#2E2A25] antialiased">
       <Navbar />
 
       <main>
@@ -60,7 +60,7 @@ const VenuePage: React.FC = () => {
             fetchpriority="high"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#163842]/55 via-[#163842]/35 to-[#163842]/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#112E36]/55 via-[#112E36]/35 to-[#112E36]/75" />
 
           <div className="relative z-10 text-center px-5 max-w-3xl pt-24 pb-16">
             {/* The h1 says what the page is, not just how it feels (21/09/2026).
@@ -79,7 +79,7 @@ const VenuePage: React.FC = () => {
             </p>
             <a
               href="#venue-enquiry"
-              className="inline-flex items-center gap-2 rounded-full bg-[#F2ECDD] px-8 py-4 text-[#1E4E5C] text-[13px] font-medium tracking-[0.16em] uppercase shadow-lg hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors duration-300"
+              className="inline-flex items-center gap-2 rounded-full bg-[#F2ECDD] px-8 py-4 text-[#17414D] text-[13px] font-medium tracking-[0.16em] uppercase shadow-lg hover:bg-[#17414D] hover:text-[#F2ECDD] transition-colors duration-300"
             >
               Enquire about your date
               <ArrowDown size={16} />
@@ -91,13 +91,13 @@ const VenuePage: React.FC = () => {
         <section className="py-20 md:py-28 bg-[#F2ECDD]">
           <div className="max-w-6xl mx-auto px-5">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="block text-[#6E93A6] tracking-[0.24em] uppercase text-[11px] mb-2">
+              <span className="block text-[#456C80] tracking-[0.24em] uppercase text-[11px] mb-2">
                 The Venue
               </span>
-              <h2 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-6">
+              <h2 className="font-serif text-[#17414D] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-6">
                 One Place, Start To Finish
               </h2>
-              <p className="text-[#3A3A36]/85 leading-relaxed">{VENUE.intro}</p>
+              <p className="text-[#2E2A25]/95 leading-relaxed">{VENUE.intro}</p>
             </div>
 
             <div className="space-y-14">
@@ -117,19 +117,19 @@ const VenuePage: React.FC = () => {
                   </div>
 
                   <div className="md:[direction:ltr]">
-                    <span className="block text-[#6E93A6] tracking-[0.24em] uppercase text-[11px] mb-2">
+                    <span className="block text-[#456C80] tracking-[0.24em] uppercase text-[11px] mb-2">
                       {r.eyebrow}
                     </span>
-                    <h3 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-xl sm:text-2xl mb-4">
+                    <h3 className="font-serif text-[#17414D] uppercase tracking-[0.04em] text-xl sm:text-2xl mb-4">
                       {r.title}
                     </h3>
-                    <p className="text-[#3A3A36]/85 leading-relaxed mb-6 whitespace-pre-line">
+                    <p className="text-[#2E2A25]/95 leading-relaxed mb-6 whitespace-pre-line">
                       {r.body}
                     </p>
                     <ul className="space-y-3">
                       {r.points.map((p) => (
-                        <li key={p} className="flex items-start gap-3 text-[#3A3A36]/85 text-sm">
-                          <Check size={18} className="shrink-0 mt-0.5 text-[#8A9A5B]" /> {p}
+                        <li key={p} className="flex items-start gap-3 text-[#2E2A25]/95 text-sm">
+                          <Check size={18} className="shrink-0 mt-0.5 text-[#5F6E39]" /> {p}
                         </li>
                       ))}
                     </ul>
@@ -151,7 +151,7 @@ const VenuePage: React.FC = () => {
                 className="w-full h-[320px] sm:h-[460px] object-cover"
               />
             </div>
-            <p className="text-center text-[#3A3A36]/60 text-xs leading-relaxed mt-4 max-w-xl mx-auto">
+            <p className="text-center text-[#2E2A25]/75 text-xs leading-relaxed mt-4 max-w-xl mx-auto">
               {VENUE.stylingNote}
             </p>
           </div>
@@ -172,17 +172,17 @@ const VenuePage: React.FC = () => {
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-[#163842]/85" />
+          <div className="absolute inset-0 bg-[#112E36]/85" />
 
           <div className="relative z-10 max-w-2xl mx-auto px-5">
             <div className="text-center mb-8">
-              <span className="block text-[#F2ECDD]/70 tracking-[0.24em] uppercase text-[11px] mb-2">
+              <span className="block text-[#F2ECDD]/85 tracking-[0.24em] uppercase text-[11px] mb-2">
                 Enquire
               </span>
               <h2 className="font-serif text-[#F2ECDD] uppercase tracking-[0.04em] text-2xl sm:text-3xl mb-3">
                 Tell Us About Your Day
               </h2>
-              <p className="text-[#F2ECDD]/80 text-sm leading-relaxed">
+              <p className="text-[#F2ECDD]/90 text-sm leading-relaxed">
                 Dates, numbers and what you have in mind. We will come back to you with what
                 the day would look like here.
               </p>

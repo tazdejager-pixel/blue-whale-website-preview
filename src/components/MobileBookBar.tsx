@@ -16,11 +16,11 @@ const MobileBookBar: React.FC = () => {
         show ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
-      <div className="flex gap-2 p-3 bg-[#F2ECDD]/95 backdrop-blur-md border-t border-[#1E4E5C]/10 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+      <div className="flex gap-2 p-3 bg-[#F2ECDD]/95 backdrop-blur-md border-t border-[#17414D]/10 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
         <a
           href={`tel:${RESORT.phone.replace(/\s/g, '')}`}
           aria-label="Call us"
-          className="w-12 shrink-0 rounded-full border border-[#1E4E5C] text-[#1E4E5C] flex items-center justify-center"
+          className="w-12 shrink-0 rounded-full border border-[#17414D] text-[#17414D] flex items-center justify-center"
         >
           <Phone size={20} />
         </a>
@@ -28,7 +28,7 @@ const MobileBookBar: React.FC = () => {
           href={BOOKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 rounded-full bg-[#1E4E5C] text-[#F2ECDD] flex items-center justify-center text-xs font-medium tracking-[0.22em] uppercase min-h-[48px]"
+          className="flex-1 rounded-full bg-[#17414D] text-[#F2ECDD] flex items-center justify-center text-xs font-medium tracking-[0.22em] uppercase min-h-[48px]"
         >
           Book Now
         </a>

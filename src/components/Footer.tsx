@@ -29,17 +29,17 @@ const Footer: React.FC = () => {
   const columns = [EXPLORE.slice(0, half), EXPLORE.slice(half)];
 
   return (
-    <footer className="bg-[#163842] text-[#F2ECDD] pt-16 pb-28 md:pb-10">
+    <footer className="bg-[#112E36] text-[#F2ECDD] pt-16 pb-28 md:pb-10">
       <div className="max-w-7xl mx-auto px-5 grid md:grid-cols-3 gap-12">
         <div>
           <img src={LOGO_CREAM} alt="Blue Whale Resort logo" className="w-44 mb-5" />
           <p className="font-script text-3xl mb-2">{RESORT.tagline}</p>
-          <p className="text-[#F2ECDD]/80 text-sm leading-relaxed mb-4">{RESORT.taglineSub}</p>
-          <p className="text-[#F2ECDD]/60 text-sm leading-relaxed">{RESORT.location}</p>
+          <p className="text-[#F2ECDD]/90 text-sm leading-relaxed mb-4">{RESORT.taglineSub}</p>
+          <p className="text-[#F2ECDD]/80 text-sm leading-relaxed">{RESORT.location}</p>
         </div>
 
         <div>
-          <h4 className="tracking-[0.24em] uppercase text-[11px] text-[#F2ECDD]/60 mb-5">Explore</h4>
+          <h4 className="tracking-[0.24em] uppercase text-[11px] text-[#F2ECDD]/80 mb-5">Explore</h4>
           <div className="grid grid-cols-2 gap-x-6">
             {columns.map((col, i) => (
               <ul key={i} className="space-y-3">
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
                   <li key={l.href}>
                     <button
                       onClick={() => handleNav(l.href)}
-                      className="text-[#F2ECDD]/85 hover:text-white transition-colors text-sm text-left"
+                      className="text-[#F2ECDD]/95 hover:text-white transition-colors text-sm text-left"
                     >
                       {l.label}
                     </button>
@@ -60,23 +60,23 @@ const Footer: React.FC = () => {
 
 
         <div>
-          <h4 className="tracking-[0.24em] uppercase text-[11px] text-[#F2ECDD]/60 mb-5">Connect</h4>
+          <h4 className="tracking-[0.24em] uppercase text-[11px] text-[#F2ECDD]/80 mb-5">Connect</h4>
           <ul className="space-y-4 text-sm">
-            <li className="flex items-start gap-3 text-[#F2ECDD]/85">
+            <li className="flex items-start gap-3 text-[#F2ECDD]/95">
               <MapPin size={18} className="shrink-0 mt-0.5" /> {RESORT.address}
             </li>
             <li>
-              <a href={`tel:${RESORT.phone.replace(/[\s()]/g, '')}`} className="flex items-start gap-3 text-[#F2ECDD]/85 hover:text-white transition-colors">
+              <a href={`tel:${RESORT.phone.replace(/[\s()]/g, '')}`} className="flex items-start gap-3 text-[#F2ECDD]/95 hover:text-white transition-colors">
                 <Phone size={18} className="shrink-0 mt-0.5" /> {RESORT.phone}
               </a>
             </li>
             <li>
-              <a href={`mailto:${RESORT.email}`} className="flex items-start gap-3 text-[#F2ECDD]/85 hover:text-white transition-colors">
+              <a href={`mailto:${RESORT.email}`} className="flex items-start gap-3 text-[#F2ECDD]/95 hover:text-white transition-colors">
                 <Mail size={18} className="shrink-0 mt-0.5" /> {RESORT.email}
               </a>
             </li>
             <li>
-              <a href={`https://${RESORT.website}`} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-[#F2ECDD]/85 hover:text-white transition-colors">
+              <a href={`https://${RESORT.website}`} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-[#F2ECDD]/95 hover:text-white transition-colors">
                 <Globe size={18} className="shrink-0 mt-0.5" /> {RESORT.website}
               </a>
             </li>

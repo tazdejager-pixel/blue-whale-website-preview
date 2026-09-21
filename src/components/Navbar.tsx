@@ -35,7 +35,12 @@ const Navbar: React.FC = () => {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? 'bg-[#F2ECDD]/95 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'
+        scrolled
+          ? 'bg-[#F2ECDD]/95 backdrop-blur-md shadow-sm py-2'
+          // Unscrolled, the bar is transparent over a photograph. A soft dark wash
+          // behind it is the difference between cream links that read and cream
+          // links that vanish into bright water (21/09/2026).
+          : 'py-4 bg-gradient-to-b from-[#0a2128]/55 to-transparent'
       }`}
     >
       <nav className="max-w-7xl mx-auto px-5 flex items-center justify-between">
@@ -53,7 +58,9 @@ const Navbar: React.FC = () => {
               key={l.href}
               onClick={() => handleNav(l.href)}
               className={`text-[13px] tracking-[0.16em] uppercase font-medium transition-colors ${
-                scrolled ? 'text-[#1E4E5C] hover:text-[#8A9A5B]' : 'text-[#F2ECDD] hover:text-white'
+                scrolled
+                  ? 'text-[#17414D] hover:text-[#5F6E39]'
+                  : 'text-[#F2ECDD] hover:text-white [text-shadow:0_1px_8px_rgba(8,28,34,0.85)]'
               }`}
             >
               {l.label}
@@ -70,20 +77,20 @@ const Navbar: React.FC = () => {
           aria-label="Menu"
         >
           {open ? (
-            <X className={scrolled ? 'text-[#1E4E5C]' : 'text-[#F2ECDD]'} size={28} />
+            <X className={scrolled ? 'text-[#17414D]' : 'text-[#F2ECDD] drop-shadow-[0_1px_6px_rgba(8,28,34,0.85)]'} size={28} />
           ) : (
-            <Menu className={scrolled ? 'text-[#1E4E5C]' : 'text-[#F2ECDD]'} size={28} />
+            <Menu className={scrolled ? 'text-[#17414D]' : 'text-[#F2ECDD] drop-shadow-[0_1px_6px_rgba(8,28,34,0.85)]'} size={28} />
           )}
         </button>
       </nav>
 
       {open && (
-        <div className="md:hidden bg-[#F2ECDD] border-t border-[#1E4E5C]/10 px-5 py-6 space-y-2 shadow-lg">
+        <div className="md:hidden bg-[#F2ECDD] border-t border-[#17414D]/10 px-5 py-6 space-y-2 shadow-lg">
           {NAV_LINKS.map((l) => (
             <button
               key={l.href}
               onClick={() => handleNav(l.href)}
-              className="block w-full text-left py-3 text-[#1E4E5C] tracking-[0.16em] uppercase text-sm font-medium border-b border-[#1E4E5C]/10 last:border-0"
+              className="block w-full text-left py-3 text-[#17414D] tracking-[0.16em] uppercase text-sm font-medium border-b border-[#17414D]/10 last:border-0"
             >
               {l.label}
             </button>

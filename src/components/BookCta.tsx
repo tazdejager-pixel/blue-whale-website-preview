@@ -12,13 +12,13 @@ const BookCta: React.FC = () => (
       loading="lazy"
       className="absolute inset-0 w-full h-full object-cover"
     />
-    <div className="absolute inset-0 bg-[#1E4E5C]/85" />
+    <div className="absolute inset-0 bg-[#17414D]/85" />
     <div className="relative z-10 max-w-3xl mx-auto px-5 text-center">
       <p className="font-script text-[#F2ECDD] text-4xl sm:text-5xl leading-none mb-2">Your Ocean Escape</p>
       <h2 className="font-serif text-[#F2ECDD] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-5">
         Awaits
       </h2>
-      <p className="text-[#F2ECDD]/90 leading-relaxed mb-9">
+      <p className="text-[#F2ECDD]/95 leading-relaxed mb-9">
         Check availability and reserve your chalet in moments through our secure
         NightsBridge booking engine. The horizon is calling.
       </p>

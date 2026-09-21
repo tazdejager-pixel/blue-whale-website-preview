@@ -39,44 +39,44 @@ const BlogManager: React.FC = () => {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
         <div>
-          <h2 className="font-serif text-[#1E4E5C] text-xl">Blog Manager</h2>
-          <p className="text-[#3A3A36]/60 text-sm">{posts.length} posts</p>
+          <h2 className="font-serif text-[#17414D] text-xl">Blog Manager</h2>
+          <p className="text-[#2E2A25]/75 text-sm">{posts.length} posts</p>
         </div>
-        <button onClick={() => setEditing(null)} className="inline-flex items-center gap-2 rounded-full bg-[#1E4E5C] text-[#F2ECDD] px-5 py-2.5 text-sm hover:bg-[#163842]">
+        <button onClick={() => setEditing(null)} className="inline-flex items-center gap-2 rounded-full bg-[#17414D] text-[#F2ECDD] px-5 py-2.5 text-sm hover:bg-[#112E36]">
           <Plus size={16} /> New Post
         </button>
       </div>
 
       {loading ? (
-        <div className="flex items-center gap-2 text-[#3A3A36]/60 py-10 justify-center">
+        <div className="flex items-center gap-2 text-[#2E2A25]/75 py-10 justify-center">
           <Loader2 className="animate-spin" size={18} /> Loading posts…
         </div>
       ) : err ? (
         <p className="text-red-600">{err}</p>
       ) : posts.length === 0 ? (
-        <p className="text-[#3A3A36]/60 py-10 text-center">No posts yet. Create your first journal entry.</p>
+        <p className="text-[#2E2A25]/75 py-10 text-center">No posts yet. Create your first journal entry.</p>
       ) : (
         <div className="space-y-3">
           {posts.map((p) => (
-            <div key={p.id} className="flex items-center gap-4 rounded-2xl border border-[#1E4E5C]/15 bg-white p-3 pr-5">
+            <div key={p.id} className="flex items-center gap-4 rounded-2xl border border-[#17414D]/15 bg-white p-3 pr-5">
               <div className="w-20 h-16 rounded-xl bg-[#F2ECDD] overflow-hidden shrink-0">
                 {p.hero_image && <img src={p.hero_image} alt={p.title} className="w-full h-full object-cover" />}
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <h3 className="font-serif text-[#1E4E5C] truncate">{p.title}</h3>
-                  <span className={`text-[10px] uppercase tracking-wide px-2 py-0.5 rounded-full shrink-0 ${p.published ? 'bg-[#8A9A5B]/20 text-[#5e6b3d]' : 'bg-[#3A3A36]/10 text-[#3A3A36]/60'}`}>
+                  <h3 className="font-serif text-[#17414D] truncate">{p.title}</h3>
+                  <span className={`text-[10px] uppercase tracking-wide px-2 py-0.5 rounded-full shrink-0 ${p.published ? 'bg-[#5F6E39]/20 text-[#4c5730]' : 'bg-[#2E2A25]/10 text-[#2E2A25]/75'}`}>
                     {p.published ? 'Published' : 'Draft'}
                   </span>
                 </div>
-                <p className="text-[#3A3A36]/55 text-xs truncate">/blog/{p.slug} · {formatDate(p.publish_date)}</p>
+                <p className="text-[#2E2A25]/70 text-xs truncate">/blog/{p.slug} · {formatDate(p.publish_date)}</p>
               </div>
               {p.published && (
-                <a href={`/blog/${p.slug}`} target="_blank" rel="noopener noreferrer" className="text-[#6E93A6] hover:text-[#1E4E5C] p-2" aria-label="View post">
+                <a href={`/blog/${p.slug}`} target="_blank" rel="noopener noreferrer" className="text-[#456C80] hover:text-[#17414D] p-2" aria-label="View post">
                   <ExternalLink size={16} />
                 </a>
               )}
-              <button onClick={() => setEditing(p)} className="inline-flex items-center gap-1.5 rounded-full border border-[#1E4E5C]/25 px-4 py-2 text-sm text-[#1E4E5C] hover:bg-[#1E4E5C]/5">
+              <button onClick={() => setEditing(p)} className="inline-flex items-center gap-1.5 rounded-full border border-[#17414D]/25 px-4 py-2 text-sm text-[#17414D] hover:bg-[#17414D]/5">
                 <Pencil size={14} /> Edit
               </button>
             </div>
