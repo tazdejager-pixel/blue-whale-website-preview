@@ -6,7 +6,7 @@ const BookCta: React.FC = () => (
   <section id="book" className="relative py-24 md:py-32">
     <img
       src={IMAGES.chalet}
-      alt="Ocean-view chalet at Blue Whale Resort, George"
+      alt="Sea-view chalet at Blue Whale Resort, George"
       loading="lazy"
       className="absolute inset-0 w-full h-full object-cover"
     />

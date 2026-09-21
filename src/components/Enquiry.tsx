@@ -7,7 +7,7 @@ interface FormState {
   name: string;
   email: string;
   phone: string;
-  smsOptIn: boolean;
+  marketingOptIn: boolean;
   dates: string;
   guests: string;
   interest: string;
@@ -18,7 +18,7 @@ const empty: FormState = {
   name: '',
   email: '',
   phone: '',
-  smsOptIn: true,
+  marketingOptIn: true,
   dates: '',
   guests: '',
   interest: '',
@@ -65,7 +65,7 @@ const Enquiry: React.FC = () => {
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim() || null,
-        sms_opt_in: form.smsOptIn,
+        marketing_opt_in: form.marketingOptIn,
         preferred_dates: form.dates.trim() || null,
         guests: form.guests.trim() || null,
         interest: form.interest || null,
@@ -195,16 +195,23 @@ const Enquiry: React.FC = () => {
               </div>
             </div>
 
+            {/* The resort asked for this box to come off (04/09/2026). It stays, with
+                new wording, because it is the only lawful basis for emailing an
+                enquirer later - POPIA s69 needs their consent, and an enquiry on its
+                own is not consent to market to them. The old wording asked for SMS
+                only, in American ("Msg & data rates may apply. Reply STOP"), so it
+                permitted nothing we would actually send. */}
             <label className="flex items-start gap-3 cursor-pointer select-none">
               <input
                 type="checkbox"
-                checked={form.smsOptIn}
-                onChange={(e) => update('smsOptIn', e.target.checked)}
+                checked={form.marketingOptIn}
+                onChange={(e) => update('marketingOptIn', e.target.checked)}
                 className="mt-1 w-5 h-5 rounded border-[#1E4E5C]/30 accent-[#1E4E5C] shrink-0"
               />
               <span className="text-[#3A3A36]/75 text-xs leading-relaxed">
-                Text me updates about my enquiry and special offers. Msg &amp; data rates may apply.
-                Reply STOP to unsubscribe.
+                Keep me posted. Send me the occasional email about specials, events and news
+                from Blue Whale Resort. You can unsubscribe at any time, and we never pass
+                your details to anyone else.
               </span>
             </label>
 

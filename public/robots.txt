@@ -1,25 +1,8 @@
 # Blue Whale Resort
-# /reviews/ holds the Tripadvisor review feed. Tripadvisor's review implementation
-# policy requires that review content is not crawlable, so every agent group below
-# disallows it. A named group overrides the wildcard group, so the rule is repeated
-# in each one on purpose.
-
-User-agent: Googlebot
-Disallow: /reviews/
-Allow: /
-
-User-agent: Bingbot
-Disallow: /reviews/
-Allow: /
-
-User-agent: Twitterbot
-Disallow: /reviews/
-Allow: /
-
-User-agent: facebookexternalhit
-Disallow: /reviews/
-Allow: /
+#
+# The Tripadvisor feed came off the site on 21/09/2026 and guest reviews now sit in
+# the page itself, so the /reviews/ disallow that existed to keep that feed out of
+# the index went with it.
 
 User-agent: *
-Disallow: /reviews/
 Allow: /

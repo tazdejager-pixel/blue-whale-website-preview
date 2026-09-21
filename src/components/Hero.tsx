@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
           Stay. Celebrate. Connect.
         </p>
         <p className="text-[#F2ECDD] max-w-xl text-sm sm:text-base mb-9 font-light leading-relaxed [text-shadow:0_1px_12px_rgba(8,28,34,0.85)]">
-          A private coastal nature reserve where uninterrupted ocean views,
+          A private coastal nature reserve where uninterrupted sea views,
           whales and serenity become your everyday.
         </p>
         <BookButton variant="lightOutline" className="text-xs">

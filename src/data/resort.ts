@@ -24,16 +24,92 @@ export const RESORT = {
 };
 
 
-// Tripadvisor guest reviews.
-// The feed is rewritten by scripts/blue_whale_reviews.py and fetched at runtime,
-// never bundled into the page source, which is what Tripadvisor's review
-// implementation policy requires. robots.txt disallows /reviews/.
-export const TRIPADVISOR = {
-  locationId: 7734785,
-  listingUrl:
-    'https://www.tripadvisor.co.za/Hotel_Review-g312662-d7734785-Reviews-Blue_Whale_Resort-George_Western_Cape.html',
-};
-export const REVIEWS_FEED_URL = `${import.meta.env.BASE_URL}reviews/latest.json`;
+// Guest reviews.
+//
+// 21/09/2026: the Tripadvisor feed, branding and links came off the site (Tarryn).
+// The words below are REAL guests, carried over verbatim from the resort's own
+// published review widget - nothing here is written by us and nothing is invented.
+// Trimmed at a full stop where a review ran long, and corrected only for obvious
+// typos ("a awesome" -> "an awesome"). The display name is the guest's own published
+// handle read back to a name.
+//
+// RULES FOR THIS LIST:
+//  - Never add a review the resort has not actually received.
+//  - Never rewrite one to sound better. Trim with a full stop, or leave it out.
+//  - No star rating and no review total on the page: that is an aggregate claim and
+//    it needs a source, which is the thing we just removed.
+export interface Review {
+  quote: string;
+  author: string;
+  when: string;
+  stay: string;
+}
+
+export const REVIEWS: Review[] = [
+  {
+    quote:
+      'This unit exceeded our expectations by far. The view is breathtaking and to have the privilege of seeing a big school of dolphins going past 3 times in 1 morning was awesome. The unit is well equipped and staff friendly.',
+    author: 'Annarie',
+    when: 'December 2021',
+    stay: 'Sea-View Chalet',
+  },
+  {
+    quote:
+      'What a fabulous stay at Blue Whale Resort. We were a group of friends that booked all 8 sea facing chalets. Such stunning units with comfortable beds and amazing views. Would highly recommend and would definitely go back.',
+    author: 'Judy',
+    when: 'October 2022',
+    stay: 'A group of friends',
+  },
+  {
+    quote:
+      'If you are looking for a place that is private, never runs out of fire wood, sea views and friendly staff, this is the place for you. We stayed a week and we will definitely return in the near future.',
+    author: 'Martin',
+    when: 'December 2021',
+    stay: 'Honeymoon',
+  },
+  {
+    quote:
+      'Fantastic private neat place to stay with the most beautiful scenery of the ocean. Very friendly and helpful hosts that make you feel at home. A place where you can find your soul again. Will definitely visit again.',
+    author: 'Sandra',
+    when: 'February 2022',
+    stay: 'Sea-View Chalet',
+  },
+  {
+    quote:
+      'Beautiful place, very quiet and peaceful. Views are stunning. Situated right on the rocks, the sound of the sea makes you sleep like a baby. Excellent fishing spots. Overall a very nice spot to relax and take in the beautiful views.',
+    author: 'Dustin',
+    when: 'March 2022',
+    stay: 'Sea-View Chalet',
+  },
+  {
+    quote:
+      'Beautiful clean and neat accommodation with an awesome view of the ocean. Everything was there that was needed to ensure a comfortable stay. Enjoyed the relaxing atmosphere and the walk down to the ocean.',
+    author: 'R. Metelerkamp',
+    when: 'May 2022',
+    stay: 'Sea-View Chalet',
+  },
+  {
+    quote:
+      'It was a great place to enjoy the holiday with family. Nice sea view. Value for the money. Rooms were very neat and spacious. You can wake up to a beautiful morning with mountain view as well as sea view.',
+    author: 'Sadanand',
+    when: 'October 2022',
+    stay: 'Family stay',
+  },
+  {
+    quote:
+      'Really has everything going for it. The place is off the beaten track, quiet, views are fantastic, chalets are clean. A great spot to get away.',
+    author: 'Brian',
+    when: 'April 2022',
+    stay: 'Sea-View Chalet',
+  },
+  {
+    quote:
+      'Great views. Clean and roomy. Well equipped. A huge rain spider kept us company but left us in peace. After all, it is and was his home, so we let it be.',
+    author: 'Johan',
+    when: 'October 2022',
+    stay: 'Sea-View Chalet',
+  },
+];
 
 
 // Google Maps embed of the George / Garden Route location (no API key needed)
@@ -98,17 +174,17 @@ export interface Stay {
 
 export const STAYS: Stay[] = [
   {
-    id: 'ocean-view-chalets',
-    name: 'Ocean-View Chalets',
+    id: 'sea-view-chalets',
+    name: 'Sea-View Chalets',
     signature: true,
-    view: 'Panoramic Indian Ocean views',
+    view: 'Panoramic sea views',
     suits: 'Couples, families & those who came for the view',
     sleeps: 'Sleeps 2-4',
     blurb:
       'Eight fully equipped self-catering chalets, each positioned to capture panoramic views of the Indian Ocean. Greet spectacular sunrises on your private patio, watch for whales in season and dolphins all year round, then follow the wooden boardwalk through indigenous fynbos to the ocean’s edge. This is our signature stay - here, the view is the whole point.',
     images: [IMAGES.chalet, IMAGES.chaletPatio, IMAGES.boardwalk],
     features: [
-      'Panoramic Indian Ocean views',
+      'Panoramic sea views',
       'Spectacular sunrises from your patio',
       'Seasonal whale & year-round dolphin sightings',
       'Boardwalk through fynbos to the sea',
@@ -149,13 +225,13 @@ export const SHARED_FEATURES: SharedFeature[] = [
   { label: 'Fully equipped self-catering', icon: 'UtensilsCrossed' },
   { label: 'Wi-Fi for staying connected', icon: 'Wifi' },
   { label: 'Secure parking', icon: 'Car' },
-  { label: 'Stunning ocean & nature views', icon: 'Waves' },
+  { label: 'Stunning sea & nature views', icon: 'Waves' },
 ];
 
 export const WHY_CHOOSE = [
   {
-    title: 'Uninterrupted Ocean Views',
-    desc: 'Panoramic Indian Ocean views from a unique coastal location - the horizon goes on forever.',
+    title: 'Uninterrupted Sea Views',
+    desc: 'Panoramic sea views from a unique coastal location - the horizon goes on forever.',
   },
   {
     title: 'Space, Privacy & Serenity',
@@ -184,8 +260,14 @@ export const VENUE = {
   // sleep on the same property. Nobody drives home. Every other venue fact is secondary.
   lead:
     'One property, one weekend. Your fifty guests celebrate on the deck above the ocean, then walk to their chalet. No shuttle, no drive home, no ending the night early because someone has to get back to town.',
+
+  // The home page band uses the resort's OWN words, supplied by Maritza 17/09/2026.
+  // The /venue hero keeps `lead` above, because she asked for the venue page intro
+  // to stay as it was. Do not merge the two.
+  homeLead:
+    'The venue is perfect for your wedding, conference, or year-end function. Surrounded by indigenous fynbos, our facility boasts beautiful sea views from which whales and dolphins can be seen. We offer convenient on-site accommodation for your guests, and we are fully licensed to serve alcohol.',
   intro:
-    'An ocean-view venue on a private coastal nature reserve near George, with the accommodation on the same ten hectares. Whales and dolphins pass below the deck in season, the bar is licensed, and the whole property can be yours for the weekend.',
+    'A sea-view venue on a private coastal nature reserve near George, with the accommodation on the same ten hectares. Whales and dolphins pass below the deck in season, the bar is licensed, and the whole property can be yours for the weekend.',
 
   // Two buyers, two decisions. The old page ran seven event types in one list, which read
   // as a hall for hire. These are the two routes worth building for.
@@ -194,12 +276,14 @@ export const VENUE = {
       key: 'weddings',
       eyebrow: 'Weddings',
       title: 'The Whole Weekend, Not Just The Day',
+      // The resort's own words, supplied by Maritza 17/09/2026. Her em dashes are
+      // hyphens here, which is the only change made to them.
       body:
-        'Say it on the lawn with the ocean behind you, move inside as the light goes, and let the evening run as long as it wants. Your guests are already home. The reserve is private, so the only people here are yours.',
+        'Celebrate with the ocean as your backdrop, move effortlessly from day into evening, and let the celebrations continue for as long as you like. With accommodation right here on the property, your guests are already home.\n\nThe reserve is private, giving you the space to relax, celebrate and enjoy the weekend together - without having to worry about travelling between venues.',
       points: [
-        'Ceremony on the lawn, reception inside, drinks on the deck',
-        'Up to 50 guests, seated or standing',
-        'Ten chalets and the Whale House on the property',
+        'Ceremony, reception and celebrations all on the property',
+        'Accommodation available on site',
+        'Private setting exclusively for your group',
         'Licensed bar',
       ],
       image: 'venueCeremony',
@@ -208,13 +292,14 @@ export const VENUE = {
       key: 'corporate',
       eyebrow: 'Conferences, retreats and year-end functions',
       title: 'Far Enough Away To Actually Switch Off',
+      // The resort's own words, supplied by Maritza 17/09/2026.
       body:
-        'A team that sleeps on site is a team that is still talking at nine in the evening. Meet with the ocean in the windows, walk the boardwalk down to the rocky shore between sessions, and eat together without anyone watching the clock for the drive back.',
+        'Step away from the office and into a setting where your team can truly disconnect. Meet with the ocean in the windows, take a walk down to the rocky shore between sessions, and enjoy meals together without anyone watching the clock for the drive home.\n\nWith comfortable accommodation available on the same property, your team can stay, connect and make the most of the experience - all in one place.',
       points: [
-        'Ocean-view function and conference space',
-        'Up to 50 delegates',
-        'Accommodation for the group on the same property',
-        'Ten hectares of private nature reserve to walk',
+        'Sea-view function and conference space',
+        'Accommodation available on the property',
+        'Private nature reserve to explore and unwind',
+        'Space to meet, connect and relax away from the office',
       ],
       image: 'venue',
     },
@@ -231,7 +316,7 @@ export const VENUE = {
   features: [
     'Dedicated function and conference venue',
     'Licensed bar',
-    'Ocean-view event space and deck',
+    'Sea-view event space and deck',
     'On-site accommodation for guests and delegates',
     'Exclusive use of the property by arrangement',
   ],
@@ -243,7 +328,7 @@ export const VENUE = {
 
 // Enquiry form interest options
 export const INTERESTS = [
-  { value: 'chalet', label: 'Ocean-View Chalet' },
+  { value: 'chalet', label: 'Sea-View Chalet' },
   { value: 'whale-house', label: 'The Whale House' },
   { value: 'venue', label: 'Events Venue' },
   { value: 'not-sure', label: 'Not sure yet' },

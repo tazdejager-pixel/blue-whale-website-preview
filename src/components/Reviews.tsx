@@ -1,137 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { REVIEWS_FEED_URL, TRIPADVISOR } from '@/data/resort';
+import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { REVIEWS } from '@/data/resort';
 
 /**
- * Guest reviews, sourced from Tripadvisor.
+ * Guest reviews, presented by the resort itself.
  *
- * Tripadvisor's review implementation policy requires that review content is NOT
- * present in the page source and is not crawlable, so the feed is fetched at
- * runtime from /reviews/latest.json, which robots.txt disallows. The refresh job
- * (scripts/blue_whale_reviews.py) rewrites that file; nothing here is hand-edited.
+ * 21/09/2026: the Tripadvisor feed came out (Tarryn). No runtime fetch, no bubbles,
+ * no Tripadvisor mark, no outbound links, no aggregate rating. The words are real
+ * guests, carried over from the resort's own published widget and held in
+ * data/resort.ts, which is the only place they are edited.
+ *
+ * Nothing here may be invented. See the rules on the REVIEWS export.
  */
 
-type Review = {
-  id: string;
-  rating: number;
-  title: string;
-  text: string;
-  author: string;
-  date: string;
-  url: string;
-};
-
-type Feed = {
-  rating: number;
-  review_count: number;
-  ranking: string | null;
-  rating_image_url: string | null;
-  listing_url: string;
-  reviews: Review[];
-};
-
-// Three on screen at a time, the rest behind the arrows. A wall of reviews takes more
-// of the page than it earns. The feed is ordered most recent first, so this is the
-// latest twelve rather than a curated pick, trimmed to whole pages of three so the
-// last slide is never a single card on its own.
 const PER_VIEW = 3;
-const HOW_MANY = 12;
-
-/** Tripadvisor bubbles. Uses their supplied rating image when the feed carries one. */
-const Bubbles: React.FC<{ rating: number; size?: number; imageUrl?: string | null }> = ({
-  rating,
-  size = 16,
-  imageUrl,
-}) => {
-  if (imageUrl) {
-    return (
-      <img
-        src={imageUrl}
-        alt={`${rating} of 5 bubbles on Tripadvisor`}
-        height={size}
-        style={{ height: size }}
-        className="w-auto"
-      />
-    );
-  }
-  return (
-    <span
-      className="inline-flex items-center gap-[3px]"
-      role="img"
-      aria-label={`${rating} of 5 bubbles on Tripadvisor`}
-    >
-      {[1, 2, 3, 4, 5].map((i) => {
-        const fill = Math.min(Math.max(rating - i + 1, 0), 1);
-        return (
-          <span
-            key={i}
-            style={{ width: size, height: size }}
-            className="relative inline-block rounded-full border-[1.5px] border-[#00AA6C]"
-          >
-            {fill > 0 && (
-              <span
-                className="absolute inset-0 overflow-hidden rounded-full"
-                style={{ width: `${fill * 100}%` }}
-              >
-                <span
-                  className="block rounded-full bg-[#00AA6C]"
-                  style={{ width: size, height: size }}
-                />
-              </span>
-            )}
-          </span>
-        );
-      })}
-    </span>
-  );
-};
-
-const TripadvisorMark: React.FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="currentColor">
-    <path d="M12 4.2c-3.1 0-5.9.9-8 2.5H0l1.8 2a5.5 5.5 0 1 0 8.9 6.4l1.3 1.9 1.3-1.9a5.5 5.5 0 1 0 8.9-6.4L24 6.7h-4c-2.1-1.6-4.9-2.5-8-2.5Zm-5.5 12a3.7 3.7 0 1 1 0-7.4 3.7 3.7 0 0 1 0 7.4Zm11 0a3.7 3.7 0 1 1 0-7.4 3.7 3.7 0 0 1 0 7.4Zm-11-5.6a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8Zm11 0a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8Z" />
-  </svg>
-);
-
-/** Long reviews are trimmed at a sentence break, with a link to the full one. */
-const MAX_CHARS = 320;
-const trim = (text: string) => {
-  if (text.length <= MAX_CHARS) return { body: text, trimmed: false };
-  const cut = text.slice(0, MAX_CHARS);
-  const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
-  const body = end > MAX_CHARS * 0.5 ? cut.slice(0, end + 1) : `${cut.trimEnd()}...`;
-  return { body, trimmed: true };
-};
-
-const prettyDate = (iso: string) => {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString('en-ZA', { month: 'long', year: 'numeric' });
-};
 
 const Reviews: React.FC = () => {
-  const [feed, setFeed] = useState<Feed | null>(null);
   const [page, setPage] = useState(0);
 
-  useEffect(() => {
-    let live = true;
-    fetch(`${REVIEWS_FEED_URL}?t=${Math.floor(Date.now() / 3.6e6)}`)
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((d: Feed) => {
-        if (live) setFeed(d);
-      })
-      .catch(() => {
-        /* the band simply does not render if the feed is unreachable */
-      });
-    return () => {
-      live = false;
-    };
-  }, []);
+  if (!REVIEWS.length) return null;
 
-  if (!feed || !feed.reviews?.length) return null;
-
-  const available = feed.reviews.slice(0, HOW_MANY);
-  const whole = Math.floor(available.length / PER_VIEW) * PER_VIEW;
-  const all = whole >= PER_VIEW ? available.slice(0, whole) : available;
+  // Whole pages only, so the last slide is never a single card on its own.
+  const whole = Math.floor(REVIEWS.length / PER_VIEW) * PER_VIEW;
+  const all = whole >= PER_VIEW ? REVIEWS.slice(0, whole) : REVIEWS;
   const pages = Math.ceil(all.length / PER_VIEW);
   const current = Math.min(page, pages - 1);
   const shown = all.slice(current * PER_VIEW, current * PER_VIEW + PER_VIEW);
@@ -147,47 +38,15 @@ const Reviews: React.FC = () => {
           <p className="font-script text-[#8A9A5B] text-4xl sm:text-5xl leading-none mb-2">
             In Their
           </p>
-          <h2 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl">
+          <h2 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-5">
             Own Words
           </h2>
+          <p className="text-[#3A3A36]/70 leading-relaxed">
+            Guests have been coming back to this stretch of coast for years. Here is what
+            some of them said after they left.
+          </p>
         </div>
 
-        {/* Aggregate */}
-        <div className="bg-white rounded-[1.75rem] shadow-sm px-7 py-8 sm:px-10 mb-8 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-center sm:text-left">
-          <div className="flex items-baseline gap-3">
-            <span className="font-serif text-[#1E4E5C] text-5xl sm:text-6xl leading-none">
-              {feed.rating.toFixed(1).replace('.', ',')}
-            </span>
-            <span className="text-[#3A3A36]/50 text-sm">of 5</span>
-          </div>
-
-          <div className="hidden sm:block w-px h-14 bg-[#1E4E5C]/10" />
-
-          <div className="flex flex-col items-center sm:items-start gap-2">
-            <Bubbles rating={feed.rating} size={18} imageUrl={feed.rating_image_url} />
-            <p className="text-[#3A3A36]/75 text-sm">
-              {feed.review_count} traveller reviews on{' '}
-              <span className="text-[#00AA6C] font-medium">Tripadvisor</span>
-            </p>
-            {feed.ranking && (
-              <p className="text-[#3A3A36]/60 text-sm">{feed.ranking}</p>
-            )}
-          </div>
-
-          <div className="sm:ml-auto">
-            <a
-              href={feed.listing_url || TRIPADVISOR.listingUrl}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="inline-flex items-center gap-2 rounded-full border border-[#1E4E5C]/25 px-6 py-3 text-[#1E4E5C] text-[13px] tracking-[0.12em] uppercase hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors duration-300"
-            >
-              <TripadvisorMark className="w-[18px] h-[18px] text-[#00AA6C]" />
-              Read all reviews
-            </a>
-          </div>
-        </div>
-
-        {/* Reviews */}
         <div className="relative">
           {pages > 1 && (
             <button
@@ -201,49 +60,36 @@ const Reviews: React.FC = () => {
           )}
 
           <div className="grid gap-6 md:grid-cols-3 items-stretch">
-          {shown.map((r) => {
-            const { body, trimmed } = trim(r.text);
-            return (
-            <figure
-              key={r.id}
-              className="bg-white rounded-[1.75rem] p-8 shadow-sm hover:shadow-xl transition-shadow duration-500 flex flex-col"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <Bubbles rating={r.rating} />
-                <TripadvisorMark className="w-5 h-5 text-[#00AA6C]/70" />
-              </div>
+            {shown.map((r) => (
+              <figure
+                key={r.author + r.when}
+                className="bg-white rounded-[1.75rem] p-8 shadow-sm hover:shadow-xl transition-shadow duration-500 flex flex-col"
+              >
+                {/* Sits above the text, not behind it. Absolutely positioned it
+                    collided with the first line on every card. */}
+                <Quote
+                  size={30}
+                  strokeWidth={1.25}
+                  aria-hidden="true"
+                  className="text-[#8A9A5B]/35 mb-4 shrink-0"
+                />
 
-              {r.title && (
-                <h3 className="font-serif text-[#1E4E5C] text-lg leading-snug mb-3">
-                  {r.title}
-                </h3>
-              )}
+                <blockquote className="text-[#3A3A36]/80 leading-relaxed grow">
+                  {r.quote}
+                </blockquote>
 
-              <blockquote className="text-[#3A3A36]/75 text-sm leading-relaxed grow">
-                {body}
-                {trimmed && (
-                  <>
-                    {' '}
-                    <a
-                      href={r.url}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      className="text-[#6E93A6] hover:text-[#1E4E5C] underline underline-offset-2 whitespace-nowrap"
-                    >
-                      read the full review
-                    </a>
-                  </>
-                )}
-              </blockquote>
-
-              <figcaption className="mt-6 pt-5 border-t border-[#1E4E5C]/10 text-[13px] text-[#3A3A36]/60">
-                <span className="text-[#3A3A36]/85">{r.author}</span>
-                <span className="mx-2 text-[#8A9A5B]">-</span>
-                {prettyDate(r.date)}
-              </figcaption>
-            </figure>
-            );
-          })}
+                <figcaption className="mt-7 pt-5 border-t border-[#1E4E5C]/10">
+                  <span className="block font-serif text-[#1E4E5C] text-lg leading-snug">
+                    {r.author}
+                  </span>
+                  <span className="block text-[13px] text-[#3A3A36]/55 mt-0.5">
+                    {r.stay}
+                    <span className="mx-2 text-[#8A9A5B]">-</span>
+                    {r.when}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
           </div>
 
           {pages > 1 && (
@@ -296,7 +142,7 @@ const Reviews: React.FC = () => {
         )}
 
         <p className="text-center text-[11px] tracking-[0.16em] uppercase text-[#3A3A36]/40 mt-8">
-          Reviews published on Tripadvisor by guests who stayed with us
+          Reviews left by guests who stayed with us
         </p>
       </div>
     </section>

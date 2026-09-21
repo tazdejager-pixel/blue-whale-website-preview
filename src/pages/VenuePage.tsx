@@ -28,7 +28,7 @@ const VenuePage: React.FC = () => {
     setSeo({
       title: `Weddings & Conference Venue | ${RESORT.name}, George`,
       description:
-        'An ocean-view venue for weddings, conferences and functions up to 50 guests, on a private nature reserve near George. Your guests stay on the same property. Licensed bar, whales and dolphins from the deck.',
+        'A sea-view venue for weddings, conferences and functions up to 50 guests, on a private nature reserve near George. Your guests stay on the same property. Licensed bar, whales and dolphins from the deck.',
       url: '/venue',
     });
     window.scrollTo({ top: 0 });
@@ -114,7 +114,9 @@ const VenuePage: React.FC = () => {
                     <h3 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-xl sm:text-2xl mb-4">
                       {r.title}
                     </h3>
-                    <p className="text-[#3A3A36]/85 leading-relaxed mb-6">{r.body}</p>
+                    <p className="text-[#3A3A36]/85 leading-relaxed mb-6 whitespace-pre-line">
+                      {r.body}
+                    </p>
                     <ul className="space-y-3">
                       {r.points.map((p) => (
                         <li key={p} className="flex items-start gap-3 text-[#3A3A36]/85 text-sm">
@@ -146,37 +148,10 @@ const VenuePage: React.FC = () => {
           </div>
         </section>
 
-        {/* Capacity as a table. "50 guests" on its own invites doubt rather than settling it. */}
-        <section className="pb-20 md:pb-28 bg-[#F2ECDD]">
-          <div className="max-w-5xl mx-auto px-5 grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-[1.75rem] p-8 shadow-sm">
-              <h3 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-xl mb-6">
-                The Numbers
-              </h3>
-              <dl className="divide-y divide-[#3A3A36]/10">
-                {VENUE.capacity.map((c) => (
-                  <div key={c.k} className="flex items-baseline justify-between gap-4 py-3">
-                    <dt className="text-[#3A3A36]/70 text-sm">{c.k}</dt>
-                    <dd className="text-[#1E4E5C] font-serif text-lg text-right">{c.v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <div className="bg-white rounded-[1.75rem] p-8 shadow-sm">
-              <h3 className="font-serif text-[#1E4E5C] uppercase tracking-[0.04em] text-xl mb-6">
-                What Comes With It
-              </h3>
-              <ul className="space-y-3">
-                {VENUE.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-[#3A3A36]/85 text-sm">
-                    <Check size={18} className="shrink-0 mt-0.5 text-[#8A9A5B]" /> {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
+        {/* The Numbers and What Comes With It came out on 21/09/2026 at the resort's
+            request (Maritza, 17/09/2026: "take out the section about the numbers and
+            what comes with it"). VENUE.capacity and VENUE.features are still in the
+            data file for enquiry replies - do not put them back on the page. */}
 
         {/* Enquiry - the reason this page exists */}
         <section id="venue-enquiry" className="relative py-20 md:py-28">

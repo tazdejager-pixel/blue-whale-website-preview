@@ -31,7 +31,9 @@ const Venue: React.FC = () => {
         <h2 className="font-serif text-[#F2ECDD] uppercase tracking-[0.04em] text-2xl sm:text-3xl md:text-4xl mb-5">
           By The Ocean
         </h2>
-        <p className="text-[#F2ECDD] leading-relaxed">{VENUE.lead}</p>
+        {/* The resort's own words for the home page band (Maritza, 17/09/2026).
+            The /venue hero keeps VENUE.lead, which she asked to leave alone. */}
+        <p className="text-[#F2ECDD] leading-relaxed">{VENUE.homeLead}</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 mb-12">

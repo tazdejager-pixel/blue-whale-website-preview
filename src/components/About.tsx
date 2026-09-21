@@ -18,7 +18,7 @@ const About: React.FC = () => (
         <p className="text-[#3A3A36]/85 leading-relaxed mb-5">
           Blue Whale Resort sits within a private coastal nature reserve near
           George, on South Africa's celebrated Garden Route - offering
-          breathtaking ocean views, comfortable self-catering accommodation and
+          breathtaking sea views, comfortable self-catering accommodation and
           unforgettable experiences for every kind of getaway.
         </p>
         <p className="text-[#3A3A36]/85 leading-relaxed mb-8">
@@ -49,13 +49,13 @@ const About: React.FC = () => (
         />
         <img
           src={IMAGES.interior}
-          alt="Comfortable self-catering chalet interior with ocean views"
+          alt="Comfortable self-catering chalet interior with sea views"
           loading="lazy"
           className="w-full h-40 sm:h-48 object-cover rounded-3xl shadow-lg"
         />
         <img
           src={IMAGES.chalet}
-          alt="Ocean-view chalet within the private coastal nature reserve near George"
+          alt="Sea-view chalet within the private coastal nature reserve near George"
           loading="lazy"
           className="w-full h-40 sm:h-48 object-cover rounded-3xl shadow-lg"
         />
