@@ -151,6 +151,8 @@ const V2 = `${ASSETS}/site/v2`;
 export interface Photo {
   /** Largest rendition, and the plain `src` for anything that ignores srcSet. */
   src: string;
+  /** Smallest rendition. For thumbnails, which must never pull the full-size file. */
+  thumb: string;
   srcSet: string;
   /** Intrinsic size of the largest rendition, so the browser reserves the box. */
   width: number;
@@ -160,6 +162,7 @@ export interface Photo {
 
 const photo = (base: string, widths: number[], w: number, h: number, alt: string): Photo => ({
   src: `${V2}/${base}-${widths[widths.length - 1]}.webp`,
+  thumb: `${V2}/${base}-${widths[0]}.webp`,
   srcSet: widths.map((x) => `${V2}/${base}-${x}.webp ${x}w`).join(', '),
   width: w,
   height: h,

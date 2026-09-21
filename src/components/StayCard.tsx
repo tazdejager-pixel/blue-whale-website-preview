@@ -9,71 +9,94 @@ interface Props {
   reverse?: boolean;
 }
 
+/** Thumbnails visible at once. Three is the original layout and it stays three. */
+const PER_VIEW = 3;
+
 const StayCard: React.FC<Props> = ({ stay, reverse = false }) => {
   const [active, setActive] = useState(0);
+  const [start, setStart] = useState(0);
+
   const count = stay.images.length;
-  const step = (by: number) => setActive((i) => (i + by + count) % count);
+  const maxStart = Math.max(0, count - PER_VIEW);
+  const shown = stay.images.slice(start, start + PER_VIEW);
+
+  // One thumbnail at a time rather than a whole page of three: the strip slides,
+  // which is what an arrow on a row of thumbnails is expected to do. Clamped at both
+  // ends rather than wrapping, because a wrapping thumbnail strip hides where you are.
+  const slide = (by: number) => setStart((s) => Math.min(Math.max(s + by, 0), maxStart));
 
   return (
     <article className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-      {/* Gallery. Arrows on the photo itself (Tarryn, 21/09/2026) - the old
-          three-up thumbnail strip wrapped to two rows once these stays carried
-          five and six photos, and it pushed the copy down the page on mobile. */}
+      {/* Gallery: one big image, thumbnails underneath. Clicking a thumbnail puts
+          that photo in the big block; the arrows scroll the strip when a stay has
+          more than three photos (Tarryn, 21/09/2026). */}
       <div className={reverse ? 'lg:order-2' : ''}>
-        <div className="relative rounded-[2rem] overflow-hidden shadow-xl group">
+        <div className="relative rounded-[2rem] overflow-hidden shadow-xl">
           <Img
             photo={stay.images[active]}
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="w-full h-72 sm:h-96 object-cover"
+            className="w-full h-72 sm:h-96 object-cover transition-all duration-500"
           />
-
           {stay.signature && (
             <span className="absolute top-4 left-4 bg-[#1E4E5C] text-[#F2ECDD] text-[10px] tracking-[0.2em] uppercase px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
               <Star size={12} className="fill-current" /> Signature Stay
             </span>
           )}
-
-          {count > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={() => step(-1)}
-                aria-label={`Previous photo of ${stay.name}`}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/85 text-[#1E4E5C] shadow-md backdrop-blur-sm hover:bg-white transition-colors"
-              >
-                <ChevronLeft size={22} />
-              </button>
-              <button
-                type="button"
-                onClick={() => step(1)}
-                aria-label={`Next photo of ${stay.name}`}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/85 text-[#1E4E5C] shadow-md backdrop-blur-sm hover:bg-white transition-colors"
-              >
-                <ChevronRight size={22} />
-              </button>
-
-              <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2">
-                {stay.images.map((img, i) => (
-                  <button
-                    key={img.src}
-                    type="button"
-                    onClick={() => setActive(i)}
-                    aria-label={`Photo ${i + 1} of ${count}`}
-                    aria-current={i === active}
-                    className={`h-2 rounded-full transition-all duration-300 shadow ${
-                      i === active ? 'w-6 bg-white' : 'w-2 bg-white/60 hover:bg-white/90'
-                    }`}
-                  />
-                ))}
-              </div>
-            </>
-          )}
         </div>
 
         {count > 1 && (
-          <p className="text-center text-[11px] tracking-[0.16em] uppercase text-[#3A3A36]/45 mt-3">
-            Photo {active + 1} of {count}
-          </p>
+          <div className="relative mt-3">
+            <div className="grid grid-cols-3 gap-3">
+              {shown.map((img, i) => {
+                const index = start + i;
+                return (
+                  <button
+                    key={img.src}
+                    type="button"
+                    onClick={() => setActive(index)}
+                    aria-label={`Show photo ${index + 1} of ${count}: ${img.alt}`}
+                    aria-current={active === index}
+                    className={`relative rounded-2xl overflow-hidden h-20 sm:h-24 transition-all ${
+                      active === index
+                        ? 'ring-2 ring-[#1E4E5C] ring-offset-2 ring-offset-white'
+                        : 'opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={img.thumb}
+                      alt=""
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Straddle the edge of the strip rather than sitting on a thumbnail.
+                The row keeps the original full width and aligns with the big image
+                above it, and the button covers only a sliver of the end thumbnail. */}
+            {count > PER_VIEW && start > 0 && (
+              <button
+                type="button"
+                onClick={() => slide(-1)}
+                aria-label="Show earlier photos"
+                className="absolute -left-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white text-[#1E4E5C] shadow-md ring-1 ring-[#1E4E5C]/10 hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+              >
+                <ChevronLeft size={16} />
+              </button>
+            )}
+            {count > PER_VIEW && start < maxStart && (
+              <button
+                type="button"
+                onClick={() => slide(1)}
+                aria-label="Show more photos"
+                className="absolute -right-3 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-white text-[#1E4E5C] shadow-md ring-1 ring-[#1E4E5C]/10 hover:bg-[#1E4E5C] hover:text-[#F2ECDD] transition-colors"
+              >
+                <ChevronRight size={16} />
+              </button>
+            )}
+          </div>
         )}
       </div>
 
