@@ -1,7 +1,7 @@
 import React from 'react';
-import { PHOTOS, EXPERIENCES } from '@/data/resort';
+import { VIEW_GALLERY, EXPERIENCES } from '@/data/resort';
 import BookButton from './BookButton';
-import Img from './Img';
+import PhotoGallery from './PhotoGallery';
 
 const About: React.FC = () => (
   <section id="about" className="py-20 md:py-28 bg-[#F2ECDD]">
@@ -41,31 +41,11 @@ const About: React.FC = () => (
         <BookButton variant="outline">Book Now</BookButton>
       </div>
 
-      {/* The resort's own photographs of the reserve (Tarryn, 21/09/2026): the
-          walkway down to the rocky shore leads, then the gate and the two birds.
-          The chalet interior that used to sit here came off with the rest of the
-          room photography. */}
-      <div className="order-1 md:order-2 grid grid-cols-2 gap-4">
-        <Img
-          photo={PHOTOS.viewBoardwalk}
-          sizes="(min-width: 768px) 45vw, 100vw"
-          className="col-span-2 w-full h-56 sm:h-72 object-cover rounded-3xl shadow-lg"
-        />
-        <Img
-          photo={PHOTOS.viewGate}
-          sizes="(min-width: 768px) 23vw, 50vw"
-          className="w-full h-40 sm:h-48 object-cover rounded-3xl shadow-lg"
-        />
-        <Img
-          photo={PHOTOS.viewSunbird}
-          sizes="(min-width: 768px) 23vw, 50vw"
-          className="w-full h-40 sm:h-48 object-cover rounded-3xl shadow-lg"
-        />
-        <Img
-          photo={PHOTOS.viewFledgling}
-          sizes="(min-width: 768px) 45vw, 100vw"
-          className="col-span-2 w-full h-40 sm:h-48 object-cover rounded-3xl shadow-lg"
-        />
+      {/* The same gallery as the accommodation cards: one big image, three
+          thumbnails, click to swap (Tarryn, 21/09/2026). It replaced a fixed
+          four-image grid, which could not carry six photographs. */}
+      <div className="order-1 md:order-2">
+        <PhotoGallery photos={VIEW_GALLERY} sizes="(min-width: 768px) 45vw, 100vw" />
       </div>
     </div>
   </section>

@@ -430,6 +430,27 @@ export const VENUE = {
     'Styling, florals and furniture are arranged separately. We can introduce you to suppliers who work here often.',
 };
 
+/**
+ * The View gallery, on the home page.
+ *
+ * Six photographs of the reserve itself, in the order Tarryn set on 21/09/2026:
+ * the walkway down to the rocky shore leads, then the gate and the two birds, then
+ * the venue deck and the venue on its lawn. The last two are here because she asked
+ * for them here as well as on the venue page - the same photo can lead two sections
+ * without the file being duplicated.
+ *
+ * NOTE: `venueDeck` is the real deck with guests and a spit braai added. On this
+ * section it shows the setting, never an event that took place.
+ */
+export const VIEW_GALLERY: Photo[] = [
+  PHOTOS.viewBoardwalk,
+  PHOTOS.viewGate,
+  PHOTOS.viewSunbird,
+  PHOTOS.viewFledgling,
+  PHOTOS.venueDeck,
+  PHOTOS.venueExterior,
+];
+
 // Enquiry form interest options
 export const INTERESTS = [
   { value: 'chalet', label: 'Sea-View Chalet' },
