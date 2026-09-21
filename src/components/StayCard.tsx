@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Stay } from '@/data/resort';
-import { Users, Eye, Check, Star } from 'lucide-react';
+import { Users, Eye, Check, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BOOKING_URL } from '@/data/resort';
+import Img from './Img';
 
 interface Props {
   stay: Stay;
@@ -10,41 +11,69 @@ interface Props {
 
 const StayCard: React.FC<Props> = ({ stay, reverse = false }) => {
   const [active, setActive] = useState(0);
+  const count = stay.images.length;
+  const step = (by: number) => setActive((i) => (i + by + count) % count);
 
   return (
     <article className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-      {/* Gallery */}
+      {/* Gallery. Arrows on the photo itself (Tarryn, 21/09/2026) - the old
+          three-up thumbnail strip wrapped to two rows once these stays carried
+          five and six photos, and it pushed the copy down the page on mobile. */}
       <div className={reverse ? 'lg:order-2' : ''}>
-        <div className="relative rounded-[2rem] overflow-hidden shadow-xl">
-          <img
-            src={stay.images[active]}
-            alt={`${stay.name} at Blue Whale Resort - photo ${active + 1}`}
-            loading="lazy"
-            className="w-full h-72 sm:h-96 object-cover transition-all duration-500"
+        <div className="relative rounded-[2rem] overflow-hidden shadow-xl group">
+          <Img
+            photo={stay.images[active]}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="w-full h-72 sm:h-96 object-cover"
           />
+
           {stay.signature && (
             <span className="absolute top-4 left-4 bg-[#1E4E5C] text-[#F2ECDD] text-[10px] tracking-[0.2em] uppercase px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
               <Star size={12} className="fill-current" /> Signature Stay
             </span>
           )}
-        </div>
-        {stay.images.length > 1 && (
-          <div className="grid grid-cols-3 gap-3 mt-3">
-            {stay.images.map((img, i) => (
+
+          {count > 1 && (
+            <>
               <button
-                key={img}
-                onClick={() => setActive(i)}
-                aria-label={`Show photo ${i + 1} of ${stay.name}`}
-                className={`relative rounded-2xl overflow-hidden h-20 sm:h-24 transition-all ${
-                  active === i
-                    ? 'ring-2 ring-[#1E4E5C] ring-offset-2 ring-offset-white'
-                    : 'opacity-70 hover:opacity-100'
-                }`}
+                type="button"
+                onClick={() => step(-1)}
+                aria-label={`Previous photo of ${stay.name}`}
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/85 text-[#1E4E5C] shadow-md backdrop-blur-sm hover:bg-white transition-colors"
               >
-                <img src={img} alt="" loading="lazy" className="w-full h-full object-cover" />
+                <ChevronLeft size={22} />
               </button>
-            ))}
-          </div>
+              <button
+                type="button"
+                onClick={() => step(1)}
+                aria-label={`Next photo of ${stay.name}`}
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center rounded-full bg-white/85 text-[#1E4E5C] shadow-md backdrop-blur-sm hover:bg-white transition-colors"
+              >
+                <ChevronRight size={22} />
+              </button>
+
+              <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2">
+                {stay.images.map((img, i) => (
+                  <button
+                    key={img.src}
+                    type="button"
+                    onClick={() => setActive(i)}
+                    aria-label={`Photo ${i + 1} of ${count}`}
+                    aria-current={i === active}
+                    className={`h-2 rounded-full transition-all duration-300 shadow ${
+                      i === active ? 'w-6 bg-white' : 'w-2 bg-white/60 hover:bg-white/90'
+                    }`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+
+        {count > 1 && (
+          <p className="text-center text-[11px] tracking-[0.16em] uppercase text-[#3A3A36]/45 mt-3">
+            Photo {active + 1} of {count}
+          </p>
         )}
       </div>
 

@@ -19,4 +19,16 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // The SSR build must land on a PREDICTABLE path, because
+        // scripts/prerender.mjs imports dist-ssr/entry-server.js by name. Left to
+        // itself Rollup hashes it and the prerender cannot find it.
+        ...(process.env.VITE_SSR_BUILD || mode === "ssr"
+          ? { entryFileNames: "entry-server.js" }
+          : {}),
+      },
+    },
+  },
 }));

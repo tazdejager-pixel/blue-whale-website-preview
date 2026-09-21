@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
-import { IMAGES, LOGO_CREAM } from '@/data/resort';
+import { PHOTOS, LOGO_CREAM } from '@/data/resort';
 import BookButton from './BookButton';
 
 const Hero: React.FC = () => {
@@ -10,9 +10,16 @@ const Hero: React.FC = () => {
 
   return (
     <section id="top" className="relative h-screen min-h-[640px] w-full overflow-hidden">
+      {/* The largest image on the site and the only thing above the fold, so it is
+          fetched eagerly and at high priority rather than lazily. */}
       <img
-        src={IMAGES.hero}
-        alt="Indian Ocean coastline at Blue Whale Resort near George, Garden Route"
+        src={PHOTOS.heroAerial.src}
+        srcSet={PHOTOS.heroAerial.srcSet}
+        sizes="100vw"
+        width={PHOTOS.heroAerial.width}
+        height={PHOTOS.heroAerial.height}
+        alt={PHOTOS.heroAerial.alt}
+        fetchpriority="high"
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0d2a32]/70 via-[#103039]/45 to-[#0d2a32]/85" />

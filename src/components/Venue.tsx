@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IMAGES, VENUE } from '@/data/resort';
+import { PHOTOS, VENUE } from '@/data/resort';
 import { Check, ArrowRight } from 'lucide-react';
 
 // The home page introduces the venue and hands off. The detail and the enquiry form
@@ -14,9 +14,14 @@ const Venue: React.FC = () => {
 
   return (
   <section id="venue" className="relative py-20 md:py-28 bg-[#163842]">
+    {/* The walkway down to the rocky shore, chosen by Tarryn 21/09/2026 as the
+        backdrop for this band. Decorative here - the card sits on top of it and
+        carries the meaning - so it is given an empty alt. */}
     <img
-      src={IMAGES.venueCeremony}
-      alt="Ceremony set up on the lawn above the ocean at Blue Whale Resort on the Garden Route"
+      src={PHOTOS.venueWalkway.src}
+      srcSet={PHOTOS.venueWalkway.srcSet}
+      sizes="100vw"
+      alt=""
       loading="lazy"
       className="absolute inset-0 w-full h-full object-cover"
     />

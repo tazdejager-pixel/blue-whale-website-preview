@@ -1,12 +1,14 @@
 import React from 'react';
-import { IMAGES } from '@/data/resort';
+import { PHOTOS } from '@/data/resort';
 import BookButton from './BookButton';
 
 const BookCta: React.FC = () => (
   <section id="book" className="relative py-24 md:py-32">
     <img
-      src={IMAGES.chalet}
-      alt="Sea-view chalet at Blue Whale Resort, George"
+      src={PHOTOS.chaletPatioBraai.src}
+      srcSet={PHOTOS.chaletPatioBraai.srcSet}
+      sizes="100vw"
+      alt=""
       loading="lazy"
       className="absolute inset-0 w-full h-full object-cover"
     />

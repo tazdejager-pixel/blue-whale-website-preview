@@ -1,48 +1,25 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blue Whale Resort | Sea-View Self-Catering Chalets &amp; Wedding Venue, George - Garden Route</title>
-    <meta name="description" content="Blue Whale Resort offers self-catering sea-view chalets and a seafront wedding &amp; conference venue near George on the Garden Route. Panoramic sea views, whale watching and a private coastal nature reserve. Book direct." />
-    <meta name="keywords" content="self catering George, Garden Route seafront accommodation, sea view chalets George, ocean view chalets George, wedding venue Garden Route, George accommodation, conference venue George" />
-    <link rel="canonical" href="https://www.bluewhale.co.za/" />
+
+    <!-- Everything else in the head is written per route by scripts/prerender.mjs:
+         title, description, canonical, og/twitter tags and the JSON-LD graph. Do not
+         add a page-specific tag here, or every page will carry the home page's. -->
     <link rel="icon" type="image/png" href="https://d64gsuwffb70l.cloudfront.net/6876a2e909b0c6aef60417b7_1782487560119_7d924e60.png" />
     <link rel="apple-touch-icon" href="https://d64gsuwffb70l.cloudfront.net/6876a2e909b0c6aef60417b7_1782487560119_7d924e60.png" />
 
-    <meta property="og:title" content="Blue Whale Resort | Sea-View Chalets &amp; Wedding Venue near George" />
-    <meta property="og:description" content="Self-catering sea-view chalets and a seafront wedding &amp; conference venue near George on the Garden Route - within a private coastal nature reserve." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.bluewhale.co.za/" />
-    <meta property="og:image" content="https://d64gsuwffb70l.cloudfront.net/6a3e9a1682f429d183b9a742_1782487656577_1e315516.jpg" />
+    <!-- The photographs are on Supabase storage, so the connection is opened while
+         the HTML is still being parsed rather than when the first <img> is reached. -->
+    <link rel="preconnect" href="https://pntqrwahxmnarhonsjkq.supabase.co" crossorigin />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Blue Whale Resort | Garden Route Seafront Accommodation" />
-    <meta name="twitter:description" content="Sea-view chalets and a seafront events venue near George on the Garden Route." />
-    <meta name="twitter:image" content="https://d64gsuwffb70l.cloudfront.net/6a3e9a1682f429d183b9a742_1782487656577_1e315516.jpg" />
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Resort",
-      "name": "Blue Whale Resort",
-      "description": "Sea-view self-catering chalets and a seafront wedding & conference venue within a private coastal nature reserve near George on the Garden Route.",
-      "url": "https://www.bluewhale.co.za/",
-      "telephone": "+27797162548",
-      "email": "bookings@bluewhale.co.za",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "George",
-        "addressRegion": "Western Cape",
-        "addressCountry": "ZA"
-      }
-    }
-    </script>
+    <title>Blue Whale Resort</title>
+    <!--app-head-->
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

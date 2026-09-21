@@ -1,8 +1,0 @@
-# Blue Whale Resort
-#
-# The Tripadvisor feed came off the site on 21/09/2026 and guest reviews now sit in
-# the page itself, so the /reviews/ disallow that existed to keep that feed out of
-# the index went with it.
-
-User-agent: *
-Allow: /

@@ -126,23 +126,103 @@ const ASSETS = 'https://pntqrwahxmnarhonsjkq.supabase.co/storage/v1/object/publi
 export const LOGO_CREAM = `${ASSETS}/brand/logo-cream.png`;
 export const LOGO_BLUE = `${ASSETS}/brand/logo-navy.png`;
 
-export const IMAGES = {
-  hero: `${ASSETS}/site/hero.jpg?v=3`,
-  chalet: `${ASSETS}/site/chalet.jpg`,
-  whaleHouse: `${ASSETS}/site/whaleHouse.jpg`,
-  venue: `${ASSETS}/site/venue.jpg`,
-  whale: `${ASSETS}/site/whale.jpg`,
-  interior: `${ASSETS}/site/interior.jpg`,
-  chaletPatio: `${ASSETS}/site/chaletPatio.jpg`,
-  chaletDeck: `${ASSETS}/site/chaletPatio.jpg`,
-  boardwalk: `${ASSETS}/site/boardwalk.jpg`,
-  whaleHouseExt: `${ASSETS}/site/whaleHouseExt.jpg`,
-  whaleHouseValley: `${ASSETS}/site/whaleHouseValley.jpg`,
-  // Venue, dressed. The room and the lawn are theirs; the styling is a visualisation
-  // of what the space becomes, not a photograph of an event that took place here.
-  // Never caption either as a real wedding or a real conference.
-  venueHallDressed: `${ASSETS}/site/venueHallDressed.jpg`,
-  venueCeremony: `${ASSETS}/site/venueCeremony.jpg`,
+
+// ---------------------------------------------------------------------------
+// The resort's own photographs, 21/09/2026.
+//
+// Everything a visitor sees on a room, the venue or the view is now a photo the
+// resort supplied on 04/09 and 17/09, placed where Tarryn said it goes. The first
+// build's chalet, interior, whaleHouse*, venue, whale and dressed-venue images all
+// came off in the same pass at her instruction ("for the rooms remove all the ones
+// we have"). They still exist under site/ in storage; nothing points at them.
+//
+// Each file is WebP at three widths - `scripts/blue_whale_optimise_images.py` builds
+// and uploads them, and it is the only thing that writes to site/v2/. 42 MB of
+// originals became 7 MB.
+//
+// TWO OF THE VENUE IMAGES ARE DRESSED VISUALISATIONS, not a record of an event that
+// happened here: `venueWedding` and `venueConference` are the real hall with styling
+// and people added. Their AI-invented on-screen and signage wording was blurred out
+// before upload (`inputs/2026-09-21-signage-removed/`). `venueDeck` is the real deck
+// with guests added. Never caption any of the three as a real wedding or conference.
+// ---------------------------------------------------------------------------
+const V2 = `${ASSETS}/site/v2`;
+
+export interface Photo {
+  /** Largest rendition, and the plain `src` for anything that ignores srcSet. */
+  src: string;
+  srcSet: string;
+  /** Intrinsic size of the largest rendition, so the browser reserves the box. */
+  width: number;
+  height: number;
+  alt: string;
+}
+
+const photo = (base: string, widths: number[], w: number, h: number, alt: string): Photo => ({
+  src: `${V2}/${base}-${widths[widths.length - 1]}.webp`,
+  srcSet: widths.map((x) => `${V2}/${base}-${x}.webp ${x}w`).join(', '),
+  width: w,
+  height: h,
+  alt,
+});
+
+// Alt text describes what is actually in the frame, for a person using a screen
+// reader and for an image search. Never the brand name on its own.
+export const PHOTOS = {
+  // The two photographs kept from the first build. The aerial is the home page hero
+  // and the largest image on the site, so it carries a 2200px rendition.
+  heroAerial: photo('hero-aerial', [640, 1024, 1600, 2200], 2200, 1236,
+    'Blue Whale Resort from the air: chalets along a private coastal reserve above the Indian Ocean near George'),
+  boardwalk: photo('boardwalk', [640, 1024, 1600, 1700], 1700, 1275,
+    'The wooden boardwalk running through fynbos towards the sea at Blue Whale Resort'),
+
+  // The View
+  viewBoardwalk: photo('view-boardwalk', [640, 1024, 1448], 1448, 1086,
+    'The wooden walkway at Blue Whale Resort leading down through fynbos to the rocky shore, with surf breaking over the rocks'),
+  viewGate: photo('view-gate', [640, 1024, 1347], 1347, 1168,
+    'The timber and brick entrance gate to Blue Whale Resort, with the Indian Ocean beyond'),
+  viewSunbird: photo('view-sunbird', [640, 1024, 1170], 1170, 878,
+    'A sunbird feeding on a yellow vygie flower in the fynbos at Blue Whale Resort'),
+  viewFledgling: photo('view-fledgling', [640, 1024, 1100], 1100, 878,
+    'A mousebird fledgling perched in the indigenous fynbos on the reserve'),
+
+  // Sea-View Chalets
+  chaletLounge: photo('chalet-lounge', [640, 1024, 1600], 1600, 723,
+    'The lounge of a sea-view chalet at Blue Whale Resort opening onto a covered patio with a dining table above the ocean'),
+  chaletExterior: photo('chalet-exterior', [640, 1024, 1247], 1247, 878,
+    'Sea-view chalets at Blue Whale Resort on the fynbos hillside at dusk'),
+  chaletCoastline: photo('chalet-coastline', [640, 1024, 1170], 1170, 878,
+    'The coastline below Blue Whale Resort, with surf breaking against the rocks and aloes in the foreground'),
+  chaletPatioBraai: photo('chalet-patio-braai', [640, 1024, 1448], 1448, 1086,
+    'A covered chalet patio at Blue Whale Resort with a built-in braai alight, a long table laid for dinner and the sea beyond'),
+  chaletBedroom: photo('chalet-bedroom', [640, 1024, 1448], 1448, 1086,
+    'A chalet bedroom at Blue Whale Resort with a double bed and a wide window looking straight out over the ocean'),
+
+  // The Whale House
+  whaleHouseTwinRoom: photo('whalehouse-twin-room', [640, 1024, 1448], 1448, 1086,
+    'A bedroom in the Whale House at Blue Whale Resort with a double and a single bed and a window onto the sea'),
+  whaleHouseDining: photo('whalehouse-dining', [640, 1024, 1448], 1448, 1086,
+    'The Whale House dining table set at an open window above the fynbos and the coastline'),
+  whaleHouseKitchen: photo('whalehouse-kitchen', [640, 1024, 1448], 1448, 1086,
+    'The fully equipped self-catering kitchen in the Whale House, with the indoor braai through the doorway'),
+  whaleHouseMainBedroom: photo('whalehouse-main-bedroom', [640, 1024, 1448], 1448, 1086,
+    'The main bedroom of the Whale House, with a king bed under a timber beam'),
+  whaleHouseLawn: photo('whalehouse-lawn', [640, 1024, 1600], 1600, 1200,
+    'The lawn and braai area outside the Whale House, with palms and the Indian Ocean behind'),
+  whaleHouseExterior: photo('whalehouse-exterior', [640, 1024, 1600], 1600, 1200,
+    'The Whale House at Blue Whale Resort, a double-storey timber house on the lawn'),
+
+  // Venue
+  venueWedding: photo('venue-wedding', [640, 1024, 1448], 1448, 1086,
+    'The function room at Blue Whale Resort dressed for a wedding reception, with round tables, candles and fairy lights'),
+  venueDeck: photo('venue-deck', [640, 1024, 1536], 1536, 1024,
+    'The venue deck at Blue Whale Resort set for a drinks reception above the coastline at golden hour'),
+  venueConference: photo('venue-conference', [640, 1024, 1536], 1536, 1024,
+    'The function room at Blue Whale Resort laid out for a conference, with round tables, a screen and the hills through the windows'),
+  venueExterior: photo('venue-exterior', [640, 1024, 1600], 1600, 900,
+    'The events venue at Blue Whale Resort on its lawn, with the Indian Ocean and the coastline beside it'),
+  venueWalkway: photo('venue-walkway', [640, 1024, 1600], 1600, 1200,
+    'The walkway down to the rocky shore at Blue Whale Resort, with the coastline running away to the headland'),
 };
 
 // `href` starting with # scrolls within the home page; anything else is a route.
@@ -166,7 +246,7 @@ export interface Stay {
   suits: string;
   sleeps: string;
   blurb: string;
-  images: string[];
+  images: Photo[];
   features: string[];
   fromPrice: string;
   bookUrl: string;
@@ -182,7 +262,14 @@ export const STAYS: Stay[] = [
     sleeps: 'Sleeps 2-4',
     blurb:
       'Eight fully equipped self-catering chalets, each positioned to capture panoramic views of the Indian Ocean. Greet spectacular sunrises on your private patio, watch for whales in season and dolphins all year round, then follow the wooden boardwalk through indigenous fynbos to the ocean’s edge. This is our signature stay - here, the view is the whole point.',
-    images: [IMAGES.chalet, IMAGES.chaletPatio, IMAGES.boardwalk],
+    // Order set by Tarryn 21/09/2026: the lounge leads.
+    images: [
+      PHOTOS.chaletLounge,
+      PHOTOS.chaletExterior,
+      PHOTOS.chaletCoastline,
+      PHOTOS.chaletPatioBraai,
+      PHOTOS.chaletBedroom,
+    ],
     features: [
       'Panoramic sea views',
       'Spectacular sunrises from your patio',
@@ -200,9 +287,23 @@ export const STAYS: Stay[] = [
     view: 'Tranquil valley & fynbos views',
     suits: 'Families wanting extra space and privacy',
     sleeps: 'Sleeps 5-6',
+    // 21/09/2026: this said "with tranquil valley views" and nothing else, which the
+    // resort's own photographs contradict - three of the six show open ocean from the
+    // bedroom, the dining table and the lawn. The badge and the feature list still say
+    // "Tranquil valley & fynbos views" because that is Maritza's own wording, approved
+    // on 04/09/2026, and only she can change it. Open question for the resort: should
+    // the Whale House be sold on its sea view as well?
     blurb:
-      'A spacious private retreat set back in the fynbos, with tranquil valley views. Room to spread out, and quiet enough to hear it. The Whale House is for families who want that little bit of extra space and privacy - your own corner of the reserve.',
-    images: [IMAGES.whaleHouseExt, IMAGES.whaleHouse, IMAGES.whaleHouseValley],
+      'A spacious private retreat set back in the fynbos, with the valley on one side and the ocean on the other. Room to spread out, and quiet enough to hear it. The Whale House is for families who want that little bit of extra space and privacy - your own corner of the reserve.',
+    // Order set by Tarryn 21/09/2026: the twin room leads.
+    images: [
+      PHOTOS.whaleHouseTwinRoom,
+      PHOTOS.whaleHouseDining,
+      PHOTOS.whaleHouseKitchen,
+      PHOTOS.whaleHouseMainBedroom,
+      PHOTOS.whaleHouseLawn,
+      PHOTOS.whaleHouseExterior,
+    ],
     features: [
       'Spacious private family retreat',
       'Tranquil valley & fynbos views',
@@ -286,7 +387,7 @@ export const VENUE = {
         'Private setting exclusively for your group',
         'Licensed bar',
       ],
-      image: 'venueCeremony',
+      image: 'venueDeck',
     },
     {
       key: 'corporate',
@@ -301,7 +402,7 @@ export const VENUE = {
         'Private nature reserve to explore and unwind',
         'Space to meet, connect and relax away from the office',
       ],
-      image: 'venue',
+      image: 'venueConference',
     },
   ],
 

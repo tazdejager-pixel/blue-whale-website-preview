@@ -3,8 +3,10 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MobileBookBar from '@/components/MobileBookBar';
 import VenueEnquiry from '@/components/VenueEnquiry';
-import { IMAGES, VENUE, RESORT } from '@/data/resort';
+import { PHOTOS, VENUE } from '@/data/resort';
+import Img from '@/components/Img';
 import { setSeo } from '@/lib/seo';
+import { PAGES } from '@/seo/pages';
 import { Check, ArrowDown } from 'lucide-react';
 
 /**
@@ -20,21 +22,26 @@ import { Check, ArrowDown } from 'lucide-react';
  * sharing one generic list, capacity is a table instead of decorative tiles, and the
  * enquiry is reachable before the bottom of the page for the mostly-mobile traffic.
  *
- * The dressed images show the real room and the real lawn. They are a visualisation of
- * what the space becomes and must NEVER be captioned as an event that happened here.
+ * 21/09/2026: the four venue photographs the resort sent on 04/09 replaced the two
+ * dressed images from 10/09, on Tarryn's instruction, with the wedding photo leading.
+ *
+ * Three of the four are the REAL room, deck and lawn with styling and people added.
+ * They are a visualisation of what the space becomes and must NEVER be captioned as
+ * an event that happened here. The AI-invented signage and on-screen wording in two of
+ * them was blurred out before upload; see the note on PHOTOS in data/resort.ts.
  */
 const VenuePage: React.FC = () => {
   useEffect(() => {
-    setSeo({
-      title: `Weddings & Conference Venue | ${RESORT.name}, George`,
-      description:
-        'A sea-view venue for weddings, conferences and functions up to 50 guests, on a private nature reserve near George. Your guests stay on the same property. Licensed bar, whales and dolphins from the deck.',
-      url: '/venue',
-    });
+    // Same title and description the prerender put in the served HTML, so a
+    // client-side navigation cannot leave the head saying something different.
+    // It also stops this copy drifting: it said "up to 50 guests" until 21/09/2026,
+    // months after the capacity came off the page.
+    const seo = PAGES.find((p) => p.route === '/venue')!;
+    setSeo({ title: seo.title, description: seo.description, image: seo.image, url: '/venue' });
     window.scrollTo({ top: 0 });
   }, []);
 
-  const imageFor = (key: string) => (IMAGES as Record<string, string>)[key];
+  const imageFor = (key: string) => (PHOTOS as Record<string, typeof PHOTOS.venueDeck>)[key];
 
   return (
     <div className="min-h-screen bg-[#F2ECDD] text-[#3A3A36] antialiased">
@@ -44,21 +51,28 @@ const VenuePage: React.FC = () => {
         {/* Hero - lighter overlay than before, because the view is the thing being sold */}
         <section id="top" className="relative min-h-[72vh] flex items-center justify-center">
           <img
-            src={IMAGES.venueCeremony}
-            alt="Ceremony set up on the lawn above the ocean at Blue Whale Resort near George"
+            src={PHOTOS.venueWedding.src}
+            srcSet={PHOTOS.venueWedding.srcSet}
+            sizes="100vw"
+            width={PHOTOS.venueWedding.width}
+            height={PHOTOS.venueWedding.height}
+            alt={PHOTOS.venueWedding.alt}
+            fetchpriority="high"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#163842]/55 via-[#163842]/35 to-[#163842]/75" />
 
           <div className="relative z-10 text-center px-5 max-w-3xl pt-24 pb-16">
-            <span className="block text-[#F2ECDD]/85 tracking-[0.24em] uppercase text-[11px] mb-3">
-              Weddings, Conferences &amp; Functions
-            </span>
+            {/* The h1 says what the page is, not just how it feels (21/09/2026).
+                It read "By The Ocean", which tells a search engine and an answer
+                engine nothing, with "Weddings, Conferences & Functions" sitting
+                above it in a decorative span that no heading level could see. The
+                eyebrow is gone and its words are in the heading instead. */}
             <p className="font-script text-[#F2ECDD] text-5xl sm:text-6xl leading-none mb-2">
               Celebrate
             </p>
-            <h1 className="font-serif text-[#F2ECDD] uppercase tracking-[0.04em] text-3xl sm:text-4xl md:text-5xl mb-6">
-              By The Ocean
+            <h1 className="font-serif text-[#F2ECDD] uppercase tracking-[0.04em] text-3xl sm:text-4xl md:text-5xl mb-6 max-w-2xl mx-auto leading-[1.15]">
+              A Wedding &amp; Conference Venue By The Ocean
             </h1>
             <p className="text-[#F2ECDD] leading-relaxed max-w-xl mx-auto mb-8">
               {VENUE.lead}
@@ -95,14 +109,9 @@ const VenuePage: React.FC = () => {
                   }`}
                 >
                   <div className="md:[direction:ltr]">
-                    <img
-                      src={imageFor(r.image)}
-                      alt={
-                        r.key === 'weddings'
-                          ? 'The venue lawn set for a ceremony above the ocean at Blue Whale Resort'
-                          : 'The events venue at Blue Whale Resort on its lawn above the Indian Ocean'
-                      }
-                      loading="lazy"
+                    <Img
+                      photo={imageFor(r.image)}
+                      sizes="(min-width: 768px) 46vw, 100vw"
                       className="w-full h-[280px] sm:h-[360px] object-cover rounded-[1.75rem] shadow-sm"
                     />
                   </div>
@@ -131,14 +140,14 @@ const VenuePage: React.FC = () => {
           </div>
         </section>
 
-        {/* The room, dressed. Styling stated plainly so nobody arrives expecting it. */}
+        {/* The venue itself, on its lawn above the sea. A real photograph, and the
+            honest counterweight to the three dressed ones above it. */}
         <section className="pb-20 md:pb-28 bg-[#F2ECDD]">
           <div className="max-w-6xl mx-auto px-5">
             <div className="rounded-[1.75rem] overflow-hidden shadow-sm">
-              <img
-                src={IMAGES.venueHallDressed}
-                alt="The function room at Blue Whale Resort dressed for a celebration, with the coastline through the windows"
-                loading="lazy"
+              <Img
+                photo={PHOTOS.venueExterior}
+                sizes="(min-width: 1024px) 1100px, 100vw"
                 className="w-full h-[320px] sm:h-[460px] object-cover"
               />
             </div>
@@ -156,8 +165,10 @@ const VenuePage: React.FC = () => {
         {/* Enquiry - the reason this page exists */}
         <section id="venue-enquiry" className="relative py-20 md:py-28">
           <img
-            src={IMAGES.boardwalk}
-            alt="Boardwalk through fynbos to the ocean at Blue Whale Resort"
+            src={PHOTOS.boardwalk.src}
+            srcSet={PHOTOS.boardwalk.srcSet}
+            sizes="100vw"
+            alt=""
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover"
           />
