@@ -89,7 +89,7 @@ export const siteGraph = () => [
     email: RESORT.email,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Beach Road',
+      streetAddress: 'Beach Road, Pacaltsdorp',
       addressLocality: 'George',
       postalCode: '6529',
       addressRegion: 'Western Cape',

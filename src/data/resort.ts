@@ -20,7 +20,7 @@ export const RESORT = {
   phoneIntl: '+27791762548',
   email: 'bookings@bluewhale.co.za',
   website: 'www.bluewhale.co.za',
-  address: 'Beach Road, George, 6529, Western Cape, South Africa',
+  address: 'Beach Road, Pacaltsdorp, George, 6529, Western Cape, South Africa',
   instagram: 'https://www.instagram.com/',
   facebook: 'https://www.facebook.com/',
 };
