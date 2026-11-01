@@ -85,7 +85,7 @@ export const siteGraph = () => [
     description:
       'Self-catering sea-view chalets and a wedding and conference venue in a private coastal nature reserve near George on the Garden Route, South Africa.',
     slogan: RESORT.tagline,
-    telephone: '+27797162548',
+    telephone: RESORT.phoneIntl,
     email: RESORT.email,
     address: {
       '@type': 'PostalAddress',

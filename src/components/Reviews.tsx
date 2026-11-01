@@ -62,7 +62,7 @@ const Reviews: React.FC = () => {
           <div className="grid gap-6 md:grid-cols-3 items-stretch">
             {shown.map((r) => (
               <figure
-                key={r.author + r.when}
+                key={r.author}
                 className="bg-white rounded-[1.75rem] p-8 shadow-sm hover:shadow-xl transition-shadow duration-500 flex flex-col"
               >
                 {/* Sits above the text, not behind it. Absolutely positioned it
@@ -82,11 +82,9 @@ const Reviews: React.FC = () => {
                   <span className="block font-serif text-[#17414D] text-lg leading-snug">
                     {r.author}
                   </span>
-                  <span className="block text-[13px] text-[#2E2A25]/70 mt-0.5">
-                    {r.stay}
-                    <span className="mx-2 text-[#5F6E39]">-</span>
-                    {r.when}
-                  </span>
+                  {r.stay && (
+                    <span className="block text-[13px] text-[#2E2A25]/70 mt-0.5">{r.stay}</span>
+                  )}
                 </figcaption>
               </figure>
             ))}

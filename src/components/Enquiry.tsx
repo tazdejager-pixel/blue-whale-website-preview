@@ -97,7 +97,7 @@ const Enquiry: React.FC = () => {
           <p className="text-[#2E2A25]/85 leading-relaxed">
             Not quite ready to book? Tell us about your dream coastal escape and we'll be in touch.
             Prefer to chat? Call us on{' '}
-            <a href={`tel:${RESORT.phone.replace(/\s/g, '')}`} className="underline text-[#17414D] hover:text-[#5F6E39]">
+            <a href={`tel:${RESORT.phoneIntl}`} className="underline text-[#17414D] hover:text-[#5F6E39]">
               {RESORT.phone}
             </a>
             .

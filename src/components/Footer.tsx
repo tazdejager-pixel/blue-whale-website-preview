@@ -66,7 +66,7 @@ const Footer: React.FC = () => {
               <MapPin size={18} className="shrink-0 mt-0.5" /> {RESORT.address}
             </li>
             <li>
-              <a href={`tel:${RESORT.phone.replace(/[\s()]/g, '')}`} className="flex items-start gap-3 text-[#F2ECDD]/95 hover:text-white transition-colors">
+              <a href={`tel:${RESORT.phoneIntl}`} className="flex items-start gap-3 text-[#F2ECDD]/95 hover:text-white transition-colors">
                 <Phone size={18} className="shrink-0 mt-0.5" /> {RESORT.phone}
               </a>
             </li>

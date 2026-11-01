@@ -18,7 +18,7 @@ const MobileBookBar: React.FC = () => {
     >
       <div className="flex gap-2 p-3 bg-[#F2ECDD]/95 backdrop-blur-md border-t border-[#17414D]/10 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
         <a
-          href={`tel:${RESORT.phone.replace(/\s/g, '')}`}
+          href={`tel:${RESORT.phoneIntl}`}
           aria-label="Call us"
           className="w-12 shrink-0 rounded-full border border-[#17414D] text-[#17414D] flex items-center justify-center"
         >

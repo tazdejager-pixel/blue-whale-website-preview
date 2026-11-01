@@ -15,7 +15,9 @@ export const RESORT = {
   tagline: 'Stay. Celebrate. Connect.',
   taglineSub: 'Experience the Garden Route from the edge of the ocean',
   location: 'A private coastal nature reserve near George, on the Garden Route, South Africa',
-  phone: '+27 (0)79 716 2548',
+  phone: '079 176 2548',
+  // Used in every tel: link and in the schema. Corrected by Maritza 29/10/2026.
+  phoneIntl: '+27791762548',
   email: 'bookings@bluewhale.co.za',
   website: 'www.bluewhale.co.za',
   address: 'Blue Whale Resort, George, Western Cape, South Africa',
@@ -33,6 +35,10 @@ export const RESORT = {
 // typos ("a awesome" -> "an awesome"). The display name is the guest's own published
 // handle read back to a name.
 //
+// 29/10/2026 (Maritza): the first three are the recent Google reviews she sent; the
+// next six are from the resort's Lekkeslaap page, which she pointed us to. No dates
+// on any review, by her request on the phone. First names only.
+//
 // RULES FOR THIS LIST:
 //  - Never add a review the resort has not actually received.
 //  - Never rewrite one to sound better. Trim with a full stop, or leave it out.
@@ -41,72 +47,109 @@ export const RESORT = {
 export interface Review {
   quote: string;
   author: string;
-  when: string;
-  stay: string;
+  stay?: string;
 }
 
 export const REVIEWS: Review[] = [
   {
     quote:
+      "What a hidden gem! So peaceful and the view is amazing. You HAVE to stay more than one night though. We stayed only one night and really regret it. No TV which is great. Wifi signal is good. Kitchen is equipped well to prepare your own meals but you'll probably be braaing all the time with the greatly situated braai area. We will most definitely be back.",
+    author: 'Henk',
+    stay: 'Family holiday',
+  },
+  {
+    quote:
+      "Wow what an amazing place. It is beautiful. Sitting on your bed looking at the waves. We saw 2 whales and lots of dolphins.",
+    author: 'Marilize',
+  },
+  {
+    quote:
+      "Loved every moment of it... very clean, good service... will definitely visit Blue Whale Resort again.",
+    author: 'Renata',
+  },
+  {
+    quote:
+      "Breathtaking view. It was absolutely beautiful, I am definitely going back there.",
+    author: 'Hayley',
+  },
+  {
+    quote:
+      "Stunning views! I wanted to stay longer - what a gem of a place!",
+    author: 'Terry',
+  },
+  {
+    quote:
+      "Our second stay at Blue Whale Resort. Enjoyed it as much as the first time. Will definitely book again if we are looking for accommodation in the area. The bonus was watching the dolphins feeding for hours right in front of our chalet.",
+    author: 'Kim',
+    stay: 'Second stay',
+  },
+  {
+    quote:
+      "This was the best stay I have had in George. The view alone was enough, but the chalet itself was also very nice with everything you need.",
+    author: 'Taylor',
+  },
+  {
+    quote:
+      "Blue Whale Resort is a special place, neat and clean with everything you need. The view of the sea makes the place. If you stay here, bring your binoculars.",
+    author: 'Johnny',
+  },
+  {
+    quote:
+      "What a wonderful place to recharge! Close enough to swimming beaches, and then nice and quiet when you're back at the beautiful view!",
+    author: 'Gerrie',
+  },
+  {
+    quote:
       'This unit exceeded our expectations by far. The view is breathtaking and to have the privilege of seeing a big school of dolphins going past 3 times in 1 morning was awesome. The unit is well equipped and staff friendly.',
     author: 'Annarie',
-    when: 'December 2021',
     stay: 'Sea-View Chalet',
   },
   {
     quote:
       'What a fabulous stay at Blue Whale Resort. We were a group of friends that booked all 8 sea facing chalets. Such stunning units with comfortable beds and amazing views. Would highly recommend and would definitely go back.',
     author: 'Judy',
-    when: 'October 2022',
     stay: 'A group of friends',
   },
   {
     quote:
       'If you are looking for a place that is private, never runs out of fire wood, sea views and friendly staff, this is the place for you. We stayed a week and we will definitely return in the near future.',
     author: 'Martin',
-    when: 'December 2021',
     stay: 'Honeymoon',
   },
   {
     quote:
       'Fantastic private neat place to stay with the most beautiful scenery of the ocean. Very friendly and helpful hosts that make you feel at home. A place where you can find your soul again. Will definitely visit again.',
     author: 'Sandra',
-    when: 'February 2022',
     stay: 'Sea-View Chalet',
   },
   {
     quote:
       'Beautiful place, very quiet and peaceful. Views are stunning. Situated right on the rocks, the sound of the sea makes you sleep like a baby. Excellent fishing spots. Overall a very nice spot to relax and take in the beautiful views.',
     author: 'Dustin',
-    when: 'March 2022',
     stay: 'Sea-View Chalet',
   },
   {
     quote:
       'Beautiful clean and neat accommodation with an awesome view of the ocean. Everything was there that was needed to ensure a comfortable stay. Enjoyed the relaxing atmosphere and the walk down to the ocean.',
     author: 'R. Metelerkamp',
-    when: 'May 2022',
     stay: 'Sea-View Chalet',
   },
   {
     quote:
       'It was a great place to enjoy the holiday with family. Nice sea view. Value for the money. Rooms were very neat and spacious. You can wake up to a beautiful morning with mountain view as well as sea view.',
     author: 'Sadanand',
-    when: 'October 2022',
     stay: 'Family stay',
   },
   {
     quote:
       'Really has everything going for it. The place is off the beaten track, quiet, views are fantastic, chalets are clean. A great spot to get away.',
     author: 'Brian',
-    when: 'April 2022',
     stay: 'Sea-View Chalet',
   },
   {
     quote:
       'Great views. Clean and roomy. Well equipped. A huge rain spider kept us company but left us in peace. After all, it is and was his home, so we let it be.',
     author: 'Johan',
-    when: 'October 2022',
     stay: 'Sea-View Chalet',
   },
 ];
