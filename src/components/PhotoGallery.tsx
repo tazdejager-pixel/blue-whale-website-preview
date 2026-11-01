@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Photo } from '@/data/resort';
 import Img from './Img';
@@ -12,12 +12,17 @@ import Img from './Img';
  * once with arrows over the big photo and dots instead of thumbnails, and came
  * straight back (Tarryn, 21/09/2026).
  *
+ * 01/11/2026 (Tarryn): it also advances on its own every 1.2 seconds, wrapping to the
+ * first photo, with the thumbnail strip following. It pauses under the pointer and only
+ * runs while the gallery is on screen.
+ *
  * Extracted from StayCard the same day so the accommodation galleries and The View
  * cannot drift apart.
  */
 
 /** Thumbnails visible at once. Three is the layout and it stays three. */
 const PER_VIEW = 3;
+const AUTO_MS = 1200;
 
 interface Props {
   photos: Photo[];
@@ -41,6 +46,30 @@ const PhotoGallery: React.FC<Props> = ({
   const count = photos.length;
   const maxStart = Math.max(0, count - PER_VIEW);
   const shown = photos.slice(start, start + PER_VIEW);
+  const [paused, setPaused] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const onScreen = useRef(false);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => { onScreen.current = e.isIntersecting; }, { threshold: 0.3 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (count < 2 || paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const id = window.setInterval(() => {
+      if (!onScreen.current) return;
+      setActive((a) => {
+        const next = (a + 1) % count;
+        setStart((s) => (next < s ? Math.min(next, maxStart) : next >= s + PER_VIEW ? Math.min(next - PER_VIEW + 1, maxStart) : s));
+        return next;
+      });
+    }, AUTO_MS);
+    return () => window.clearInterval(id);
+  }, [count, maxStart, paused]);
 
   // One thumbnail at a time rather than a whole page of three: the strip slides,
   // which is what an arrow on a row of thumbnails is expected to do. Clamped at both
@@ -48,7 +77,13 @@ const PhotoGallery: React.FC<Props> = ({
   const slide = (by: number) => setStart((s) => Math.min(Math.max(s + by, 0), maxStart));
 
   return (
-    <div>
+    <div
+      ref={rootRef}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
       <div className="relative rounded-[2rem] overflow-hidden shadow-xl">
         <Img photo={photos[active]} sizes={sizes} className={mainClassName} />
         {badge}

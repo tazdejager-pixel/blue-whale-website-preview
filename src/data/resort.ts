@@ -21,8 +21,8 @@ export const RESORT = {
   email: 'bookings@bluewhale.co.za',
   website: 'www.bluewhale.co.za',
   address: 'Beach Road, Pacaltsdorp, George, 6529, Western Cape, South Africa',
-  instagram: 'https://www.instagram.com/',
-  facebook: 'https://www.facebook.com/',
+  // From the resort's own current site. No Instagram account is known, so no icon shows.
+  facebook: 'https://www.facebook.com/www.bluewhale.co.za/',
 };
 
 

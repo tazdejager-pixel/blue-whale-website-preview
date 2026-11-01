@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { sendEnquiry } from '@/lib/enquiry';
 import { EVENT_TYPES } from '@/data/resort';
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
@@ -31,6 +31,8 @@ const VenueEnquiry: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [serverError, setServerError] = useState('');
+  // Hidden from people; a bot that fills it in is ignored.
+  const [honeypot, setHoneypot] = useState('');
 
   const update = (k: keyof FormState, v: string | boolean) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -56,20 +58,18 @@ const VenueEnquiry: React.FC = () => {
     setStatus('loading');
 
     try {
-      // No database connected in this preview build: submit succeeds for the demo
-      // but is not stored. Re-connecting a real Supabase makes this persist.
-      const { error } = await supabase.from('enquiries').insert({
+      await sendEnquiry({
+        form: 'venue',
+        website: honeypot,
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim() || null,
-        preferred_dates: form.date.trim() || null,
+        dates: form.date.trim() || null,
         guests: form.guests.trim() || null,
         interest: 'venue',
         event_type: form.eventType,
         message: form.message.trim() || null,
       });
-
-      if (error) throw error;
 
       setStatus('success');
       setForm(empty);
@@ -100,6 +100,16 @@ const VenueEnquiry: React.FC = () => {
       onSubmit={handleSubmit}
       className="bg-[#0a2128]/80 backdrop-blur-md border border-[#F2ECDD]/15 rounded-[2rem] p-7 sm:p-9 space-y-5 text-left shadow-xl"
     >
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute -left-[9999px] h-0 w-0 opacity-0"
+          />
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <label className="block text-[#F2ECDD] text-sm mb-2">Name</label>

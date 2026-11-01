@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { sendEnquiry } from '@/lib/enquiry';
 import { RESORT, INTERESTS } from '@/data/resort';
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
@@ -33,6 +33,8 @@ const Enquiry: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [serverError, setServerError] = useState('');
+  // Hidden from people; a bot that fills it in is ignored.
+  const [honeypot, setHoneypot] = useState('');
 
   const update = (k: keyof FormState, v: string | boolean) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -58,21 +60,18 @@ const Enquiry: React.FC = () => {
     setStatus('loading');
 
     try {
-      // No database connected in this preview build: the submit succeeds for the
-      // demo but is not stored. When a real Supabase is connected, this insert
-      // persists the enquiry (and an email/CRM step can be re-added then).
-      const { error } = await supabase.from('enquiries').insert({
+      await sendEnquiry({
+        form: 'stay',
+        website: honeypot,
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim() || null,
         marketing_opt_in: form.marketingOptIn,
-        preferred_dates: form.dates.trim() || null,
+        dates: form.dates.trim() || null,
         guests: form.guests.trim() || null,
         interest: form.interest || null,
         message: form.message.trim(),
       });
-
-      if (error) throw error;
 
       setStatus('success');
       setForm(empty);
@@ -120,6 +119,16 @@ const Enquiry: React.FC = () => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="bg-[#F2ECDD] rounded-[2rem] p-7 sm:p-10 space-y-5">
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute -left-[9999px] h-0 w-0 opacity-0"
+          />
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label className="block text-[#17414D] text-sm mb-2">Name</label>

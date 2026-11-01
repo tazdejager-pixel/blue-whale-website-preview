@@ -16,8 +16,7 @@ import { RESORT, STAYS, VENUE, SHARED_FEATURES, PHOTOS } from '@/data/resort';
  *     17/09/2026, so it is no longer visible and no longer belongs in the markup
  *   - no aggregateRating: the Tripadvisor aggregate came off the site on 21/09/2026
  *     and a rating with nothing to source it to is a claim we cannot back
- *   - no sameAs: the footer's social links are still placeholder profile URLs. The
- *     day they point at the resort's real Facebook and Instagram, add them here.
+ *   - sameAs carries only the resort's real Facebook page. No Instagram is known.
  *   - no opening hours: not on the page. Street address went in 01/11/2026,
  *     when the footer started showing it. No geo: their GPS reference is off.
  */
@@ -85,6 +84,7 @@ export const siteGraph = () => [
     description:
       'Self-catering sea-view chalets and a wedding and conference venue in a private coastal nature reserve near George on the Garden Route, South Africa.',
     slogan: RESORT.tagline,
+    sameAs: [RESORT.facebook],
     telephone: RESORT.phoneIntl,
     email: RESORT.email,
     address: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { RESORT, LOGO_CREAM, NAV_LINKS } from '@/data/resort';
-import { Phone, Mail, MapPin, Globe, Facebook, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Globe, Facebook } from 'lucide-react';
 
 // Everything the footer links to, split into two columns so Explore reads as a short
 // list twice rather than one long one. This is the nav and nothing else - Journal came
@@ -82,9 +82,6 @@ const Footer: React.FC = () => {
             </li>
           </ul>
           <div className="flex gap-3 mt-6">
-            <a href={RESORT.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full bg-[#F2ECDD]/10 hover:bg-[#F2ECDD]/20 flex items-center justify-center transition-colors">
-              <Instagram size={18} />
-            </a>
             <a href={RESORT.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full bg-[#F2ECDD]/10 hover:bg-[#F2ECDD]/20 flex items-center justify-center transition-colors">
               <Facebook size={18} />
             </a>

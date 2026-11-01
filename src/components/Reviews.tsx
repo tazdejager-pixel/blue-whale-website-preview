@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { REVIEWS } from '@/data/resort';
 
@@ -13,23 +13,65 @@ import { REVIEWS } from '@/data/resort';
  * Nothing here may be invented. See the rules on the REVIEWS export.
  */
 
-const PER_VIEW = 3;
+const PER_VIEW_DESKTOP = 3;
+/** Tarryn, 01/11/2026. Pauses while a visitor hovers or is touching the section. */
+const AUTO_MS = 3000;
 
 const Reviews: React.FC = () => {
   const [page, setPage] = useState(0);
+  const [paused, setPaused] = useState(false);
+  // One card at a time on a phone: three stacked cards changing every three seconds
+  // would move the whole page under the reader.
+  const [perView, setPerView] = useState(PER_VIEW_DESKTOP);
+  const sectionRef = useRef<HTMLElement>(null);
+  const onScreen = useRef(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const apply = () => setPerView(mq.matches ? PER_VIEW_DESKTOP : 1);
+    apply();
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
+  }, []);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => { onScreen.current = e.isIntersecting; }, { threshold: 0.2 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const id = window.setInterval(() => {
+      if (onScreen.current) setPage((p) => p + 1);
+    }, AUTO_MS);
+    return () => window.clearInterval(id);
+  }, [paused]);
 
   if (!REVIEWS.length) return null;
+
+  const PER_VIEW = perView;
 
   // Whole pages only, so the last slide is never a single card on its own.
   const whole = Math.floor(REVIEWS.length / PER_VIEW) * PER_VIEW;
   const all = whole >= PER_VIEW ? REVIEWS.slice(0, whole) : REVIEWS;
   const pages = Math.ceil(all.length / PER_VIEW);
-  const current = Math.min(page, pages - 1);
+  const current = page % pages;
   const shown = all.slice(current * PER_VIEW, current * PER_VIEW + PER_VIEW);
-  const step = (by: number) => setPage((p) => (p + by + pages) % pages);
+  const step = (by: number) => setPage((current + by + pages) % pages);
 
   return (
-    <section id="reviews" className="py-20 md:py-28 bg-[#F2ECDD]">
+    <section
+      ref={sectionRef}
+      id="reviews"
+      className="py-20 md:py-28 bg-[#F2ECDD]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
       <div className="max-w-7xl mx-auto px-5">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="block text-[#456C80] tracking-[0.24em] uppercase text-[11px] mb-2">
@@ -59,7 +101,7 @@ const Reviews: React.FC = () => {
             </button>
           )}
 
-          <div className="grid gap-6 md:grid-cols-3 items-stretch">
+          <div className="grid gap-6 md:grid-cols-3 items-stretch min-h-[430px] md:min-h-[410px]">
             {shown.map((r) => (
               <figure
                 key={r.author}
