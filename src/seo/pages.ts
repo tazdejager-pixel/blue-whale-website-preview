@@ -18,7 +18,8 @@ import { RESORT, STAYS, VENUE, SHARED_FEATURES, PHOTOS } from '@/data/resort';
  *     and a rating with nothing to source it to is a claim we cannot back
  *   - no sameAs: the footer's social links are still placeholder profile URLs. The
  *     day they point at the resort's real Facebook and Instagram, add them here.
- *   - no street address, no opening hours, no geo: none of it is on the page.
+ *   - no opening hours: not on the page. Street address and geo went in 01/11/2026,
+ *     when the footer and the map started showing them.
  */
 
 export const SITE_URL = 'https://www.bluewhale.co.za';
@@ -73,8 +74,7 @@ const imageObject = (p: { src: string; width: number; height: number; alt: strin
  * The site graph. Goes on every page; page graphs point back at it by @id.
  *
  * `Resort` rather than a plain `Organization` because that is what the business is,
- * and a lodging type is what an answer engine needs to place it. It carries no street
- * address and no opening hours, which is the part the visibility rule governs.
+ * and a lodging type is what an answer engine needs to place it.
  */
 export const siteGraph = () => [
   {
@@ -89,10 +89,13 @@ export const siteGraph = () => [
     email: RESORT.email,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'Beach Road',
       addressLocality: 'George',
+      postalCode: '6529',
       addressRegion: 'Western Cape',
       addressCountry: 'ZA',
     },
+    geo: { '@type': 'GeoCoordinates', latitude: RESORT.lat, longitude: RESORT.lng },
     areaServed: 'Garden Route, Western Cape, South Africa',
     currenciesAccepted: 'ZAR',
     amenityFeature: SHARED_FEATURES.map((f) => ({
