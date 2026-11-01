@@ -21,9 +21,6 @@ export const RESORT = {
   email: 'bookings@bluewhale.co.za',
   website: 'www.bluewhale.co.za',
   address: 'Beach Road, George, 6529, Western Cape, South Africa',
-  // Their own GPS reference: S34 02.393, E022 28.514.
-  lat: -34.03988,
-  lng: 22.47523,
   instagram: 'https://www.instagram.com/',
   facebook: 'https://www.facebook.com/',
 };
@@ -158,11 +155,12 @@ export const REVIEWS: Review[] = [
 ];
 
 
-// Google Maps embed pinned on the resort's own GPS reference (no API key needed)
+// Google Maps embed pinned on the resort's Google listing, by name. Their published GPS
+// reference lands about a kilometre off the resort, so it is not used. (No API key needed.)
 export const MAP_EMBED =
-  'https://www.google.com/maps?q=-34.03988,22.47523&z=14&output=embed';
+  'https://www.google.com/maps?q=Blue%20Whale%20Resort%2C%20George%2C%20South%20Africa&z=14&output=embed';
 export const MAP_LINK =
-  'https://www.google.com/maps/search/?api=1&query=-34.03988%2C22.47523';
+  'https://www.google.com/maps/search/?api=1&query=Blue+Whale+Resort%2C+George%2C+South+Africa';
 
 
 // Blue Whale brand logos + real resort photography (4K-enhanced from the resort's

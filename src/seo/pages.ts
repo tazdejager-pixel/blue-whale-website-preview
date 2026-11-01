@@ -18,8 +18,8 @@ import { RESORT, STAYS, VENUE, SHARED_FEATURES, PHOTOS } from '@/data/resort';
  *     and a rating with nothing to source it to is a claim we cannot back
  *   - no sameAs: the footer's social links are still placeholder profile URLs. The
  *     day they point at the resort's real Facebook and Instagram, add them here.
- *   - no opening hours: not on the page. Street address and geo went in 01/11/2026,
- *     when the footer and the map started showing them.
+ *   - no opening hours: not on the page. Street address went in 01/11/2026,
+ *     when the footer started showing it. No geo: their GPS reference is off.
  */
 
 export const SITE_URL = 'https://www.bluewhale.co.za';
@@ -95,7 +95,6 @@ export const siteGraph = () => [
       addressRegion: 'Western Cape',
       addressCountry: 'ZA',
     },
-    geo: { '@type': 'GeoCoordinates', latitude: RESORT.lat, longitude: RESORT.lng },
     areaServed: 'Garden Route, Western Cape, South Africa',
     currenciesAccepted: 'ZAR',
     amenityFeature: SHARED_FEATURES.map((f) => ({
