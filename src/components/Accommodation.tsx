@@ -26,7 +26,7 @@ const Accommodation: React.FC = () => (
         </h2>
         <p className="text-[#2E2A25]/85 leading-relaxed">
           Two distinct ways to stay - our signature Sea-View Chalets and the
-          spacious Whale House retreat - each positioned to make the most of this
+          spacious Family House retreat - each positioned to make the most of this
           private corner of the Garden Route.
         </p>
       </div>

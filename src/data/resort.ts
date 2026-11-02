@@ -245,19 +245,19 @@ export const PHOTOS = {
   chaletBedroom: photo('chalet-bedroom', [640, 1024, 1448], 1448, 1086,
     'A chalet bedroom at Blue Whale Resort with a double bed and a wide window looking straight out over the ocean'),
 
-  // The Whale House
+  // The Family House
   whaleHouseTwinRoom: photo('whalehouse-twin-room', [640, 1024, 1448], 1448, 1086,
-    'A bedroom in the Whale House at Blue Whale Resort with a double and a single bed and a window onto the sea'),
+    'A bedroom in the Family House at Blue Whale Resort with a double and a single bed and a window onto the sea'),
   whaleHouseDining: photo('whalehouse-dining', [640, 1024, 1448], 1448, 1086,
-    'The Whale House dining table set at an open window above the fynbos and the coastline'),
+    'The Family House dining table set at an open window above the fynbos and the coastline'),
   whaleHouseKitchen: photo('whalehouse-kitchen', [640, 1024, 1448], 1448, 1086,
-    'The fully equipped self-catering kitchen in the Whale House, with the indoor braai through the doorway'),
+    'The fully equipped self-catering kitchen in the Family House, with the indoor braai through the doorway'),
   whaleHouseMainBedroom: photo('whalehouse-main-bedroom', [640, 1024, 1448], 1448, 1086,
-    'The main bedroom of the Whale House, with a king bed under a timber beam'),
+    'The main bedroom of the Family House, with a king bed under a timber beam'),
   whaleHouseLawn: photo('whalehouse-lawn', [640, 1024, 1600], 1600, 1200,
-    'The lawn and braai area outside the Whale House, with palms and the Indian Ocean behind'),
+    'The lawn and braai area outside the Family House, with palms and the Indian Ocean behind'),
   whaleHouseExterior: photo('whalehouse-exterior', [640, 1024, 1600], 1600, 1200,
-    'The Whale House at Blue Whale Resort, a double-storey timber house on the lawn'),
+    'The Family House at Blue Whale Resort, a double-storey timber house on the lawn'),
 
   // Venue
   venueWedding: photo('venue-wedding', [640, 1024, 1448], 1448, 1086,
@@ -329,8 +329,8 @@ export const STAYS: Stay[] = [
     bookUrl: BOOKING_URL,
   },
   {
-    id: 'whale-house',
-    name: 'The Whale House',
+    id: 'family-house',
+    name: 'The Family House',
     view: 'Tranquil valley & fynbos views',
     suits: 'Families wanting extra space and privacy',
     sleeps: 'Sleeps 5-6',
@@ -339,9 +339,9 @@ export const STAYS: Stay[] = [
     // bedroom, the dining table and the lawn. The badge and the feature list still say
     // "Tranquil valley & fynbos views" because that is Maritza's own wording, approved
     // on 04/09/2026, and only she can change it. Open question for the resort: should
-    // the Whale House be sold on its sea view as well?
+    // the Family House be sold on its sea view as well?
     blurb:
-      'A spacious private retreat set back in the fynbos, with the valley on one side and the ocean on the other. Room to spread out, and quiet enough to hear it. The Whale House is for families who want that little bit of extra space and privacy - your own corner of the reserve.',
+      'A spacious private retreat set back in the fynbos, with the valley on one side and the ocean on the other. Room to spread out, and quiet enough to hear it. The Family House is for families who want that little bit of extra space and privacy - your own corner of the reserve.',
     // Order set by Tarryn 21/09/2026: the twin room leads.
     images: [
       PHOTOS.whaleHouseTwinRoom,
@@ -457,7 +457,7 @@ export const VENUE = {
   capacity: [
     { k: 'Seated', v: 'Up to 50' },
     { k: 'Standing', v: 'Up to 50' },
-    { k: 'Sleeping on site', v: '10 chalets plus the Whale House' },
+    { k: 'Sleeping on site', v: '10 chalets plus the Family House' },
     { k: 'The reserve', v: '10 private hectares' },
   ],
 
@@ -498,7 +498,7 @@ export const VIEW_GALLERY: Photo[] = [
 // Enquiry form interest options
 export const INTERESTS = [
   { value: 'chalet', label: 'Sea-View Chalet' },
-  { value: 'whale-house', label: 'The Whale House' },
+  { value: 'family-house', label: 'The Family House' },
   { value: 'venue', label: 'Events Venue' },
   { value: 'not-sure', label: 'Not sure yet' },
 ];
